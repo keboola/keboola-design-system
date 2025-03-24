@@ -79,7 +79,6 @@ body {
 .topbar__details {
     display: flex;
     flex-direction: column;
-    gap: var(--space-1);
 }
 
 .topbar__subtitle {
