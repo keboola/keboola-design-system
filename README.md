@@ -1,231 +1,174 @@
-# Keboola Design System
+# Keboola Design System Component Guide
 
-A comprehensive design system for building consistent web interfaces with Keboola style.
-
-## Documentation
-
-- [Component Guide](./COMPONENT-GUIDE.md) - Detailed implementation guide for all components
-- [Tokens](./tokens/) - Design tokens for colors, typography, and variables
-- [Components](./components/) - Reusable UI components
+This guide provides detailed instructions on how to correctly implement components from the Keboola Design System.
 
 ## Table of Contents
 
-1. [Introduction](#introduction)
-2. [Project Structure](#project-structure)
-3. [Getting Started](#getting-started)
+1. [Getting Started](#getting-started)
    - [Installation](#installation)
-   - [Example Pages](#example-pages)
    - [Basic Page Structure](#basic-page-structure)
-4. [Design Tokens](#design-tokens)
-   - [Color System](#color-system)
-     - [Available Color Tokens](#available-color-tokens)
-     - [Using Color Tokens](#using-color-tokens)
-   - [Typography System](#typography-system)
-     - [Font Setup](#font-setup)
-     - [Text Hierarchy](#text-hierarchy)
-     - [Links](#links)
-     - [Text Colors](#text-colors)
-     - [Font Weights](#font-weights)
-     - [Typography Best Practices](#typography-best-practices)
-   - [Spacing System](#spacing-system)
-     - [Spacing Variables](#spacing-variables)
-     - [Gap-Based Spacing Approach](#gap-based-spacing-approach)
-     - [Benefits of Gap-Based Spacing](#benefits-of-gap-based-spacing)
-     - [Migration from Margin-Based to Gap-Based Spacing](#migration-from-margin-based-to-gap-based-spacing)
-     - [Common Spacing Patterns](#common-spacing-patterns)
-5. [Layout & Structure](#layout--structure)
-   - [Page Container](#page-container)
-   - [Shadows](#shadows)
-   - [Grid System](#grid-system)
-     - [Card Grid](#card-grid)
-     - [Section Grid](#section-grid)
-   - [Header & Footer Spacing](#header--footer-spacing)
-     - [Header Spacing](#header-spacing)
-     - [Footer Spacing](#footer-spacing)
-   - [Section Spacing](#section-spacing)
-   - [Layout Examples](#layout-examples)
-     - [Dashboard Layout Example](#dashboard-layout-example)
-     - [Form Layout Example](#form-layout-example)
-6. [Core Components](#core-components)
-   - [Header](#header)
-   - [Buttons](#buttons)
-   - [Cards](#cards)
+   - [Design Tokens](#design-tokens)
+     - [Color System](#color-system)
+     - [Typography System](#typography-system)
+     - [Spacing System](#spacing-system)
+2. [Core Components](#core-components)
+   - [Button Components](#button-components)
+     - [Quick Reference](#quick-reference)
+     - [Required Classes](#required-classes)
+     - [Common Mistakes to Avoid](#common-mistakes-to-avoid)
+     - [Examples](#examples)
+     - [Dependencies](#dependencies)
+     - [Common Use Cases](#common-use-cases)
+     - [Best Practices](#best-practices)
+     - [Accessibility](#accessibility)
+     - [Responsive Behavior](#responsive-behavior)
+   - [Form Components](#form-components)
+     - [Text Input](#text-input)
+       - [Required Structure](#required-structure-1)
+     - [Select Input](#select-input)
+       - [Required Structure](#required-structure-2)
+     - [Checkbox](#checkbox)
+       - [Required Structure](#required-structure-3)
+     - [Radio Button](#radio-button)
+       - [Required Structure](#required-structure-4)
+     - [Form Validation](#form-validation)
+   - [Layout Components](#layout-components)
+     - [Header](#header)
+     - [Grid System](#grid-system)
+   - [Card Components](#card-components)
      - [Basic Card](#basic-card)
      - [Overview Card](#overview-card)
      - [Grey Overview Card](#grey-overview-card)
-     - [Grey Overview Cards in Container](#grey-overview-cards-in-container)
+       - [Common Usage Pattern: Grey Overview Cards in White Container](#common-usage-pattern-grey-overview-cards-in-white-container)
      - [Card Variants](#card-variants)
      - [Card Layout Helper Classes](#card-layout-helper-classes)
-     - [Using Cards in Links](#using-cards-in-links)
-   - [Tabs](#tabs)
-   - [Form Elements](#form-elements)
-     - [Form Spacing](#form-spacing)
-     - [Form Structure](#form-structure)
-     - [Text Input](#text-input)
-     - [Textarea](#textarea)
-     - [Select](#select)
-     - [Checkbox](#checkbox)
-     - [Radio Buttons](#radio-buttons)
-     - [Form Grid Layout](#form-grid-layout)
-     - [Form Validation](#form-validation)
-     - [Form Best Practices](#form-best-practices)
    - [Activity Row](#activity-row)
+   - [Tabs](#tabs)
+     - [Tab Component Requirements](#tab-component-requirements)
    - [Badges](#badges)
-     - [Badge Variants](#badge-variants)
-     - [Badge Usage](#badge-usage)
+     - [Standard Variants](#standard-variants)
+     - [Inline Badge Variant](#inline-badge-variant)
+     - [Using Badges as Labels or Tags](#using-badges-as-labels-or-tags)
+     - [Custom Color Badges](#custom-color-badges)
+     - [Badges with Icons](#badges-with-icons)
    - [Banners](#banners)
-     - [Banner Styling](#banner-styling)
-     - [Persistent Banners](#persistent-banners-without-close-button)
-     - [Banner Structure](#banner-structure)
-     - [Typography Classes](#typography-classes)
-     - [Best Practices](#best-practices)
-7. [Icon System](#icon-system)
-   - [Basic Icon Setup](#basic-icon-setup)
-   - [Icon Sizes and Colors](#icon-sizes-and-colors)
+     - [Key Implementation Details](#key-implementation-details)
+     - [Banner Variants](#banner-variants)
+   - [Icons](#icons)
      - [Icon Sizes](#icon-sizes)
      - [Icon Colors](#icon-colors)
-   - [Icon Best Practices](#icon-best-practices)
-   - [Icon + Text Spacing](#icon--text-spacing)
-     - [Empty State Example](#empty-state-example)
-8. [Common Patterns](#common-patterns)
+     - [Implementation Notes](#implementation-notes)
+3. [Common Patterns](#common-patterns)
    - [Form Card Pattern](#form-card-pattern)
    - [Activity List Pattern](#activity-list-pattern)
-9. [Best Practices and Common Mistakes](#best-practices-and-common-mistakes)
-   - [Typography](#typography)
-   - [Layout](#layout)
-   - [Components](#components)
-   - [Header & Buttons](#header--buttons)
-   - [Spacing](#spacing)
-   - [Card Layouts](#card-layouts)
-10. [Support & Contributing](#support-and-contributing)
+4. [Typography Guidelines](#typography-guidelines)
+   - [Typography in Components](#typography-in-components)
+5. [Banner Placement Guidelines](#banner-placement-guidelines)
+   - [Page-Level Banners](#page-level-banners)
+   - [Card-Level Banners](#card-level-banners)
+6. [Best Practices and Common Mistakes](#best-practices-and-common-mistakes)
+   - [General Component Mistakes](#general-component-mistakes)
+   - [Specific Component Issues](#specific-component-issues)
+   - [Typography Best Practices](#typography-best-practices)
+   - [Layout Best Practices](#layout-best-practices)
+   - [Spacing Best Practices](#spacing-best-practices)
+7. [Responsive Grid Layouts](#responsive-grid-layouts)
+   - [Responsive Grid Classes](#responsive-grid-classes)
+   - [Breakpoints](#breakpoints)
+   - [Balanced Layouts for Uneven Numbers](#balanced-layouts-for-uneven-numbers)
+     - [For 5 KPI Cards with `grid-5-cards` class](#for-5-kpi-cards-with-grid-5-cards-class)
+     - [For 3 KPI Cards with `grid-3-cards` class](#for-3-kpi-cards-with-grid-3-cards-class)
+   - [Example Implementation](#example-implementation)
+   - [Fixed vs Responsive Grid](#fixed-vs-responsive-grid)
+8. [Navigation Component](#navigation-component)
+   - [Required Structure](#required-structure-5)
+   - [HTML Implementation](#html-implementation)
+   - [CSS Variables](#css-variables)
+   - [Interactive Elements](#interactive-elements)
+   - [Responsive Behavior](#responsive-behavior)
+   - [Important Implementation Notes](#important-implementation-notes)
+9. [Icon Component](#icon-component)
+   - [Icon Sizes](#icon-sizes-1)
+   - [Implementation](#implementation)
+   - [Best Practices](#best-practices)
+10. [Topbar Component](#topbar-component)
+    - [Logo Implementation](#logo-implementation)
+    - [Avatar Implementation](#avatar-implementation)
+    - [Full Topbar Structure](#full-topbar-structure)
+    - [Typography Classes](#typography-classes)
+    - [Asset Requirements](#asset-requirements)
+11. [Support & Contributing](#support--contributing)
     - [Support & Documentation](#support--documentation)
     - [Contributing](#contributing)
-11. [Asset Requirements](#asset-requirements)
-    - [Required Assets Structure](#required-assets-structure)
-    - [Logo Usage Guidelines](#logo-usage-guidelines)
-    - [Avatar Guidelines](#avatar-guidelines)
-
-## Introduction
-
-The Keboola Design System provides a consistent set of components, patterns, and guidelines for building Keboola applications. It ensures visual consistency, improves development efficiency, and creates a cohesive user experience across all Keboola products.
-
-## Project Structure
-
-```
-project/
-├── dist/
-│   └── design-system.css (imports all components)
-├── tokens/
-│   ├── variables.css    (spacing, radius, shadows)
-│   ├── colors.css       (color palette, system colors)
-│   └── typography.css   (font definitions, text styles)
-├── components/
-│   ├── atoms/           (basic building blocks)
-│   │   ├── badge.css
-│   │   ├── button.css
-│   │   ├── icon.css     (icon sizing, containers, colors)
-│   │   └── ...
-│   ├── molecules/       (composite components)
-│   │   ├── banner.css
-│   │   ├── card.css
-│   │   ├── topbar.css   (navigation component)
-│   │   └── ...
-│   └── organisms/       (complex component groups)
-│       ├── dashboard.css
-│       └── ...
-├── styles/
-│   └── layout.css       (grid system, containers)
-└── assets/
-    ├── icons/
-    ├── logos/
-    └── avatars/
-```
-
-This organization follows atomic design principles:
-- **Tokens**: Design foundations like colors, typography, and spacing
-- **Atoms**: Smallest UI elements (buttons, icons, badges)
-- **Molecules**: Groups of atoms forming distinct sections (cards, banners)
-- **Organisms**: Complex components combining multiple molecules
-- **Assets**: Static resources used across components
-
-All CSS is modular and follows a consistent naming convention to prevent conflicts.
 
 ## Getting Started
 
-For a comprehensive guide on getting started with the Keboola Design System, please refer to the [Component Guide](./COMPONENT-GUIDE.md).
-
 ### Installation
 
-⚠️ **Important Installation Considerations**:
+Include these dependencies in your HTML file:
 
-1. **Folder Naming**: 
-   - ✅ Recommended: Use "keboola-design-system" with hyphens
-   - ❌ Avoid: Spaces in folder names like "keboola design system" can cause issues in some environments
-
-2. **Path References**: 
-   - If you place the design system in a subfolder of your project, update CSS paths accordingly:
-   ```html
-   <!-- Example if design system is in a subfolder -->
-   <link href="keboola-design-system/dist/design-system.css" rel="stylesheet">
-   ```
-
-3. **Asset References**:
-   - Update any paths to assets (logos, images) to reflect your folder structure
-   - Example files may need path adjustments to work in your specific setup
-
-4. **Testing After Installation**:
-   - Always verify that styles are loading correctly after installation
-   - Check browser console for any 404 errors related to missing files
-
-### Example Pages
-
-The `examples/` directory contains complete, ready-to-use example pages that demonstrate how to implement the design system:
-
-- **index.html**: Main examples index page
-- **login-register.html**: A login and registration page with form validation and tabbed interface
-- **people-management.html**: A user management dashboard example
-- **transportation-dashboard.html**: A data visualization dashboard example
-- **car-dashboard.html**: An automotive metrics dashboard
-- **bitcoin-dashboard.html**: A cryptocurrency tracking dashboard
-- **sales-dashboard.html**: A sales analytics dashboard with proper banner implementation
-- **overview-card-demo.html**: Examples of different overview card implementations
-
-These examples showcase proper implementation of components, layout patterns, and responsive design. They're a great starting point for building your own pages.
-
-> **⚠️ Important Note**: The `examples/` directory is for reference and learning purposes only. When implementing the design system in your own project:
-> 
-> 1. **DO NOT** add new pages to the `examples/` directory
-> 2. **DO NOT** modify existing example pages unless you're fixing bugs
-> 3. **DO** create your own HTML files in your project directory
-> 4. **DO** use the examples as reference for proper implementation patterns
->
-> The examples directory should only be modified when developing new components or debugging existing ones.
+```html
+<!-- Required Dependencies -->
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
+<link href="dist/design-system.css" rel="stylesheet">
+```
 
 ### Basic Page Structure
 
 Every page should follow this basic structure:
 
 ```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Keboola App</title>
+    
+    <!-- Preload critical fonts for performance -->
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" as="style">
+    
+    <!-- Required Dependencies -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
+    <link href="dist/design-system.css" rel="stylesheet">
+    
+    <!-- REQUIRED: Base font styles -->
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: var(--font-family-base);
+            background-color: var(--neutral-grey-50);
+            color: var(--neutral-grey-800);
+            line-height: var(--body-body-line-height);
+        }
+    </style>
+</head>
 <body class="bg-grey-50">
-  <div class="container page-container" style="padding: var(--space-16)">
-    <div class="content-wrapper" style="display: flex; flex-direction: column; gap: var(--space-6)">
-      <header class="header">
-        <h1 class="header__title heading-1">Page Title</h1>
-      </header>
-      
-      <section class="section">
-        <!-- Content -->
-      </section>
+    <div class="container page-container" style="padding: var(--space-16)">
+        <div class="content-wrapper" style="display: flex; flex-direction: column; gap: var(--space-6)">
+            <header class="header">
+                <h1 class="header__title heading-1">Page Title</h1>
+            </header>
+            
+            <section class="section">
+                <!-- Content -->
+            </section>
+        </div>
     </div>
-  </div>
 </body>
+</html>
 ```
 
-## Design Tokens
+> ⚠️ **Important**: Both the font preloading and base font styles are required for all pages. Omitting either will result in inconsistent typography and performance issues.
 
-### Color System
+### Design Tokens
 
-#### Available Color Tokens
+#### Color System
+
+The design system provides a comprehensive set of color tokens:
 
 ```css
 /* Neutral Colors */
@@ -244,7 +187,7 @@ Every page should follow this basic structure:
 /* Secondary Colors - Blue */
 --secondary-blue-800: #064a8f;
 --secondary-blue-700: #075fb8;
---secondary-blue-600: #0975e0;
+--secondary-blue-600: #0975e0;  /* Primary blue for icons and accents */
 --secondary-blue-500-base: #1f8fff;
 --secondary-blue-450: #3e9eff;
 --secondary-blue-200: #c2e0ff;
@@ -289,58 +232,9 @@ Every page should follow this basic structure:
 --accent-teal-100: #cfffe6;
 ```
 
-#### Using Color Tokens
+#### Typography System
 
-```html
-<!-- Using color tokens in inline styles -->
-<div style="background-color: var(--secondary-blue-600);">Blue background</div>
-
-<!-- Using predefined background classes -->
-<div class="bg-white">White background</div>
-<div class="bg-grey-50">Light grey background</div>
-
-<!-- Text colors -->
-<p class="text-grey-900">Primary Text</p>
-<p class="text-grey-600">Subtitle Text</p>
-
-<!-- ✅ Do use CSS variables -->
-<div style="background-color: var(--secondary-blue-600);">Correct</div>
-<!-- ❌ Don't use hex values directly -->
-<div style="background-color: #0975e0;">Wrong</div>
-```
-
-### Typography System
-
-#### Font Setup
-
-```html
-<head>
-    <!-- Preload critical fonts for performance -->
-    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" as="style">
-    
-    <!-- Required font dependencies -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-    
-    <!-- Design System CSS -->
-    <link href="dist/design-system.css" rel="stylesheet">
-    
-    <!-- REQUIRED: Base font styles -->
-    <style>
-        body {
-            margin: 0;
-            padding: 0;
-            font-family: var(--body-body-family);
-            background-color: var(--neutral-grey-50);
-            color: var(--neutral-grey-800);
-            line-height: var(--body-body-line-height);
-        }
-    </style>
-</head>
-```
-
-> ⚠️ **Important**: Both the font preloading and base font styles are required for all pages. Omitting either will result in inconsistent typography and performance issues.
-
-#### Text Hierarchy
+The design system provides consistent typography classes:
 
 ```html
 <!-- Headings -->
@@ -358,58 +252,9 @@ Every page should follow this basic structure:
 <p class="small-body-text-medium">12px, Medium (500)</p>
 ```
 
-#### Links
+#### Spacing System
 
-The design system provides several link components with proper styling and hover states:
-
-```html
-<!-- Link Variants -->
-<a href="#" class="link-h3">Heading Link</a>
-<a href="#" class="link-body-medium">Medium Body Link</a>
-<a href="#" class="link-body">Regular Body Link</a>
-<a href="#" class="link-small-body-medium">Small Medium Link</a>
-
-<!-- ✅ Do use link classes -->
-<a href="#" class="link-small-body-medium">Forgot password?</a>
-<!-- ❌ Don't use custom link styles -->
-<a href="#" style="color: blue; text-decoration: underline;">Forgot password?</a>
-```
-
-Link components include:
-- Proper text decoration (underlined by default)
-- Correct color (var(--secondary-blue-500-base))
-- Appropriate hover states (color changes to var(--secondary-blue-600))
-- Consistent font family, size, weight, and line height
-
-#### Text Colors
-
-```html
-<!-- Text Colors -->
-<p class="text-grey-900">Primary Text</p>
-<p class="text-grey-800">Secondary Text</p>
-<p class="text-grey-600">Subtitle Text</p>
-<p class="text-grey-500">Disabled Text</p>
-```
-
-#### Font Weights
-
-- `400` - Regular text, body content
-- `500` - Medium weight, headings and emphasis
-- `600` - Semibold, strong emphasis
-- `700` - Bold, very strong emphasis
-
-#### Typography Best Practices
-
-1. Use the provided typography classes instead of direct font properties
-2. Follow the font-weight guidelines
-3. Include fallback fonts
-4. **Always preload critical fonts** - This is mandatory for performance
-5. **Always include base font styles** - This ensures consistent typography across all pages
-6. Use proper font subsets when possible
-
-### Spacing System
-
-#### Spacing Variables
+The design system uses a consistent spacing scale:
 
 ```css
 --space-0: 0;
@@ -425,334 +270,36 @@ Link components include:
 --space-16: 64px;
 ```
 
-#### Gap-Based Spacing Approach
-
-The Keboola Design System uses a gap-based spacing approach for more consistent, maintainable layouts:
-
-- **Container-level spacing**: Use `gap` properties on parent containers to create consistent spacing between child elements
-- **Component-specific internal spacing**: Use margins and padding within components for internal spacing
-
-This approach eliminates the need for margin hacks and creates more predictable layouts.
-
-#### Benefits of Gap-Based Spacing
-
-1. **Cleaner Code**: Eliminates the need for margin hacks or "margin-bottom-except-last-child" patterns
-2. **More Predictable**: Creates consistent spacing without the complexity of collapsing margins
-3. **Easier Maintenance**: Only need to change one value (the gap) instead of multiple margin declarations
-4. **Better for Responsive Design**: Scales more predictably across different screen sizes
-
-#### Migration from Margin-Based to Gap-Based Spacing
-
-##### Before (Margin-Based Approach)
-```html
-<div class="content-wrapper">
-  <header class="header" style="margin-bottom: var(--space-6)">
-    <!-- Header content -->
-  </header>
-  
-  <section class="section" style="margin-bottom: var(--space-6)">
-    <!-- Section content -->
-  </section>
-  
-  <section class="section" style="margin-bottom: var(--space-6)">
-    <!-- Another section -->
-  </section>
-</div>
-```
-
-##### After (Gap-Based Approach)
-```html
-<div class="content-wrapper" style="display: flex; flex-direction: column; gap: var(--space-6)">
-  <header class="header">
-    <!-- Header content -->
-  </header>
-  
-  <section class="section">
-    <!-- Section content -->
-  </section>
-  
-  <section class="section">
-    <!-- Another section -->
-  </section>
-</div>
-```
-
-##### Migration Steps:
-1. Add `display: flex; flex-direction: column; gap: var(--space-6)` to the content wrapper
-2. Remove all `margin-bottom` or `margin-top` from sections
-3. Keep component-specific internal spacing (like card footer margin-top)
-
-#### Common Spacing Patterns
-
-- Use `var(--space-4)` (16px) for:
-  - All card layouts (both within rows and between rows)
-  - Internal component spacing
-  - Form group spacing
-  - Card content padding
-  - Grid gaps for card layouts
-- Use `var(--space-6)` (24px) for:
-  - Spacing between major sections
-  - Container gap for sections
-  - Content block separation
-- Use `var(--space-8)` (32px) for:
-  - Large component separation
-  - Major content blocks
-- Use `var(--space-16)` (64px) for:
-  - Page container padding
-  - Major layout divisions
-
-## Layout & Structure
-
-### Page Container
-
-Every page must follow these container rules:
-
-```html
-<body class="bg-grey-50">
-  <div class="container page-container" style="padding: var(--space-16)">
-    <div class="content-wrapper" style="display: flex; flex-direction: column; gap: var(--space-6)">
-      <header class="header">
-        <h1 class="header__title heading-1">Page Title</h1>
-      </header>
-      
-      <section class="section">
-        <!-- Content -->
-      </section>
-    </div>
-  </div>
-</body>
-```
-
-Key requirements:
-- Always use `bg-grey-50` on body
-- Wrap content in `container page-container` with padding: var(--space-16) (64px)
-- Use `content-wrapper` with gap: var(--space-6) (24px) for vertical spacing between sections
-- **Do not add margins to sections** - rely on the parent container's gap
-
-### Shadows
-
-The design system provides consistent shadow variables for different UI elements:
-
-```css
-/* Shadow Variables */
---card-shadow: 0 3px 3px 0 rgba(34 37 41 / 0.08);
---dialog-shadow: 0 3px 4px 0 rgba(34 37 41 / 0.12);
---active-element: 0 0 0 4px rgba(31 143 255 / 0.2);
-```
-
-Usage examples:
-```html
-<!-- Card with proper shadow -->
-<div class="card bg-white">...</div>
-
-<!-- Custom element with card shadow -->
-<div style="box-shadow: var(--card-shadow);">...</div>
-
-<!-- ✅ Do use shadow variables -->
-<div style="box-shadow: var(--card-shadow);">Correct</div>
-<!-- ❌ Don't use custom shadow values -->
-<div style="box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);">Wrong</div>
-```
-
-### Grid System
-
-The design system provides a consistent grid system:
-
-#### Card Grid
-```html
-<div class="grid grid-cols-3" style="gap: var(--space-4)">
-  <div>Item 1</div>
-  <div>Item 2</div>
-  <div>Item 3</div>
-</div>
-```
-- Use `gap: var(--space-4)` (16px) consistently for all card layouts
-- This creates visual consistency across all card-based layouts
-
-#### Section Grid
-```html
-<div class="content-wrapper" style="display: flex; flex-direction: column; gap: var(--space-6)">
-  <section>Section 1</section>
-  <section>Section 2</section>
-</div>
-```
-- Use `gap: var(--space-6)` (24px) for spacing between major sections
-- This creates clear visual separation between content sections
-
-### Header & Footer Spacing
-
-While we use gap for spacing between components, internal component spacing still uses margins and padding:
-
-#### Header Spacing
-```html
-<header class="header">
-  <h1 class="header__title">Page Title</h1>
-</header>
-```
-- Headers no longer need margin-top or margin-bottom - the parent container's gap handles spacing
-- This creates a clear visual separation between the header and content below/above
-
-#### Footer Spacing
-```html
-<div class="card__footer" style="margin-top: var(--space-6)">
-  <button class="btn btn-primary">
-    <span class="btn-text">Submit</span>
-  </button>
-</div>
-```
-- Card footers should have `margin-top: var(--space-6)` to separate them from content above
-- This creates breathing room between main content and footer actions
-
-### Section Spacing
-
-```html
-<!-- Sections with cards -->
-<section class="section">
-  <!-- Content -->
-</section>
-```
-
-- Use the parent container's `gap: var(--space-6)` for spacing between sections
-- Use `gap: var(--space-4)` (16px) for cards within sections
-- Use `gap: var(--space-8)` (32px) for large content blocks
-
-### Layout Examples
-
-#### Dashboard Layout Example
-```html
-<div class="content-wrapper" style="display: flex; flex-direction: column; gap: var(--space-6)">
-  <header class="header">
-    <h1 class="header__title heading-1">Car Fleet Management Dashboard</h1>
-    <div class="header__actions">
-      <button class="btn btn-secondary btn-medium">
-        <div class="btn-icon">
-          <i class="fas fa-download icon-muted"></i>
-        </div>
-        <span class="btn-text">EXPORT REPORT</span>
-      </button>
-      <button class="btn btn-primary btn-medium">
-        <div class="btn-icon">
-          <i class="fas fa-plus text-white"></i>
-        </div>
-        <span class="btn-text">ADD VEHICLE</span>
-      </button>
-    </div>
-  </header>
-
-  <div class="tabs tabs-large">
-    <div class="tab-item active">
-      <div class="tab-content">
-        <div class="icon-container icon-small">
-          <i class="fas fa-car"></i>
-        </div>
-        <div class="tab-text">Fleet Overview</div>
-      </div>
-      <div class="tab-active-line"></div>
-    </div>
-    <!-- Additional tabs -->
-  </div>
-
-  <section class="section">
-    <div class="grid grid-cols-4" style="gap: var(--space-4)">
-      <!-- Overview cards -->
-    </div>
-  </section>
-</div>
-```
-
-#### Form Layout Example
-```html
-<div class="auth-container">
-  <div class="auth-card bg-white">
-    <div class="auth-header">
-      <img src="../assets/logo.svg" alt="Keboola Logo" width="120" height="32">
-      <h1 class="heading-2" style="margin-top: var(--space-6)">Sign In</h1>
-    </div>
-    
-    <div class="tabs tabs-large" style="margin: var(--space-6) 0;">
-      <div class="tab-item active">
-        <div class="tab-content">
-          <div class="tab-text">Sign In</div>
-        </div>
-        <div class="tab-active-line"></div>
-      </div>
-      <div class="tab-item">
-        <div class="tab-content">
-          <div class="tab-text">Register</div>
-        </div>
-      </div>
-    </div>
-    
-    <form style="display: flex; flex-direction: column; gap: var(--space-4)">
-      <div class="form-group">
-        <div class="text-input">
-          <div class="label">
-            <label class="label-text" for="email">Email</label>
-          </div>
-          <div class="content">
-            <input type="email" id="email" placeholder="Enter your email">
-          </div>
-        </div>
-      </div>
-      
-      <div class="form-group">
-        <div class="text-input">
-          <div class="label">
-            <label class="label-text" for="password">Password</label>
-          </div>
-          <div class="content">
-            <input type="password" id="password" placeholder="Enter your password">
-          </div>
-        </div>
-      </div>
-      
-      <div style="margin-top: var(--space-4)">
-        <button type="submit" class="btn btn-primary btn-medium" style="width: 100%">
-          <span class="btn-text">SIGN IN</span>
-        </button>
-      </div>
-    </form>
-  </div>
-</div>
-```
-
 ## Core Components
 
-### Header
+### Button Components
 
+#### Quick Reference
+- Height: 40px (`btn-medium`) or 32px (`btn-small`)
+- Icon colors: `text-white` for primary, `icon-muted` for secondary
+- Text class: `btn-text` (uppercase)
+- Icon container: `btn-icon` (required for buttons with icons)
+
+#### Required Classes
+- Base: `btn` (required)
+- Style: `btn-primary` OR `btn-secondary` (required)
+- Size: `btn-medium` (40px) OR `btn-small` (32px) (required)
+
+#### Common Mistakes to Avoid
+- ❌ Don't use `size-medium` - this is for other components
+- ❌ Don't use `button-text` class - use `btn-text` instead
+- ❌ Don't forget the icon container `btn-icon` for buttons with icons
+- ❌ Don't mix primary and secondary styles
+- ❌ Don't use lowercase text in buttons
+
+#### Examples
 ```html
-<header class="header">
-  <h1 class="header__title">Page Title</h1>
-  <div class="header__actions">
-    <!-- Secondary buttons first -->
-    <button class="btn btn-secondary btn-medium">
-      <div class="btn-icon">
-        <i class="fas fa-cog icon-muted"></i>
-      </div>
-      <span class="btn-text">SETTINGS</span>
-    </button>
-    <!-- Primary button last -->
-    <button class="btn btn-primary btn-medium">
-      <div class="btn-icon">
-        <i class="fas fa-plus text-white"></i>
-      </div>
-      <span class="btn-text">ADD NEW</span>
-    </button>
-  </div>
-</header>
-```
+<!-- Standard button (40px) -->
+<button class="btn btn-primary btn-medium">
+  <span class="btn-text">BUTTON TEXT</span>
+</button>
 
-Header requirements:
-- Use `.header` as the main container
-- Include `.header__title` for the page title
-- Use `.header__actions` for button container
-- Place secondary buttons before primary buttons
-- No margin-bottom needed - parent container's gap handles spacing
-
-### Buttons
-
-```html
-<!-- Primary Button (Medium - 40px) -->
+<!-- Button with icon (40px) -->
 <button class="btn btn-primary btn-medium">
   <div class="btn-icon">
     <i class="fas fa-plus text-white"></i>
@@ -760,465 +307,97 @@ Header requirements:
   <span class="btn-text">BUTTON TEXT</span>
 </button>
 
-<!-- Secondary Button (Medium - 40px) -->
+<!-- Secondary button with icon (40px) -->
 <button class="btn btn-secondary btn-medium">
   <div class="btn-icon">
-    <i class="fas fa-cog icon-muted"></i>
+    <i class="fas fa-download icon-muted"></i>
   </div>
-  <span class="btn-text">BUTTON TEXT</span>
+  <span class="btn-text">EXPORT</span>
 </button>
 
-<!-- Small Primary Button (32px) -->
-<button class="btn btn-primary btn-small">
-  <span class="btn-text">BUTTON TEXT</span>
-</button>
-
-<!-- Small Secondary Button (32px) -->
+<!-- Small button (32px) -->
 <button class="btn btn-secondary btn-small">
-  <span class="btn-text">BUTTON TEXT</span>
-</button>
-
-<!-- Icon-Only Primary Button (Medium - 40px) -->
-<button class="btn btn-primary btn-icon-only btn-medium">
-  <div class="btn-icon">
-    <i class="fas fa-plus text-white"></i>
-  </div>
-</button>
-
-<!-- Icon-Only Secondary Button (Medium - 40px) -->
-<button class="btn btn-secondary btn-icon-only btn-medium">
-  <div class="btn-icon">
-    <i class="fas fa-cog icon-muted"></i>
-  </div>
-</button>
-
-<!-- Icon-Only Primary Button (Small - 32px) -->
-<button class="btn btn-primary btn-icon-only btn-small">
-  <div class="btn-icon">
-    <i class="fas fa-plus text-white"></i>
-  </div>
-</button>
-
-<!-- Icon-Only Secondary Button (Small - 32px) -->
-<button class="btn btn-secondary btn-icon-only btn-small">
-  <div class="btn-icon">
-    <i class="fas fa-cog icon-muted"></i>
-  </div>
+  <span class="btn-text">CANCEL</span>
 </button>
 ```
 
-Button requirements:
-- Always wrap text in `.btn-text`
-- Always use UPPERCASE for button text
-- Wrap icons in `.btn-icon`
-- Use `text-white` for icons in primary buttons
-- Use `icon-muted` for icons in secondary buttons
-- Use `btn-medium` (40px) for standard buttons
-- Use `btn-small` (32px) for compact UI areas or secondary actions
+#### Dependencies
+- Font Awesome for icons
+- Design system CSS variables for colors and spacing
+- Inter font family for text
 
-### Cards
+#### Common Use Cases
+1. Primary Actions (green)
+   - Submit forms
+   - Create new items
+   - Run processes
+   - Save changes
+   - Add new items
 
-#### Basic Card
-```html
-<div class="card bg-white">
-  <h2 class="card__title">Card Title</h2>
-  <div class="card__content">
-    <!-- Content -->
-  </div>
-  <div class="card__footer">
-    <!-- Footer actions -->
-  </div>
-</div>
-```
+2. Secondary Actions (white)
+   - Export data
+   - Cancel actions
+   - Edit items
+   - Back navigation
+   - Settings access
 
-#### Overview Card
-```html
-<div class="overview-card bg-white">
-  <div class="overview-card__header">
-    <span class="overview-card__title">Title</span>
-    <span class="badge badge-success">
-      <span class="badge-text">Status</span>
-    </span>
-  </div>
-  <div class="overview-card__value">Value</div>
-  <div class="overview-card__subtitle">Subtitle</div>
-</div>
-```
+#### Best Practices
+- Always include both style and size classes
+- Use icons consistently (left side)
+- Keep text short and uppercase
+- Use primary buttons for main actions
+- Use secondary buttons for supporting actions
+- Maintain consistent spacing between buttons (var(--space-4))
+- Use small buttons for less important actions
+- Include hover and active states for better UX
 
-#### Grey Overview Card
-```html
-<div class="overview-card overview-card--grey">
-  <div class="overview-card__header">
-    <span class="overview-card__title">Title</span>
-  </div>
-  <div class="overview-card__value">Value</div>
-  <div class="overview-card__subtitle">Subtitle</div>
-</div>
-```
+#### Accessibility
+- Buttons should have clear, action-oriented text
+- Icon-only buttons should have aria-labels
+- Maintain sufficient color contrast
+- Ensure focus states are visible
+- Use semantic HTML (button element)
 
-#### Grey Overview Cards in Container
-```html
-<div class="card bg-white">
-  <h2 class="card__title">Container Title</h2>
-  <div class="card__content">
-    <div class="grid grid-cols-3" style="gap: var(--space-4)">
-      <div class="overview-card overview-card--grey">
-        <!-- Overview card content -->
-      </div>
-      <div class="overview-card overview-card--grey">
-        <!-- Overview card content -->
-      </div>
-      <div class="overview-card overview-card--grey">
-        <!-- Overview card content -->
-      </div>
-    </div>
-  </div>
-</div>
-```
+#### Responsive Behavior
+- Buttons maintain their height on all screen sizes
+- Text remains uppercase and readable
+- Icons scale proportionally
+- Touch targets remain at least 40px tall
 
-#### Card Variants
-
-```html
-<!-- Standard Card -->
-<div class="card bg-white">
-  <h2 class="card__title">Card Title</h2>
-  <div class="card__content">
-    <!-- Content -->
-  </div>
-</div>
-
-<!-- Card with Description -->
-<div class="card card--with-description bg-white">
-  <h2 class="card__title">Card Title</h2>
-  <div class="card__content">
-    <p class="body-text">This is a description paragraph. The card--with-description variant handles paragraph margins, sets text color to grey-400, and includes hover effects.</p>
-  </div>
-</div>
-
-<!-- Card with Icon Title -->
-<div class="card bg-white">
-  <div class="card__title--with-icon">
-    <div class="icon-container icon-small">
-      <i class="fas fa-chart-line"></i>
-    </div>
-    <span class="card__title-text">Card Title with Icon</span>
-  </div>
-  <div class="card__content">
-    <!-- Content -->
-  </div>
-</div>
-
-<!-- Card with Action Button -->
-<div class="card card--with-description">
-  <h2 class="card__title">Card Title</h2>
-  <div class="card__content">
-    <p>Card content goes here.</p>
-  </div>
-  <div class="card__footer">
-    <button class="btn btn-primary btn-small">
-      <span class="btn-text">ACTION</span>
-    </button>
-  </div>
-</div>
-
-<!-- Combined: Card with Description, Icon Title, and Action Button -->
-<div class="card card--with-description bg-white">
-  <div class="card__title--with-icon">
-    <div class="icon-container icon-small">
-      <i class="fas fa-chart-line"></i>
-    </div>
-    <span class="card__title-text">Card with Everything</span>
-  </div>
-  <div class="card__content">
-    <p class="body-text">This card combines all features: icon title, description styling, and an action button.</p>
-  </div>
-  <div class="card__footer">
-    <button class="btn btn-primary btn-small">
-      <span class="btn-text">ACTION</span>
-    </button>
-  </div>
-</div>
-```
-
-Card variant requirements:
-- `card--with-description`: Optimized for cards with a title and description paragraph
-  - Adds proper padding (12px top, 24px sides and bottom)
-  - Automatically handles paragraph margins
-  - Sets description text color to grey-400
-  - Adds hover effect with enhanced shadow and slight opacity change
-  - Includes proper cursor pointer for clickable cards
-- `card__title--with-icon`: Displays an icon next to the card title
-  - Uses the standard `icon-container` component for icons
-  - Requires a card__title-text element for the title text
-  - Icons are grey (neutral-grey-400) by default
-  - Properly aligns icon and title with consistent spacing
-- `card__footer`: Positions buttons or actions at the bottom of the card
-  - Adds 16px top margin for proper spacing from content
-  - Supports multiple buttons with 16px gap between them
-  - Aligns with the card's content area
-- `card--no-padding`: Removes all internal padding from the card
-  - Useful for cards that need custom internal spacing
-  - Often used for cards with full-width content like tables or charts
-- `card--compact`: Reduces the card's internal padding
-  - Uses smaller padding values for more condensed layouts
-  - Useful for information-dense interfaces
-- `card--bordered`: Adds a border to the card instead of a shadow
-  - Uses a 1px border with neutral-grey-200 color
-  - Useful for cards that need to be visually separated but with less visual weight
-
-#### Card Layout Helper Classes
-
-The design system provides helper classes for controlling card layouts within grid containers:
-
-```html
-<!-- Equal height cards -->
-<div class="grid grid-cols-2 equal-height-cards" style="gap: var(--space-6)">
-  <div class="card bg-white">...</div>
-  <div class="card bg-white">...</div>
-</div>
-
-<!-- Cards with aligned footers -->
-<div class="grid grid-cols-2 equal-height-cards aligned-footers" style="gap: var(--space-6)">
-  <div class="card bg-white">
-    <h2 class="card__title">Card Title</h2>
-    <div class="card__content">...</div>
-    <div class="card__footer">...</div>
-  </div>
-  <div class="card bg-white">
-    <h2 class="card__title">Card Title</h2>
-    <div class="card__content">...</div>
-    <div class="card__footer">...</div>
-  </div>
-</div>
-```
-
-**Important requirements:**
-- `equal-height-cards`: Makes all cards in a row the same height
-- `aligned-footers`: Positions card footers at the bottom of each card
-- When using `aligned-footers`, **all cards must have a footer element**
-- If some cards don't need footers, don't use the `aligned-footers` class
-- For simple card layouts, use only the grid classes without these helpers
-
-**Common mistakes to avoid:**
-- ❌ Don't use `aligned-footers` when some cards don't have footer elements
-- ❌ Don't add these helper classes to all grid containers by default
-- ❌ Don't mix cards with and without footers in the same `aligned-footers` container
-
-#### Using Cards in Links
-
-When wrapping cards in `<a>` tags to make them clickable, be aware of potential style inheritance issues:
-
-```html
-<!-- Proper way to use cards in links -->
-<a href="page.html" class="card-link">
-  <div class="card card--with-description">
-    <!-- Card content -->
-  </div>
-</a>
-```
-
-```css
-/* Required CSS to prevent link color inheritance */
-a.card-link {
-  text-decoration: none;
-  color: inherit;
-}
-
-/* Ensure icon colors aren't affected by link color */
-.card__title--with-icon .icon-container {
-  color: var(--neutral-grey-400);
-}
-```
-
-This prevents the default browser link color (#0000ee) from being inherited by card elements, especially icons.
-
-### Tabs
-
-```html
-<!-- Tabs (standalone component) -->
-<div class="tabs tabs-large">
-    <div class="tab-item active">
-        <div class="tab-content">
-            <div class="icon-container icon-small">
-                <i class="fas fa-globe"></i>
-            </div>
-            <div class="tab-text">Tab Label</div>
-        </div>
-        <div class="tab-active-line"></div>
-    </div>
-    <div class="tab-item">
-        <div class="tab-content">
-            <div class="icon-container icon-small">
-                <i class="fas fa-chart-line"></i>
-            </div>
-            <div class="tab-text">Another Tab</div>
-        </div>
-        <div class="tab-active-line"></div>
-    </div>
-</div>
-```
-
-Tab requirements:
-- Use tabs as standalone components
-- Don't wrap tabs in cards
-- Include `.tab-active-line` for all tabs (required for hover effects)
-- Use proper icon containers in tabs
-
-### Form Elements
-
-#### Form Spacing
-
-Form elements should have consistent spacing between them. The design system provides a built-in rule for form-group spacing:
-
-```html
-<!-- Form with proper spacing -->
-<form>
-  <div class="form-group">
-    <div class="text-input">
-      <!-- Input content -->
-    </div>
-  </div>
-  
-  <div class="form-group">
-    <div class="select">
-      <!-- Select content -->
-    </div>
-  </div>
-  
-  <div class="form-group">
-    <label class="checkbox">
-      <!-- Checkbox content -->
-    </label>
-  </div>
-</form>
-```
-
-This approach automatically adds a 16px (var(--space-4)) gap between form elements. When form-groups are used inside grid or flex containers, the container's gap property takes precedence to avoid double spacing.
-
-✅ Do:
-- Wrap each form element in a `.form-group` div
-- Let the built-in spacing handle the gaps between elements
-- Use grid or flex with gap for complex form layouts
-
-❌ Don't:
-- Add custom margins to form elements
-- Use inconsistent spacing between form elements
-
-#### Form Structure
-
-For proper form organization and spacing, follow these guidelines:
-
-```html
-<!-- Form in a card -->
-<div class="card bg-white">
-  <h2 class="card__title">Form Title</h2>
-  <div class="card__content" style="display: flex; flex-direction: column; gap: var(--space-4);">
-    <!-- Group related form elements -->
-    <div>
-      <h3 class="heading-3" style="margin-bottom: var(--space-4);">Section Title</h3>
-      <div style="display: flex; flex-direction: column; gap: var(--space-4);">
-        <div class="form-group">
-          <!-- Form element 1 -->
-        </div>
-        <div class="form-group">
-          <!-- Form element 2 -->
-        </div>
-      </div>
-    </div>
-    
-    <!-- Another group of related form elements -->
-    <div>
-      <h3 class="heading-3" style="margin-bottom: var(--space-4);">Another Section</h3>
-      <div style="display: flex; flex-direction: column; gap: var(--space-4);">
-        <div class="form-group">
-          <!-- Form element 3 -->
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="card__footer">
-    <button class="btn btn-primary btn-medium">
-      <span class="btn-text">SUBMIT</span>
-    </button>
-  </div>
-</div>
-```
-
-This structure ensures:
-- 16px spacing between major form sections
-- 16px spacing between individual form elements within each section
-- Proper visual grouping of related form elements
-- Clear section headings for form organization
+### Form Components
 
 #### Text Input
 
-```html
-<!-- Standard Text Input -->
-<div class="form-group">
-  <div class="text-input">
-    <div class="label">
-      <label class="label-text" for="input-id">Label</label>
-    </div>
-    <div class="content">
-      <input type="text" id="input-id" placeholder="Placeholder">
-    </div>
-  </div>
-</div>
-
-<!-- Required Text Input -->
-<div class="form-group">
-  <div class="text-input required">
-    <div class="label">
-      <label class="label-text" for="required-input">Required Input</label>
-    </div>
-    <div class="content">
-      <input type="text" id="required-input" placeholder="Required field">
-    </div>
-  </div>
-</div>
-
-<!-- Disabled Text Input -->
-<div class="form-group">
-  <div class="text-input disabled">
-    <div class="label">
-      <label class="label-text" for="disabled-input">Disabled Input</label>
-    </div>
-    <div class="content">
-      <input type="text" id="disabled-input" placeholder="Disabled field" disabled>
-    </div>
-  </div>
-</div>
-```
-
-#### Textarea
+##### Required Structure
 
 ```html
 <div class="form-group">
   <div class="text-input">
     <div class="label">
-      <label class="label-text" for="textarea-id">Description</label>
+      <label class="label-text" for="input-id">Label Text</label>
     </div>
     <div class="content">
-      <textarea id="textarea-id" rows="3" placeholder="Enter description"></textarea>
+      <input type="text" id="input-id" placeholder="Placeholder text">
     </div>
   </div>
 </div>
 ```
 
-#### Select
+#### Select Input
+
+##### Required Structure
 
 ```html
 <div class="form-group">
   <div class="select">
     <div class="label">
-      <label class="label-text" for="select-id">Select Option</label>
+      <label class="label-text" for="select-id">Label Text</label>
     </div>
     <div class="select-wrapper">
       <select id="select-id" class="select-trigger">
         <option value="">Select an option</option>
         <option value="option1">Option 1</option>
         <option value="option2">Option 2</option>
-        <option value="option3">Option 3</option>
       </select>
     </div>
   </div>
@@ -1227,83 +406,37 @@ This structure ensures:
 
 #### Checkbox
 
+##### Required Structure
+
 ```html
 <div class="form-group">
   <label class="checkbox">
     <input type="checkbox" id="checkbox-id">
     <div class="checkbox-box"></div>
     <div class="checkbox-label">
-      <span class="checkbox-label-text">Checkbox label</span>
-    </div>
-  </label>
-</div>
-
-<!-- Checked Checkbox -->
-<div class="form-group">
-  <label class="checkbox">
-    <input type="checkbox" id="checked-checkbox" checked>
-    <div class="checkbox-box"></div>
-    <div class="checkbox-label">
-      <span class="checkbox-label-text">Checked checkbox</span>
+      <span class="checkbox-label-text">Checkbox Label</span>
     </div>
   </label>
 </div>
 ```
 
-#### Radio Buttons
+#### Radio Button
+
+##### Required Structure
 
 ```html
 <div class="form-group">
-  <label class="radio-button">
-    <input type="radio" name="radio-group" value="option1" checked>
-    <div class="radio-box"></div>
+  <label class="radio">
+    <input type="radio" name="radio-group" value="option1">
+    <div class="radio-circle"></div>
     <div class="radio-label">
-      <span class="radio-label-text">Option 1</span>
+      <span class="radio-label-text">Radio Label</span>
     </div>
   </label>
-</div>
-
-<div class="form-group">
-  <label class="radio-button">
-    <input type="radio" name="radio-group" value="option2">
-    <div class="radio-box"></div>
-    <div class="radio-label">
-      <span class="radio-label-text">Option 2</span>
-    </div>
-  </label>
-</div>
-```
-
-#### Form Grid Layout
-
-For forms with multiple columns, use the grid system:
-
-```html
-<div class="form-group">
-  <div class="grid grid-cols-2" style="gap: var(--space-4)">
-    <div class="text-input">
-      <div class="label">
-        <label class="label-text" for="first-name">First Name</label>
-      </div>
-      <div class="content">
-        <input type="text" id="first-name" placeholder="Enter first name">
-      </div>
-    </div>
-    <div class="text-input">
-      <div class="label">
-        <label class="label-text" for="last-name">Last Name</label>
-      </div>
-      <div class="content">
-        <input type="text" id="last-name" placeholder="Enter last name">
-      </div>
-    </div>
-  </div>
 </div>
 ```
 
 #### Form Validation
-
-The design system includes styles for form validation states:
 
 ```html
 <!-- Error State -->
@@ -1334,17 +467,173 @@ The design system includes styles for form validation states:
 </div>
 ```
 
-#### Form Best Practices
+### Layout Components
 
-1. **Consistent Structure**: Always use the proper nesting structure for form elements
-2. **Proper Spacing**: Use form-group for consistent spacing between elements
-3. **Logical Grouping**: Group related form elements together with section headings
-4. **Clear Labels**: Always include clear, descriptive labels for all form elements
-5. **Validation States**: Use the built-in validation states for error and success feedback
-6. **Responsive Layout**: Use the grid system for multi-column forms on larger screens
-7. **Accessible Forms**: Include proper for/id attributes to connect labels with inputs
-8. **Required Fields**: Use the required class to indicate mandatory fields
-9. **Consistent Button Placement**: Place form buttons in the card__footer with proper spacing
+#### Header
+
+```html
+<header class="header">
+  <h1 class="header__title">Page Title</h1>
+  <div class="header__actions">
+    <!-- Secondary buttons first -->
+    <button class="btn btn-secondary btn-medium">
+      <div class="btn-icon">
+        <i class="fas fa-cog icon-muted"></i>
+      </div>
+      <span class="btn-text">SETTINGS</span>
+    </button>
+    <!-- Primary button last -->
+    <button class="btn btn-primary btn-medium">
+      <div class="btn-icon">
+        <i class="fas fa-plus text-white"></i>
+      </div>
+      <span class="btn-text">ADD NEW</span>
+    </button>
+  </div>
+</header>
+```
+
+#### Grid System
+
+```html
+<div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-4);">
+  <!-- Grid items -->
+</div>
+```
+
+### Card Components
+
+#### Basic Card
+
+```html
+<div class="card bg-white">
+  <h2 class="card__title">Card Title</h2>
+  <div class="card__content">
+    <!-- Card content goes here -->
+  </div>
+  <div class="card__footer">
+    <!-- Footer content goes here -->
+  </div>
+</div>
+```
+
+#### Overview Card
+
+```html
+<div class="overview-card bg-white">
+  <div class="overview-card__header">
+    <span class="overview-card__title">Title</span>
+    <span class="badge badge-success">
+      <span class="badge-text">Status</span>
+    </span>
+  </div>
+  <div class="overview-card__value">Value</div>
+  <div class="overview-card__subtitle">Subtitle</div>
+</div>
+```
+
+#### Grey Overview Card
+
+The grey overview card variant (`overview-card--grey`) is designed to be used on white backgrounds, typically inside white cards or containers. This creates visual hierarchy and helps group related metrics.
+
+```html
+<div class="overview-card overview-card--grey">
+  <div class="overview-card__header">
+    <span class="overview-card__title">Title</span>
+  </div>
+  <div class="overview-card__value">Value</div>
+  <div class="overview-card__subtitle">Subtitle</div>
+</div>
+```
+
+##### Common Usage Pattern: Grey Overview Cards in White Container
+
+A common pattern is to place multiple grey overview cards in a grid inside a white card:
+
+```html
+<!-- White container card with grey overview cards -->
+<div class="card bg-white">
+  <h2 class="card__title">Metrics Overview</h2>
+  <div class="card__content">
+    <div class="grid grid-cols-3" style="gap: var(--space-4)">
+      <div class="overview-card overview-card--grey">
+        <div class="overview-card__header">
+          <span class="overview-card__title">Revenue</span>
+        </div>
+        <div class="overview-card__value">$45,678</div>
+        <div class="overview-card__subtitle">This month</div>
+      </div>
+      
+      <div class="overview-card overview-card--grey">
+        <div class="overview-card__header">
+          <span class="overview-card__title">Users</span>
+        </div>
+        <div class="overview-card__value">1,234</div>
+        <div class="overview-card__subtitle">Active users</div>
+      </div>
+      
+      <div class="overview-card overview-card--grey">
+        <div class="overview-card__header">
+          <span class="overview-card__title">Conversion</span>
+        </div>
+        <div class="overview-card__value">12.5%</div>
+        <div class="overview-card__subtitle">+2.4% from last month</div>
+      </div>
+    </div>
+  </div>
+</div>
+```
+
+> ⚠️ **Important**: Always use the grey overview card variant on white backgrounds (like inside a white card). Using it directly on the page's grey background (`bg-grey-50`) will result in poor contrast and visual confusion.
+
+#### Card Variants
+
+```html
+<!-- Card with Description -->
+<div class="card card--with-description bg-white">
+  <h2 class="card__title">Card Title</h2>
+  <div class="card__content">
+    <p class="body-text">This is a description paragraph.</p>
+  </div>
+</div>
+
+<!-- Card with Icon Title -->
+<div class="card bg-white">
+  <div class="card__title--with-icon">
+    <div class="icon-container icon-small">
+      <i class="fas fa-chart-line"></i>
+    </div>
+    <span class="card__title-text">Card Title with Icon</span>
+  </div>
+  <div class="card__content">
+    <!-- Content -->
+  </div>
+</div>
+```
+
+#### Card Layout Helper Classes
+
+```html
+<!-- Equal height cards -->
+<div class="grid grid-cols-2 equal-height-cards" style="gap: var(--space-4)">
+  <div class="card bg-white">...</div>
+  <div class="card bg-white">...</div>
+</div>
+
+<!-- Cards with aligned footers -->
+<div class="grid grid-cols-2 equal-height-cards aligned-footers" style="gap: var(--space-4)">
+  <div class="card bg-white">
+    <h2 class="card__title">Card Title</h2>
+    <div class="card__content">...</div>
+    <div class="card__footer">...</div>
+  </div>
+  <div class="card bg-white">
+    <h2 class="card__title">Card Title</h2>
+    <div class="card__content">...</div>
+    <div class="card__footer">...</div>
+  </div>
+</div>
+```
 
 ### Activity Row
 
@@ -1352,260 +641,270 @@ The design system includes styles for form validation states:
 <div class="activity-row">
   <div class="activity-row__content">
     <div class="icon-container icon-small">
-      <i class="fas fa-check-circle"></i>
+      <i class="fas fa-user icon-primary"></i>
     </div>
-    <span class="activity-row__text">Activity Description</span>
+    <span class="activity-row__text">Activity Text</span>
   </div>
   <div class="activity-row__meta">
-    <span>Time or Status</span>
+    <span class="small-body-text">Meta Text</span>
   </div>
 </div>
 ```
 
-### Badges
+### Tabs
 
 ```html
+<div class="tabs tabs-large">
+  <div class="tab-item active">
+    <div class="tab-content">
+      <div class="icon-container icon-small">
+        <i class="fas fa-globe"></i>
+      </div>
+      <div class="tab-text">Tab Label</div>
+    </div>
+    <div class="tab-active-line"></div>
+  </div>
+  <div class="tab-item">
+    <div class="tab-content">
+      <div class="icon-container icon-small">
+        <i class="fas fa-chart-line"></i>
+      </div>
+      <div class="tab-text">Another Tab</div>
+    </div>
+    <div class="tab-active-line"></div>
+  </div>
+</div>
+```
+
+#### Tab Component Requirements
+
+- Always use the `tabs tabs-large` class for the container
+- Use `tab-item` for each tab (with `active` class for the active tab)
+- Include `tab-content` for the content wrapper
+- Use `icon-container icon-small` for icons
+- Include `tab-active-line` in all tabs (required for hover effects)
+- Don't wrap tabs in cards - they should be standalone components
+
+### Badges
+
+Badges are small, inline components used to display status, counts, or labels. They should be implemented using `<span>` elements.
+
+#### Standard Variants
+
+```html
+<!-- Default Badge (Blue) -->
+<span class="badge">
+  <span class="badge-text">Default</span>
+</span>
+
+<!-- Success Badge (Green) -->
 <span class="badge badge-success">
   <span class="badge-text">Success</span>
 </span>
 
+<!-- Warning Badge (Orange) -->
 <span class="badge badge-warning">
   <span class="badge-text">Warning</span>
 </span>
 
+<!-- Error Badge (Red) -->
 <span class="badge badge-error">
   <span class="badge-text">Error</span>
 </span>
+```
 
+#### Inline Badge Variant
+
+When a badge needs to be placed inline with text (such as in activity rows or user listings), use the `badge-inline` class to add appropriate spacing:
+
+```html
 <!-- Inline Badge (with left margin) -->
 <span class="badge badge-success badge-inline">
   <span class="badge-text">Active</span>
 </span>
 ```
 
-#### Badge Variants
+Example usage in context:
+```html
+<div style="display: flex; align-items: center;">
+  <div class="icon-container icon-small">
+    <i class="fas fa-user-circle icon-muted"></i>
+  </div>
+  <span class="body-text" style="margin-left: var(--space-2);">John Smith</span>
+  <span class="badge badge-success badge-inline">
+    <span class="badge-text">Active</span>
+  </span>
+</div>
+```
 
-- **Default**: Blue badge (no additional class needed)
-- **Success**: Green badge with `badge-success` class
-- **Warning**: Orange badge with `badge-warning` class
-- **Error**: Red badge with `badge-error` class
-- **Inline**: Any badge with `badge-inline` class (adds left margin for inline use with text)
+> ⚠️ **Important**: Always use the `badge-inline` class when placing badges next to text elements, rather than using inline styles for spacing.
 
-#### Badge Usage
-
-- Use badges to indicate status, counts, or labels
-- Always use `<span>` elements for badges, not `<div>` elements
-- When placing badges inline with text, use the `badge-inline` class instead of inline styles
-- For detailed examples, see the [badge-showcase.html](examples/badge-showcase.html) example page
+#### Using Badges as Labels or Tags
 
 > **Note**: Until dedicated label and tag components are created, the badge component can be used for these purposes. For label-like usage, consider using the default blue badge or the grey badge (`badge-grey`) for a more neutral appearance.
 
-### Banners
+```html
+<!-- Label-like usage (grey for neutral appearance) -->
+<span class="badge badge-grey">
+  <span class="badge-text">Category</span>
+</span>
 
-Banners are used to display important messages, alerts, or notifications to users. They come in different variants to indicate the type of message.
+<!-- Tag-like usage -->
+<span class="badge">
+  <span class="badge-text">Tag Name</span>
+</span>
+```
+
+#### Custom Color Badges
 
 ```html
-<!-- Default/Info Banner (with close button) -->
+<!-- Purple Badge -->
+<span class="badge badge-purple">
+  <span class="badge-text">Purple</span>
+</span>
+
+<!-- Grey Badge -->
+<span class="badge badge-grey">
+  <span class="badge-text">Grey</span>
+</span>
+
+<!-- Custom Color Badge (using inline styles) -->
+<span class="badge" style="--badge-bg: #6200EA; --badge-text: white;">
+  <span class="badge-text">Custom</span>
+</span>
+```
+
+#### Badges with Icons
+
+```html
+<span class="badge badge-success badge-with-icon">
+  <div class="icon-container">
+    <i class="fas fa-check"></i>
+  </div>
+  <span class="badge-text">Verified</span>
+</span>
+```
+
+### Banners
+
+```html
+<!-- Default/Info Banner -->
 <div class="banner">
+  <div class="icon-container icon-small">
+    <i class="fas fa-info-circle"></i>
+  </div>
+  <div class="content">
+    <div class="title body-text-medium">Information Message</div>
+    <div class="text body-text">This is a standard information banner.</div>
+  </div>
+  <button class="button-close">
     <div class="icon-container icon-small">
-        <i class="fas fa-info-circle"></i>
+      <i class="fas fa-times"></i>
     </div>
-    <div class="content">
-        <div class="title body-text-medium">Information Message</div>
-        <div class="text body-text">This is a standard information banner that provides helpful context to users.</div>
-    </div>
-    <button class="button-close">
-        <div class="icon-container icon-small">
-            <i class="fas fa-times"></i>
-        </div>
-    </button>
+  </button>
 </div>
 
 <!-- Warning Banner -->
 <div class="banner style-variant-warning">
+  <div class="icon-container icon-small">
+    <i class="fas fa-exclamation-triangle icon-warning"></i>
+  </div>
+  <div class="content">
+    <div class="title body-text-medium">Warning Alert</div>
+    <div class="text body-text">This is a warning banner.</div>
+  </div>
+  <button class="button-close">
     <div class="icon-container icon-small">
-        <i class="fas fa-exclamation-triangle icon-warning"></i>
+      <i class="fas fa-times"></i>
     </div>
-    <div class="content">
-        <div class="title body-text-medium">Warning Alert</div>
-        <div class="text body-text">This is a warning banner that alerts users to potential issues.</div>
-    </div>
-    <button class="button-close">
-        <div class="icon-container icon-small">
-            <i class="fas fa-times"></i>
-        </div>
-    </button>
-</div>
-
-<!-- Error Banner -->
-<div class="banner style-variant-error">
-    <div class="icon-container icon-small">
-        <i class="fas fa-exclamation-circle icon-error"></i>
-    </div>
-    <div class="content">
-        <div class="title body-text-medium">Error Message</div>
-        <div class="text body-text">This is an error banner that indicates a critical issue.</div>
-    </div>
-    <button class="button-close">
-        <div class="icon-container icon-small">
-            <i class="fas fa-times"></i>
-        </div>
-    </button>
-</div>
-
-<!-- Success Banner -->
-<div class="banner style-variant-success">
-    <div class="icon-container icon-small">
-        <i class="fas fa-check-circle icon-success"></i>
-    </div>
-    <div class="content">
-        <div class="title body-text-medium">Success Message</div>
-        <div class="text body-text">This is a success banner that confirms a completed action.</div>
-    </div>
-    <button class="button-close">
-        <div class="icon-container icon-small">
-            <i class="fas fa-times"></i>
-        </div>
-    </button>
+  </button>
 </div>
 ```
 
-#### Banner Styling
+#### Key Implementation Details
 
-Each banner variant uses specific colors for background and border:
+1. **Structure**: Banners follow a 3-part structure with icon, content, and close button
+2. **Typography**: 
+   - Always add the `body-text-medium` class to the `.title` element
+   - Always add the `body-text` class to the `.text` element
+   - The banner CSS only handles layout, not typography
+3. **Icons**:
+   - Use `icon-container` for consistent icon spacing and alignment
+   - Add appropriate semantic color classes for icons (e.g., `icon-warning`)
+4. **Close Button**:
+   - Wrap the icon in an `icon-container` with `icon-small` class
+   - Never apply color classes to close button icons as they have specific hover styles
 
-- **Info (blue)**: Background `var(--secondary-blue-100)`, Border `var(--secondary-blue-200)`
-- **Warning (orange)**: Background `var(--warning-orange-100)`, Border `var(--warning-orange-200)`
-- **Error (red)**: Background `var(--error-red-100)`, Border `var(--error-red-200)`
-- **Success (green)**: Background `var(--success-green-100)`, Border `var(--success-green-200)`
+#### Banner Variants
 
-All banners use a 1px border with the 200 shade of their respective color and have a 12px gap between the title and text.
+- **Default/Info**: `.banner` (blue)
+- **Warning**: `.banner.style-variant-warning` (orange)
+- **Error**: `.banner.style-variant-error` (red)
+- **Success**: `.banner.style-variant-success` (green)
 
-#### Persistent Banners (Without Close Button)
+For more details on banner placement, see [Banner Placement Guidelines](#banner-placement-guidelines).
 
-For messages that should remain visible and cannot be dismissed, simply omit the close button element:
+### Icons
 
-```html
-<!-- Persistent Warning Banner (without close button) -->
-<div class="banner style-variant-warning">
-    <div class="icon-container icon-small">
-        <i class="fas fa-exclamation-triangle icon-warning"></i>
-    </div>
-    <div class="content">
-        <div class="title body-text-medium">Persistent Warning</div>
-        <div class="text body-text">This is a warning banner without a close button for messages that should remain visible.</div>
-    </div>
-</div>
-```
-
-#### Banner Structure
-
-Each banner consists of:
-1. An icon that indicates the type of message (in an `icon-container`)
-2. Content with a title (`body-text-medium` class) and descriptive text (`body-text` class)
-3. An optional close button with properly structured icon container
-
-#### Typography Classes
-
-- **Banner Title**: Always add the `body-text-medium` class to the `.title` element
-- **Banner Text**: Always add the `body-text` class to the `.text` element
-- These classes provide the correct typography styling as the CSS handles only layout properties
-
-#### Best Practices
-
-- Use banners sparingly to avoid overwhelming users
-- Choose the appropriate variant based on the message importance:
-  - **Info (blue)**: General information, tips, or context
-  - **Warning (orange)**: Potential issues that require attention
-  - **Error (red)**: Critical issues that need immediate attention
-  - **Success (green)**: Confirmation of completed actions
-- Keep messages clear and concise
-- Use persistent banners only for information that must remain visible
-- Always include the proper typography classes for title and text
-- Wrap close button icons in an icon-container
-
-For a complete showcase of all banner variants, see the [banner-examples.html](examples/banner-examples.html) example page.
-
-## Icon System
-
-### Basic Icon Setup
+The icon component provides consistent styling for Font Awesome icons used throughout the system.
 
 ```html
-<!-- Basic Icon -->
+<!-- Small Icon (Default - 20x20px) -->
 <div class="icon-container icon-small">
-    <i class="fas fa-user icon-muted"></i>
+  <i class="fas fa-user icon-muted"></i>
 </div>
 
-<!-- Large Icon -->
+<!-- Medium Icon (24x24px) -->
+<div class="icon-container icon-medium">
+  <i class="fas fa-user icon-muted"></i>
+</div>
+
+<!-- Large Icon (32x32px) -->
 <div class="icon-container icon-large">
-    <i class="fas fa-user icon-muted"></i>
+  <i class="fas fa-user icon-muted"></i>
+</div>
+
+<!-- Semantic colors -->
+<div class="icon-container icon-small">
+  <i class="fas fa-check icon-success"></i>
+</div>
+<div class="icon-container icon-small">
+  <i class="fas fa-exclamation-triangle icon-warning"></i>
+</div>
+<div class="icon-container icon-small">
+  <i class="fas fa-times-circle icon-error"></i>
+</div>
+<div class="icon-container icon-small">
+  <i class="fas fa-info-circle icon-primary"></i>
 </div>
 ```
-
-### Icon Sizes and Colors
 
 #### Icon Sizes
-- `icon-small`: 20x20px container with 16x16px icon (default)
-- `icon-medium`: 24x24px container with 20x20px icon
-- `icon-large`: 32x32px container with 24x24px icon
+
+The icon component supports three size variations:
+
+| Class | Size | Usage |
+|-------|------|-------|
+| `icon-small` | 20x20px container with 16x16px icon (default) | Standard UI elements, inline with text |
+| `icon-medium` | 24x24px container with 20x20px icon (intermediate size) | Medium emphasis, interactive elements |
+| `icon-large` | 32x32px container with 24x24px icon (for emphasis) | High emphasis, featured elements |
 
 #### Icon Colors
-```html
-<!-- Default grey icons (use this most of the time) -->
-<div class="icon-container icon-small">
-    <i class="fas fa-user icon-muted"></i>
-</div>
 
-<!-- Semantic colors (use only when icon represents a status) -->
-<div class="icon-container icon-small">
-    <i class="fas fa-check icon-success"></i>
-</div>
-<div class="icon-container icon-small">
-    <i class="fas fa-exclamation-triangle icon-warning"></i>
-</div>
-<div class="icon-container icon-small">
-    <i class="fas fa-times-circle icon-error"></i>
-</div>
-```
+| Class | Color | Usage |
+|-------|-------|-------|
+| `icon-muted` | Grey | Default, neutral actions |
+| `icon-primary` | Blue | Primary actions, links |
+| `icon-success` | Green | Success states, confirmations |
+| `icon-warning` | Orange | Warning states, caution |
+| `icon-error` | Red | Error states, destructive actions |
 
-### Icon Best Practices
+#### Implementation Notes
 
-1. Always wrap icons in `icon-container`
-2. Always specify the size (`icon-small`, `icon-large`, or `icon-medium`)
-3. Use `icon-muted` class for default grey icons
-4. Use semantic colors only for status indicators
-5. Keep icons aligned with text using the container
-6. Use Font Awesome 6.5.1 or newer
-
-### Icon + Text Spacing
-
-When combining icons with text (especially in empty states or status indicators), always use a 12px gap (var(--space-3)) between the icon and text:
-
-```html
-<!-- Icon + Text with proper 12px spacing -->
-<div style="display: flex; align-items: center; gap: var(--space-3);">
-    <div class="icon-container icon-large">
-        <i class="fas fa-chart-pie icon-muted"></i>
-    </div>
-    <span class="body-text-medium">Text label</span>
-</div>
-```
-
-This consistent 12px spacing creates proper visual hierarchy and improves readability across the interface.
-
-#### Empty State Example
-
-```html
-<!-- Empty state with icon + text -->
-<div style="display: flex; align-items: center; justify-content: center;">
-    <div style="display: flex; align-items: center; gap: var(--space-3);">
-        <div class="icon-container icon-large">
-            <i class="fas fa-chart-line icon-muted"></i>
-        </div>
-        <span class="body-text-medium">No data available</span>
-    </div>
-</div>
-```
+- Always use the `icon-container` wrapper with an appropriate size class
+- Use semantic color classes based on the icon's meaning, not aesthetics
+- For Font Awesome icons, always apply the color class to the `<i>` element
+- The container handles positioning and layout; the color class handles appearance
 
 ## Common Patterns
 
@@ -1643,49 +942,190 @@ This consistent 12px spacing creates proper visual hierarchy and improves readab
 </div>
 ```
 
+## Typography Guidelines
+
+### Typography in Components
+
+When implementing components, always follow these typography rules:
+
+1. **Always Use Typography Classes**: Every text element must use one of the design system's typography classes:
+   - `heading-1`, `heading-2`, `heading-3`, `heading-4` for headings
+   - `body-text`, `body-text-medium` for standard text
+   - `small-body-text`, `small-body-text-medium` for smaller text
+
+2. **Never Define Custom Typography**: Components should never define their own font properties. Instead:
+   ```html
+   <!-- ✅ CORRECT: Using typography classes -->
+   <div class="banner">
+     <div class="title body-text-medium">Title Text</div>
+     <div class="text body-text">Description text</div>
+   </div>
+   
+   <!-- ❌ INCORRECT: Missing typography classes -->
+   <div class="banner">
+     <div class="title">Title Text</div>
+     <div class="text">Description text</div>
+   </div>
+   ```
+
+3. **Component CSS Should Extend, Not Replace**: Component CSS should handle layout, spacing, and colors, but typography should come from the design system classes:
+   ```css
+   /* ✅ CORRECT: CSS focuses on layout, not typography */
+   .component .title {
+     margin-bottom: var(--space-3);
+     color: var(--neutral-grey-800);
+   }
+   
+   /* ❌ INCORRECT: CSS defines typography properties */
+   .component .title {
+     font-family: var(--body-body-medium-family);
+     font-size: var(--body-body-medium-size);
+     font-weight: var(--body-body-medium-weight);
+     line-height: var(--body-body-medium-line-height);
+     margin-bottom: var(--space-3);
+   }
+   ```
+
+4. **Typography Class Combinations**: When a component needs specific styling beyond typography, combine the typography class with the component class:
+   ```html
+   <div class="component-title body-text-medium">Title</div>
+   ```
+
+Following these guidelines ensures consistent typography across all components and makes the design system more maintainable.
+
+## Banner Placement Guidelines
+
+Banners are important notification elements that should be placed in prominent positions to ensure visibility:
+
+### Page-Level Banners
+
+1. **Primary Placement**: Banners should appear at the top of the page content, immediately:
+   - After the header if there are no tabs
+   - After the tabs if tabs are present
+
+2. **Example - Banner after header**:
+   ```html
+   <header class="header">
+     <!-- Header content -->
+   </header>
+   
+   <!-- Banner immediately after header -->
+   <div class="banner style-variant-success">
+     <!-- Banner content -->
+   </div>
+   
+   <section class="section">
+     <!-- Page content -->
+   </section>
+   ```
+
+3. **Example - Banner after tabs**:
+   ```html
+   <header class="header">
+     <!-- Header content -->
+   </header>
+   
+   <div class="tabs tabs-large">
+     <!-- Tabs content -->
+   </div>
+   
+   <!-- Banner after tabs -->
+   <div class="banner style-variant-success">
+     <!-- Banner content -->
+   </div>
+   
+   <section class="section">
+     <!-- Page content -->
+   </section>
+   ```
+
+### Card-Level Banners
+
+1. **Within Cards**: When a banner is specific to a card, place it immediately after the card title:
+   ```html
+   <div class="card bg-white">
+     <h2 class="card__title">Card Title</h2>
+     
+     <!-- Banner immediately after card title -->
+     <div class="banner style-variant-warning">
+       <!-- Banner content -->
+     </div>
+     
+     <!-- Add margin-top to create space between banner and content -->
+     <div class="card__content" style="margin-top: var(--space-4);">
+       <!-- Card content -->
+     </div>
+   </div>
+   ```
+
+2. **Spacing Guidelines**:
+   - The banner should not have any margin itself
+   - Add `margin-top: var(--space-4)` to the card__content element to create proper spacing
+   - This ensures consistent spacing while maintaining the banner's full width within the card
+
+3. **Priority**: Banners should always be the first element after the title to ensure they're noticed before the user engages with the content.
+
+Following these placement guidelines ensures that important notifications are visible and properly positioned in the interface hierarchy. 
+
 ## Best Practices and Common Mistakes
 
-### Typography
+### General Component Mistakes
+
+1. **Missing required wrapper elements**
+   - Many components require specific wrapper elements with specific class names
+   - Always check the component documentation for the required structure
+
+2. **Incorrect class combinations**
+   - Components often require multiple classes used together
+   - Base classes + variant classes + size classes are typically all required
+
+3. **Inconsistent nesting**
+   - Maintain consistent nesting patterns across similar components
+   - Follow the examples in the documentation exactly
+
+### Specific Component Issues
+
+1. **Buttons**
+   - Always include a style variant (`btn-primary` or `btn-secondary`)
+   - Always include a size class (`btn-medium` or `btn-small`)
+   - Always wrap text in `<span class="btn-text">`
+   - Always wrap icons in `<div class="btn-icon">`
+   - Use `text-white` for icons in primary buttons
+   - Use `icon-muted` for icons in secondary buttons
+
+2. **Form Elements**
+   - Maintain the full wrapper structure for all form elements
+   - Don't skip intermediate wrapper elements even if they seem unnecessary
+   - Wrap each form element in a `.form-group` div
+   - Use grid or flex with gap for complex form layouts
+
+3. **Layout Components**
+   - Follow the exact class naming conventions for different sections
+   - Use the correct background classes (e.g., `bg-white`) as needed
+   - Use `bg-grey-50` on body element
+   - Wrap content in `container page-container` with padding: var(--space-16)
+   - Use `content-wrapper` with gap for spacing between sections
+
+### Typography Best Practices
+
 - ✅ Use typography classes instead of direct font properties
 - ✅ Follow the font-weight guidelines
 - ✅ Include proper text color classes
-- ✅ Always apply typography classes to component text elements
-- ✅ Combine component classes with typography classes (e.g., `<div class="title body-text-medium">`)
 - ❌ Don't mix typography classes incorrectly
 - ❌ Don't skip small-body-text for subtitles
 - ❌ Don't use raw font-size or font-weight values
-- ❌ Don't create components with text elements missing typography classes
-- ❌ Don't define typography properties in component CSS (use typography classes instead)
 
-### Layout
-- ✅ Use `bg-grey-50` on body element
-- ✅ Use `container page-container` with proper padding
-- ✅ Use `content-wrapper` with gap for spacing between sections
+### Layout Best Practices
+
 - ✅ Use gap-based spacing instead of margins between components
 - ❌ Don't skip page-container class
 - ❌ Don't forget padding: var(--space-16) on page-container
 - ❌ Don't use raw pixel values for gaps
 - ❌ Don't add margins to sections when using gap-based spacing
+- ❌ Don't wrap tabs in card components
 
-### Components
-- ✅ Use BEM naming convention
-- ✅ Follow component hierarchy
-- ✅ Use semantic HTML elements
-- ❌ Don't use buttons without btn-text wrapper
-- ❌ Don't forget to uppercase button text
-- ❌ Don't skip icon-container for icons
-- ❌ Don't skip default icon-muted for non-semantic icons
-- ❌ Don't use muted icons in primary buttons (must be white)
+### Spacing Best Practices
 
-### Header & Buttons
-- ✅ Use header__actions container for buttons
-- ✅ Place secondary buttons before primary buttons
-- ❌ Don't use raw flex classes for header actions
-- ❌ Don't place primary button before secondary buttons
-- ❌ Don't skip header__actions container
-- ❌ Don't use icons without btn-icon wrapper
-
-### Spacing
 - ✅ Use the content-wrapper's gap property (var(--space-6)) for spacing between sections
 - ✅ Use consistent 16px gap (var(--space-4)) for all card layouts
 - ✅ Maintain component-specific internal spacing (like card footer margin-top)
@@ -1693,34 +1133,476 @@ This consistent 12px spacing creates proper visual hierarchy and improves readab
 - ❌ Don't add margins to sections when using gap-based spacing
 - ❌ Don't mix margin-based and gap-based spacing at the same level
 - ❌ Don't use raw pixel values instead of spacing variables
-- ❌ Don't use different gap values for cards within the same layout
+- ❌ Don't use different gap values for cards within the same layout 
 
-### Card Layouts
-- ✅ Use simple grid layouts for most card arrangements
-- ✅ Only use `equal-height-cards` when cards need to be the same height
-- ✅ Only use `aligned-footers` when all cards have footer elements
-- ✅ Ensure consistent card structure within the same grid container
-- ❌ Don't use `aligned-footers` with cards that don't have footers
-- ❌ Don't mix cards with and without footers in the same grid container
-- ❌ Don't add helper classes to all grid containers by default
+## Responsive Grid Layouts
 
-## Support and Contributing
+The design system provides responsive grid classes that automatically adjust their layout based on screen size.
+
+### Responsive Grid Classes
+
+Instead of using fixed column counts or inline styles, use these responsive grid classes:
+
+```html
+<!-- For KPI/Overview cards (4-2-1 columns) -->
+<div class="grid-responsive-kpi">
+  <!-- Cards -->
+</div>
+
+<!-- For content cards (2-1 columns) -->
+<div class="grid-responsive-cards">
+  <!-- Cards -->
+</div>
+
+<!-- For small cards (4-1 columns) -->
+<div class="grid-responsive-small">
+  <!-- Cards -->
+</div>
+```
+
+### Breakpoints
+
+These classes use the following breakpoints:
+
+| Class | Large (>1024px) | Medium (768-1024px) | Small (576-768px) | Extra Small (<576px) |
+|-------|----------------|---------------------|-------------------|----------------------|
+| `grid-responsive-kpi` | 4 columns | 2 columns | 2 columns | 1 column |
+| `grid-responsive-cards` | 2 columns | 2 columns | 1 column | 1 column |
+| `grid-responsive-small` | 4 columns | 4 columns | 1 column | 1 column |
+
+This creates balanced layouts at different screen sizes:
+- At large screens, KPI cards show in a row of 4
+- At medium screens, KPI cards show in a 2×2 grid
+- At small screens, cards stack in a single column
+
+### Balanced Layouts for Uneven Numbers
+
+For more balanced layouts with specific numbers of cards, add these modifier classes:
+
+```html
+<!-- For 3 KPI cards (single row of 3) -->
+<div class="grid-responsive-kpi grid-3-cards">
+  <!-- 3 cards -->
+</div>
+
+<!-- For 5 KPI cards (3-2 layout) -->
+<div class="grid-responsive-kpi grid-5-cards">
+  <!-- 5 cards -->
+</div>
+```
+
+#### For 5 KPI Cards with `grid-5-cards` class:
+- Large screens: 3-2 layout (3 cards in first row, 2 in second)
+- Medium screens: 3-2 layout
+- Small screens: Single column
+
+#### For 3 KPI Cards with `grid-3-cards` class:
+- Large screens: Single row of 3
+- Medium screens: Single row of 3
+- Small screens: Single column
+
+This ensures that cards are distributed evenly across rows, with more cards in the first row if the number is not even.
+
+### Example Implementation
+
+```html
+<!-- 5 KPI cards with balanced 3-2 layout -->
+<section class="section">
+  <div class="grid-responsive-kpi grid-5-cards">
+    <div class="overview-card bg-white"><!-- Card 1 --></div>
+    <div class="overview-card bg-white"><!-- Card 2 --></div>
+    <div class="overview-card bg-white"><!-- Card 3 --></div>
+    <div class="overview-card bg-white"><!-- Card 4 --></div>
+    <div class="overview-card bg-white"><!-- Card 5 --></div>
+  </div>
+</section>
+```
+
+### Fixed vs Responsive Grid
+
+While the design system still supports fixed column grids, responsive grids are recommended for most use cases:
+
+```html
+<!-- Fixed 4-column grid (not recommended) -->
+<div class="grid grid-cols-4" style="gap: var(--space-4)">
+  <!-- Grid items -->
+</div>
+
+<!-- Responsive grid (recommended) -->
+<div class="grid-responsive-kpi">
+  <!-- Grid items -->
+</div>
+```
+
+This approach ensures your layouts adapt gracefully to different screen sizes with predictable breakpoints.
+
+## Navigation Component
+
+The topbar component creates a consistent application navigation bar with project selection, context switching, tools, and user profiles.
+
+#### Required Structure
+
+```
+topbar
+└── topbar__header
+    └── topbar__container
+        ├── topbar__section-primary
+        │   ├── topbar__branding
+        │   │   ├── topbar__logo
+        │   │   │   ├── topbar__subtitle
+        │   │   │   └── topbar__title
+        │   │   └── icon-container
+        │   └── topbar__context
+        │       ├── topbar__context-name
+        │       └── icon-container
+        └── topbar__section-secondary
+            ├── [search component]
+            ├── topbar__actions
+            │   └── icon-container.topbar__action-item
+            └── topbar__avatar
+                └── img
+```
+
+#### HTML Implementation
+
+```html
+<!-- Topbar Component -->
+<nav class="topbar">
+    <!-- Header section with logo, project info, and user controls -->
+    <div class="topbar__header">
+        <div class="topbar__container">
+            <!-- Left section with project and context -->
+            <div class="topbar__section-primary">
+                <!-- Branding with correct logo -->
+                <div class="topbar__branding">
+                    <img 
+                        src="../assets/logos/logo_navigation.svg" 
+                        alt="Keboola Logo" 
+                        class="topbar__logo"
+                        width="24" 
+                        height="42"
+                    >
+                    <div class="topbar__details">
+                        <p class="topbar__subtitle small-body-text">Organization Name</p>
+                        <p class="topbar__title body-text-medium">Project Name</p>
+                    </div>
+                    <div class="icon-container icon-small">
+                        <i class="fas fa-chevron-down icon-muted"></i>
+                    </div>
+                </div>
+                
+                <!-- Context selector -->
+                <div class="topbar__context">
+                    <span class="topbar__context-name body-text">Environment</span>
+                    <div class="icon-container icon-small">
+                        <i class="fas fa-chevron-down icon-muted"></i>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Right section -->
+            <div class="topbar__section-secondary">
+                <!-- Search -->
+                <div class="text-input size-medium">
+                    <div class="content" style="min-height: 40px;">
+                        <i class="fas fa-search" style="color: var(--neutral-grey-400);"></i>
+                        <input type="text" placeholder="Search" aria-label="Search">
+                    </div>
+                </div>
+                
+                <!-- Action Icons -->
+                <div class="topbar__actions">
+                    <div class="icon-container icon-large topbar__action-item">
+                        <i class="fas fa-bell icon-muted"></i>
+                        <div class="topbar__indicator">3</div>
+                    </div>
+                </div>
+                
+                <!-- Avatar with correct placeholder -->
+                <div class="topbar__avatar">
+                    <img src="../assets/avatars/placeholder.png" alt="User Avatar">
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+```
+
+#### CSS Variables
+
+The topbar component uses these key CSS variables for consistent styling:
+
+```css
+--topbar-height: 68px;       /* Controls the height of the topbar */
+--content-top-spacing: 32px; /* Controls spacing from top of content area */
+```
+
+#### Interactive Elements
+
+The topbar includes interactive elements with hover effects:
+
+1. **Action Icons**: When hovering over an action icon in the topbar, the icon changes color from gray to blue
+   ```css
+   /* The container has the action item class */
+   .topbar__action-item.icon-container:hover {
+       color: var(--secondary-blue-500-base);
+   }
+   
+   /* Make sure nested icons also change color on hover */
+   .topbar__action-item.icon-container:hover i {
+       color: var(--secondary-blue-500-base);
+   }
+   ```
+
+2. **Avatar**: The user avatar has a subtle background color change on hover
+   ```css
+   .topbar__avatar:hover {
+       background-color: var(--neutral-grey-200);
+   }
+   ```
+
+#### Responsive Behavior
+
+The topbar component adapts to different screen sizes:
+
+```css
+@media (max-width: 768px) {
+    :root {
+        --topbar-height: 60px; /* Smaller height on mobile */
+    }
+    
+    .topbar__section-primary {
+        gap: var(--space-2);
+    }
+    
+    .topbar__container {
+        padding: 0 var(--space-4);
+    }
+}
+```
+
+#### Important Implementation Notes
+
+1. **Page Container Spacing**: When using the topbar component, add this class to your page container:
+   ```html
+   <div class="container page-container">
+   ```
+   The `page-container` class automatically adds margin-top to clear the fixed topbar.
+
+2. **Pages Without Topbar**: Use the `no-topbar` class on the body for pages without a topbar:
+   ```html
+   <body class="no-topbar">
+   ```
+
+3. **Preventing Layout Shift**: Add this to your critical CSS to prevent layout shifts on load:
+   ```html
+   <style>
+       .topbar {
+           height: 68px;
+           position: fixed;
+           top: 0;
+           left: 0;
+           right: 0;
+           background-color: white;
+           z-index: 100;
+           border-bottom: 1px solid #EAEAEA;
+       }
+       .page-container {
+           margin-top: 68px;
+       }
+   </style>
+   ```
+
+4. **Action Icons**: Use the `topbar__action-icon` class for all icons in the topbar, regardless of their specific purpose, to ensure consistent styling:
+   ```html
+   <i class="fas fa-[icon-name] icon-muted topbar__action-icon"></i>
+   ```
+
+5. **Notification Indicators**: Add notification badges with the `topbar__indicator` class:
+   ```html
+   <div class="topbar__indicator">5</div>
+   ```
+
+## Icon Component
+
+The icon component provides a standardized way to display Font Awesome icons with consistent sizing and styling throughout the application.
+
+### Icon Sizes
+
+- **icon-small**: 20x20px container with 16x16px icon (default)
+- **icon-medium**: 24x24px container with 20x20px icon (intermediate size)
+- **icon-large**: 32x32px container with 24x24px icon (for emphasis)
+
+### Implementation
+
+```html
+<!-- Small Icon (Default - 20x20px) -->
+<div class="icon-container icon-small">
+  <i class="fas fa-user icon-muted"></i>
+</div>
+
+<!-- Medium Icon (24x24px) -->
+<div class="icon-container icon-medium">
+  <i class="fas fa-user icon-muted"></i>
+</div>
+
+<!-- Large Icon (32x32px) -->
+<div class="icon-container icon-large">
+  <i class="fas fa-user icon-muted"></i>
+</div>
+```
+
+### Best Practices
+
+1. Always wrap icons in `icon-container` for consistent spacing and alignment
+2. Always specify the size class (`icon-small`, `icon-medium`, or `icon-large`)
+3. Use semantic color classes only when the icon represents a status:
+   - `icon-success`: Green for success states
+   - `icon-warning`: Orange for warning states
+   - `icon-error`: Red for error states
+   - `icon-muted`: Default grey for most UI icons (recommended default)
+4. For interactive icons, add appropriate hover effects by wrapping in a button or applying hover styles
+
+### Topbar Component
+
+The topbar provides consistent navigation and context across all Keboola applications.
+
+#### Logo Implementation
+
+The topbar uses a specific navigation-optimized logo variant:
+
+```html
+<div class="topbar__branding">
+    <img 
+        src="../assets/logos/logo_navigation.svg" 
+        alt="Keboola Logo" 
+        class="topbar__logo"
+        width="24" 
+        height="42"
+    >
+    <!-- ... rest of branding content ... -->
+</div>
+```
+
+**Important Logo Guidelines:**
+- Always use `logo_navigation.svg` for the topbar (NOT `logo.svg`)
+- Maintain dimensions: width="24" height="42"
+- The navigation logo is taller than wide (1:1.75 ratio)
+- General `logo.svg` is square (1:1) and should NOT be used in the topbar
+
+#### Avatar Implementation
+
+The user avatar in the topbar follows these specifications:
+
+```html
+<div class="topbar__avatar">
+    <img 
+        src="../assets/avatars/placeholder.png" 
+        alt="User Avatar"
+    >
+</div>
+```
+
+**Important Avatar Guidelines:**
+- Default placeholder: `placeholder.png` in assets/avatars/
+- The avatar container handles the circular shape via CSS
+- No need to specify dimensions - handled by topbar__avatar class
+- Ensure avatar images are square for proper circular cropping
+
+#### Full Topbar Structure
+
+```html
+<nav class="topbar">
+    <div class="topbar__header">
+        <div class="topbar__container">
+            <!-- Left section -->
+            <div class="topbar__section-primary">
+                <!-- Branding with correct logo -->
+                <div class="topbar__branding">
+                    <img src="../assets/logos/logo_navigation.svg" alt="Keboola Logo" class="topbar__logo" width="24" height="42">
+                    <div class="topbar__details">
+                        <p class="topbar__subtitle small-body-text">Organization Name</p>
+                        <p class="topbar__title body-text-medium">Project Name</p>
+                    </div>
+                    <div class="icon-container icon-small">
+                        <i class="fas fa-chevron-down icon-muted"></i>
+                    </div>
+                </div>
+                
+                <!-- Context selector -->
+                <div class="topbar__context">
+                    <span class="topbar__context-name body-text">Environment</span>
+                    <div class="icon-container icon-small">
+                        <i class="fas fa-chevron-down icon-muted"></i>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Right section -->
+            <div class="topbar__section-secondary">
+                <!-- Search -->
+                <div class="text-input size-medium">
+                    <div class="content" style="min-height: 40px;">
+                        <i class="fas fa-search" style="color: var(--neutral-grey-400);"></i>
+                        <input type="text" placeholder="Search" aria-label="Search">
+                    </div>
+                </div>
+                
+                <!-- Action Icons -->
+                <div class="topbar__actions">
+                    <div class="icon-container icon-large topbar__action-item">
+                        <i class="fas fa-bell icon-muted"></i>
+                        <div class="topbar__indicator">3</div>
+                    </div>
+                </div>
+                
+                <!-- Avatar with correct placeholder -->
+                <div class="topbar__avatar">
+                    <img src="../assets/avatars/placeholder.png" alt="User Avatar">
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+```
+
+#### Typography Classes
+
+- Organization name: `small-body-text`
+- Project name: `body-text-medium`
+- Context name: `body-text`
+
+#### Asset Requirements
+
+Required assets must be available at:
+- `assets/logos/logo_navigation.svg` - Navigation-specific logo
+- `assets/avatars/placeholder.png` - Default avatar placeholder
+
+## Support & Contributing
 
 ### Support & Documentation
-1. Check the example pages in the `examples/` directory:
-   - `login-register.html`: Authentication forms with validation
-   - `people-management.html`: User management interface
-   - `transportation-dashboard.html`: Data dashboard layout with proper card grid implementation
-2. Review component usage in the example pages
-3. Follow BEM naming conventions
-4. Use the design tokens consistently
+
+If you need help implementing any component from the Keboola Design System:
+
+1. Check the detailed documentation in both README.md and COMPONENT-GUIDE.md
+2. Review the example implementations in the /examples directory
+3. For further assistance, please contact the design system team
 
 ### Contributing
-1. Follow the code quality standards
-2. Test across different browsers
-3. Ensure accessibility compliance
-4. Document any new components
+
+When contributing to the Keboola Design System:
+
+1. Follow the established patterns and conventions
+2. Test components across different browsers and screen sizes
+3. Ensure accessibility compliance with WCAG 2.1 standards
+4. Document any new components or modifications
 5. Update example pages as needed
+
+#### Asset Requirements
+
+Required assets must be available at:
+- `assets/logos/logo_navigation.svg` - Navigation-specific logo
+- `assets/avatars/placeholder.png` - Default avatar placeholder
 
 ## Asset Requirements
 
@@ -1751,4 +1633,3 @@ This consistent 12px spacing creates proper visual hierarchy and improves readab
 - Used in: Topbar, user profiles
 - Container handles circular cropping
 - Always provide square images for consistent circular display
-
