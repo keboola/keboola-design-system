@@ -1,0 +1,461 @@
+---
+description: 
+globs: 
+alwaysApply: true
+---
+# Sidebar Component Guide
+
+Sidebars are vertical navigation components that provide consistent access to key application areas. This guide provides comprehensive instructions for implementing sidebars in your application.
+
+## IMPORTANT: Choose Either Sidebar OR Topbar
+
+**Do not use the sidebar component together with the topbar component in the same interface.** 
+
+These components represent two different navigation patterns:
+- **Sidebar:** Use for compact, icon-based navigation needs
+- **Topbar:** Use for applications that require text-based navigation
+
+Using both simultaneously creates redundant navigation, layout conflicts, and a poor user experience. Choose the pattern that best fits your application's needs.
+
+## Terminology
+
+The sidebar component may be referred to by various names across different design systems and applications:
+
+- **Sidebar**: The primary term used in our design system
+- **Left Navigation**: Common alternate term referring to its position on the left side of the interface
+- **Side Menu**: Used interchangeably with sidebar in many applications
+- **Navigation Panel**: More formal term emphasizing its navigation role
+- **Vertical Navigation**: Describes its orientation and function
+- **Nav Rail**: Used in some modern design systems (like Material Design)
+
+Regardless of terminology, this component should always be implemented using the `.sidebar` class and related structure as documented in this guide. Consistent naming in code helps maintain clarity across the application.
+
+## Basic Sidebar Structure
+
+The base sidebar component follows a consistent structure with specific class naming conventions:
+
+```html
+<div class="sidebar">
+    <div class="sidebar__logo">
+        <div class="sidebar__logo-image"></div>
+    </div>
+    <div class="sidebar__nav">
+        <!-- Navigation items go here -->
+        <div class="sidebar__item active">
+            <i class="fas fa-home"></i>
+        </div>
+        <div class="sidebar__item">
+            <i class="fas fa-users"></i>
+        </div>
+    </div>
+    <div class="sidebar__divider"></div>
+    <div class="sidebar__user">
+        <div class="sidebar__item-avatar">
+            <div class="sidebar__avatar"></div>
+        </div>
+    </div>
+</div>
+```
+
+By default, sidebars have the following styling:
+- Fixed position on the left side of the screen
+- White background (`var(--neutral-white)`)
+- Fixed width of 68px (defined by `--sidebar-width`)
+- Full viewport height
+- Border separator on the right side
+- z-index of 100 to maintain proper layering
+
+## Sidebar Elements
+
+### Logo Section
+
+The logo section appears at the top of the sidebar and contains the application icon:
+
+```html
+<div class="sidebar__logo">
+    <div class="sidebar__logo-image"></div>
+</div>
+```
+
+The logo section has:
+- Centered alignment
+- Fixed height of 80px
+- Padding of `var(--space-4)` on top and bottom
+
+The `sidebar__logo-image` element uses a background image for the logo:
+- Default dimensions: 40px height, 22px width
+- Should use vector-based SVG files for better scaling
+- Default background image from `../assets/logos/logo_navigation.svg`
+
+### Navigation Section
+
+The navigation section contains the app's main navigation items:
+
+```html
+<div class="sidebar__nav">
+    <div class="sidebar__item active">
+        <i class="fas fa-home"></i>
+    </div>
+    <div class="sidebar__item">
+        <i class="fas fa-users"></i>
+    </div>
+    <!-- Additional navigation items -->
+</div>
+```
+
+The `sidebar__nav` element:
+- Uses flex column layout with `gap: var(--space-2)` (8px)
+- Has centered alignment of items
+- Spans available height with `flex: 1`
+- Has padding of `var(--space-2)` on top and bottom
+
+### Navigation Items
+
+Each navigation item follows this structure:
+
+```html
+<div class="sidebar__item">
+    <i class="fas fa-home"></i>
+</div>
+```
+
+Individual `sidebar__item` elements have:
+- Fixed dimensions of 36px × 36px
+- Centered icon alignment
+- Small border radius (`var(--radius-small)`)
+- Hover and active states
+- Cursor: pointer
+
+### Divider Element
+
+The divider creates a visual separation between navigation and user sections:
+
+```html
+<div class="sidebar__divider"></div>
+```
+
+The divider element:
+- Spans the full width of the sidebar
+- Has a height of 1px
+- Uses `var(--neutral-grey-150)` color
+- Has a top margin of 12px
+
+### User Profile Section
+
+The user profile section appears at the bottom of the sidebar:
+
+```html
+<div class="sidebar__user">
+    <div class="sidebar__item-avatar">
+        <div class="sidebar__avatar"></div>
+    </div>
+</div>
+```
+
+The `sidebar__user` element:
+- Has padding of `var(--space-4)` on top and bottom
+- Uses centered alignment
+- Contains the avatar component
+
+### Avatar Element
+
+The avatar component has its own structure:
+
+```html
+<div class="sidebar__item-avatar">
+    <div class="sidebar__avatar"></div>
+</div>
+```
+
+The `sidebar__item-avatar` element:
+- Has dimensions of 36px × 36px
+- Uses small border radius (`var(--radius-small)`)
+- Has hover state
+- Contains the actual avatar image
+
+The `sidebar__avatar` element:
+- Has dimensions of 28px × 28px
+- Uses full border radius (`var(--radius-full)`)
+- Default background image from `../assets/avatars/placeholder.png`
+
+## Active State Implementation
+
+To mark a navigation item as active, add the `active` class:
+
+```html
+<div class="sidebar__item active">
+    <i class="fas fa-home"></i>
+</div>
+```
+
+The active state:
+- Changes background color to `var(--neutral-grey-100)`
+- Changes icon color to `var(--secondary-blue-500-base)`
+
+## Icon Implementation
+
+Icons use Font Awesome within sidebar items:
+
+```html
+<div class="sidebar__item">
+    <i class="fas fa-users"></i>
+</div>
+```
+
+Icon specifications:
+- Font Awesome icons are preferred (use `fas`, `far`, or `fab` classes)
+- Fixed size of 16px × 16px
+- Centered within the sidebar item
+- Default color: `var(--neutral-grey-400)`
+- Hover/active color: `var(--secondary-blue-500-base)`
+
+## Layout Considerations
+
+When implementing a sidebar, adjust your main content accordingly:
+
+```html
+<style>
+    .main-content {
+        margin-left: var(--sidebar-width);
+    }
+</style>
+
+<div class="sidebar">
+    <!-- Sidebar content -->
+</div>
+
+<div class="main-content">
+    <div class="page-container">
+        <!-- Page content -->
+    </div>
+</div>
+```
+
+Key layout considerations:
+- Always use `margin-left: var(--sidebar-width)` for the main content
+- Use the sidebar width variable rather than hardcoding the value
+- Consider z-index interactions with other fixed elements
+
+## Context Selectors
+
+### IMPORTANT: Do Not Use Context Selectors with Sidebar Navigation
+
+Context selectors (dropdown menus that allow users to switch between projects, workspaces, or contexts) are a pattern associated with topbar navigation and should not be included when using sidebar navigation:
+
+- **Context selectors belong to topbar UIs**: They are designed to work within the horizontal space and information hierarchy of a topbar.
+- **Do not move context selectors to the main content area**: When switching from topbar to sidebar, context selectors should be removed entirely, not relocated to the content area.
+- **Avoid alternative implementations**: Don't try to incorporate context selection into the sidebar's limited width.
+
+```html
+<!-- INCORRECT: Adding context selector to main content -->
+<div class="main-content">
+    <div class="page-container">
+        <h1 class="heading-1">Dashboard</h1>
+        
+        <!-- DO NOT add context selectors here -->
+        <div style="display: flex; align-items: center; gap: var(--space-2); margin-bottom: var(--space-4);">
+            <span class="body-text-medium">Project Name</span>
+            <i class="fas fa-chevron-down text-grey-400"></i>
+        </div>
+        
+        <!-- Rest of content -->
+    </div>
+</div>
+```
+
+## Implementation Examples
+
+### Basic Dashboard Sidebar
+
+```html
+<div class="sidebar">
+    <div class="sidebar__logo">
+        <div class="sidebar__logo-image"></div>
+    </div>
+    <div class="sidebar__nav">
+        <div class="sidebar__item active">
+            <i class="fas fa-home"></i>
+        </div>
+        <div class="sidebar__item">
+            <i class="fas fa-users"></i>
+        </div>
+        <div class="sidebar__item">
+            <i class="fas fa-chart-bar"></i>
+        </div>
+        <div class="sidebar__item">
+            <i class="fas fa-cog"></i>
+        </div>
+    </div>
+    <div class="sidebar__divider"></div>
+    <div class="sidebar__user">
+        <div class="sidebar__item-avatar">
+            <div class="sidebar__avatar"></div>
+        </div>
+    </div>
+</div>
+```
+
+### HR Department Sidebar
+
+```html
+<div class="sidebar">
+    <div class="sidebar__logo">
+        <div class="sidebar__logo-image"></div>
+    </div>
+    <div class="sidebar__nav">
+        <div class="sidebar__item active">
+            <i class="fas fa-home"></i>
+        </div>
+        <div class="sidebar__item">
+            <i class="fas fa-users"></i>
+        </div>
+        <div class="sidebar__item">
+            <i class="fas fa-briefcase"></i>
+        </div>
+        <div class="sidebar__item">
+            <i class="fas fa-calendar-alt"></i>
+        </div>
+        <div class="sidebar__item">
+            <i class="fas fa-chart-bar"></i>
+        </div>
+        <div class="sidebar__item">
+            <i class="fas fa-bell"></i>
+        </div>
+    </div>
+    <div class="sidebar__divider"></div>
+    <div class="sidebar__user">
+        <div class="sidebar__item-avatar">
+            <div class="sidebar__avatar"></div>
+        </div>
+    </div>
+</div>
+```
+
+## Best Practices
+
+1. **Icon Selection**: Choose intuitive, recognizable icons for navigation items.
+   - Use standard icons for common functions (home, users, settings)
+   - Maintain consistent icon style throughout
+   - Ensure icons clearly represent their destination
+
+2. **Item Order**: Organize navigation items logically.
+   - Place most frequently used items at the top
+   - Group related items together
+   - Consider the natural flow of user tasks
+
+3. **Active State**: Always indicate the current section.
+   - Use the `active` class on the current page's navigation item
+   - Only one item should be active at a time
+   - Update active state when navigation occurs
+
+4. **Icon-Only Navigation**: Since this is an icon-only sidebar:
+   - Use simple, recognizable icons
+   - Consider adding tooltips for clarity
+   - Ensure sufficient touch target size (36px × 36px)
+
+5. **Custom User Avatar**: When using a custom user avatar:
+   ```html
+   <div class="sidebar__item-avatar">
+       <div class="sidebar__avatar" style="background-image: url('path/to/custom/avatar.jpg');"></div>
+   </div>
+   ```
+
+6. **Responsive Behavior**: For mobile displays, consider:
+   - Potentially hiding the sidebar on small screens
+   - Implementing a mobile-specific navigation solution
+
+7. **Consistency**: Maintain consistent styling with the design system.
+   - Do not modify the fixed width of 68px
+   - Preserve the visual structure: logo, nav items, divider, user
+
+8. **Navigation Pattern**: Choose either sidebar or topbar for your application's primary navigation.
+   - The sidebar is designed for applications that need compact, icon-based navigation
+   - For applications that need text-based navigation, use the topbar component instead
+   - Never use both sidebar and topbar simultaneously in the same interface
+
+## Accessibility Considerations
+
+1. **Color Contrast**: Ensure icon colors have sufficient contrast against the background.
+
+2. **Keyboard Navigation**: Make all navigation items keyboard accessible:
+   ```html
+   <div class="sidebar__item" tabindex="0" role="button" aria-label="Home">
+       <i class="fas fa-home"></i>
+   </div>
+   ```
+
+3. **Screen Readers**: Add appropriate ARIA labels to icon-only navigation:
+   ```html
+   <div class="sidebar__item" aria-label="Users">
+       <i class="fas fa-users"></i>
+   </div>
+   ```
+
+4. **Focus States**: Implement visible focus states for keyboard navigation.
+
+## Common Anti-Patterns to Avoid
+
+1. **Inconsistent Width**: Changing the sidebar width disrupts the layout.
+   ```html
+   <!-- INCORRECT -->
+   <div class="sidebar" style="width: 80px;">
+   ```
+
+2. **Direct Icon Styling**: Avoid applying direct styles to icons.
+   ```html
+   <!-- INCORRECT -->
+   <i class="fas fa-home" style="color: blue; font-size: 20px;"></i>
+   ```
+
+3. **Excessive Items**: Too many navigation items reduces usability.
+   ```html
+   <!-- INCORRECT -->
+   <div class="sidebar__nav">
+       <div class="sidebar__item">...</div>
+       <!-- 15+ additional items -->
+   </div>
+   ```
+
+4. **Missing Active State**: Always indicate the current section.
+   ```html
+   <!-- INCORRECT: No active state provided -->
+   <div class="sidebar__nav">
+       <div class="sidebar__item">...</div>
+       <div class="sidebar__item">...</div>
+   </div>
+   ```
+
+5. **Custom Fonts or Icons**: Use only Font Awesome icons for consistency.
+   ```html
+   <!-- INCORRECT -->
+   <div class="sidebar__item">
+       <span class="material-icons">home</span>
+   </div>
+   ```
+
+6. **Mixed Navigation Patterns**: Don't mix icon-only with text navigation in the sidebar.
+   ```html
+   <!-- INCORRECT -->
+   <div class="sidebar__item">
+       <i class="fas fa-home"></i>
+       <span>Home</span> <!-- Adding text breaks the design -->
+   </div>
+   ```
+
+7. **Missing Main Content Adjustment**: Always adjust the main content area.
+   ```css
+   /* INCORRECT: Missing adjustment for sidebar width */
+   .main-content {
+       margin-left: 0; /* Should be var(--sidebar-width) */
+   }
+   ```
+
+8. **Combining Sidebar with Topbar**: Do not use both navigation components simultaneously.
+   ```html
+   <!-- INCORRECT -->
+   <div class="sidebar"><!-- Sidebar content --></div>
+   <div class="topbar"><!-- Topbar content --></div>
+   ```
+   This creates navigation redundancy and layout conflicts. Choose either the sidebar or topbar component based on your application's navigation needs.
+
+By following these guidelines, you'll create consistent, usable sidebar navigation that aligns with the design system's principles.

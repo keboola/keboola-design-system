@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HR Dashboard</title>
+    <!-- Required Dependencies -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    
+    <!-- Design System CSS -->
+    <link href="../dist/design-system.css" rel="stylesheet">
+    
+    <style>
+        body {
+            background-color: var(--neutral-grey-50);
+            margin: 0;
+            padding: 0;
+        }
+        
+        .main-content {
+            margin-top: var(--topbar-height);
+        }
+    </style>
+</head>
+<body>
+    <!-- Topbar -->
+    <div class="topbar">
+        <div class="topbar__header">
+            <div class="topbar__container">
+                <div class="topbar__section-primary">
+                    <div class="topbar__branding">
+                        <div class="topbar__logo"></div>
+                        <div class="topbar__details">
+                            <p class="topbar__subtitle">HR Management</p>
+                            <h2 class="topbar__title">Dashboard</h2>
+                        </div>
+                    </div>
+                    <div class="topbar__context">
+                        <span class="topbar__context-name">Main Organization</span>
+                        <i class="fas fa-chevron-down text-grey-400"></i>
+                    </div>
+                </div>
+                <div class="topbar__section-secondary">
+                    <div class="topbar__actions">
+                        <div class="topbar__action-item icon-container">
+                            <i class="fas fa-bell"></i>
+                        </div>
+                        <div class="topbar__action-item icon-container">
+                            <i class="fas fa-cog"></i>
+                        </div>
+                        <div class="topbar__action-item icon-container">
+                            <i class="fas fa-question-circle"></i>
+                        </div>
+                    </div>
+                    <div class="topbar__user"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <div class="page-container">
+            <!-- Page Header -->
+            <div class="header">
+                <h1 class="header__title">HR Dashboard</h1>
+                <div class="header__actions">
+                    <button class="btn btn-secondary btn-medium">
+                        <i class="fas fa-download btn-icon"></i>
+                        <span class="btn-text">Export Report</span>
+                    </button>
+                    <button class="btn btn-primary btn-medium">
+                        <i class="fas fa-plus btn-icon"></i>
+                        <span class="btn-text">Add Employee</span>
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Overview Cards -->
+            <div class="grid-responsive-kpi">
+                <div class="overview-card">
+                    <div class="overview-card__header">
+                        <span class="overview-card__title">Total Employees</span>
+                    </div>
+                    <div class="overview-card__value">1,245</div>
+                    <div class="overview-card__subtitle">
+                        <span style="color: var(--success-green-500-base);">+12% </span>since last month
+                    </div>
+                </div>
+                
+                <div class="overview-card">
+                    <div class="overview-card__header">
+                        <span class="overview-card__title">Open Positions</span>
+                    </div>
+                    <div class="overview-card__value">24</div>
+                    <div class="overview-card__subtitle">
+                        <span style="color: var(--success-green-500-base);">+5 </span>since last week
+                    </div>
+                </div>
+                
+                <div class="overview-card">
+                    <div class="overview-card__header">
+                        <span class="overview-card__title">Attrition Rate</span>
+                    </div>
+                    <div class="overview-card__value">4.2%</div>
+                    <div class="overview-card__subtitle">
+                        <span style="color: var(--success-green-500-base);">-1.8% </span>since last quarter
+                    </div>
+                </div>
+                
+                <div class="overview-card">
+                    <div class="overview-card__header">
+                        <span class="overview-card__title">Average Hiring Time</span>
+                    </div>
+                    <div class="overview-card__value">32 days</div>
+                    <div class="overview-card__subtitle">
+                        <span style="color: var(--error-red-500-base);">+3 days </span>since last quarter
+                    </div>
+                </div>
+            </div>
+
+            <!-- Department Breakdown -->
+            <div class="card">
+                <h2 class="card__title" style="display: flex; justify-content: space-between; align-items: center;">
+                    <span>Department Breakdown</span>
+                    <a href="#" class="link-body-medium" style="display: flex; align-items: center; gap: var(--space-1);">
+                        <i class="fas fa-filter" style="font-size: 14px;"></i>
+                        Filter
+                    </a>
+                </h2>
+                <div class="card__content">
+                    <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-4);">
+                        <div class="overview-card overview-card--grey">
+                            <div class="overview-card__header">
+                                <span class="overview-card__title">Engineering</span>
+                            </div>
+                            <div class="overview-card__value">289</div>
+                            <div class="overview-card__subtitle">
+                                <span style="color: var(--success-green-500-base);">+5% </span>growth rate
+                            </div>
+                        </div>
+                        
+                        <div class="overview-card overview-card--grey">
+                            <div class="overview-card__header">
+                                <span class="overview-card__title">Sales</span>
+                            </div>
+                            <div class="overview-card__value">185</div>
+                            <div class="overview-card__subtitle">
+                                <span style="color: var(--success-green-500-base);">+12% </span>growth rate
+                            </div>
+                        </div>
+                        
+                        <div class="overview-card overview-card--grey">
+                            <div class="overview-card__header">
+                                <span class="overview-card__title">Marketing</span>
+                            </div>
+                            <div class="overview-card__value">78</div>
+                            <div class="overview-card__subtitle">
+                                <span style="color: var(--error-red-500-base);">-2% </span>growth rate
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Recent Activities and Employee Requests -->
+            <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(480px, 1fr)); gap: var(--space-6);">
+                <!-- Recent Activities -->
+                <div class="card">
+                    <h2 class="card__title">Recent Activities</h2>
+                    <div class="card__content">
+                        <div style="display: flex; flex-direction: column; gap: var(--space-3);">
+                            <div style="display: flex; align-items: center; padding: var(--space-3); border-bottom: 1px solid var(--neutral-grey-150);">
+                                <div style="width: 40px; height: 40px; border-radius: var(--radius-full); background-color: var(--secondary-blue-100); display: flex; align-items: center; justify-content: center; margin-right: var(--space-4);">
+                                    <i class="fas fa-user" style="color: var(--secondary-blue-500-base);"></i>
+                                </div>
+                                <div style="flex: 1;">
+                                    <p class="body-text-medium">New employee onboarded</p>
+                                    <p class="small-body-text">Jessica Parker joined as Senior Product Designer</p>
+                                </div>
+                                <div>
+                                    <span class="badge badge-success">
+                                        <span class="badge-text">NEW HIRE</span>
+                                    </span>
+                                </div>
+                            </div>
+                            
+                            <div style="display: flex; align-items: center; padding: var(--space-3); border-bottom: 1px solid var(--neutral-grey-150);">
+                                <div style="width: 40px; height: 40px; border-radius: var(--radius-full); background-color: var(--warning-orange-100); display: flex; align-items: center; justify-content: center; margin-right: var(--space-4);">
+                                    <i class="fas fa-file-alt" style="color: var(--warning-orange-500-base);"></i>
+                                </div>
+                                <div style="flex: 1;">
+                                    <p class="body-text-medium">Performance review updated</p>
+                                    <p class="small-body-text">Q2 Performance review cycle started</p>
+                                </div>
+                                <div>
+                                    <span class="badge badge-warning">
+                                        <span class="badge-text">IN PROGRESS</span>
+                                    </span>
+                                </div>
+                            </div>
+                            
+                            <div style="display: flex; align-items: center; padding: var(--space-3);">
+                                <div style="width: 40px; height: 40px; border-radius: var(--radius-full); background-color: var(--success-green-100); display: flex; align-items: center; justify-content: center; margin-right: var(--space-4);">
+                                    <i class="fas fa-calendar-check" style="color: var(--success-green-500-base);"></i>
+                                </div>
+                                <div style="flex: 1;">
+                                    <p class="body-text-medium">Time-off request approved</p>
+                                    <p class="small-body-text">Michael Stevens' vacation request approved</p>
+                                </div>
+                                <div>
+                                    <span class="badge badge-success">
+                                        <span class="badge-text">APPROVED</span>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card__footer">
+                        <button class="btn btn-secondary btn-medium">
+                            <span class="btn-text">View All Activities</span>
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Employee Requests -->
+                <div class="card">
+                    <h2 class="card__title">Pending Requests</h2>
+                    <div class="card__content">
+                        <div style="display: flex; flex-direction: column; gap: var(--space-3);">
+                            <div style="display: flex; align-items: center; padding: var(--space-3); border-bottom: 1px solid var(--neutral-grey-150);">
+                                <div style="width: 40px; height: 40px; border-radius: var(--radius-full); background-color: var(--warning-orange-100); display: flex; align-items: center; justify-content: center; margin-right: var(--space-4);">
+                                    <i class="fas fa-clock" style="color: var(--warning-orange-500-base);"></i>
+                                </div>
+                                <div style="flex: 1;">
+                                    <p class="body-text-medium">Time-off Request</p>
+                                    <p class="small-body-text">David Miller - 5 days, starting June 15</p>
+                                </div>
+                                <div>
+                                    <span class="badge badge-warning badge-with-icon">
+                                        <div class="icon-container">
+                                            <i class="fas fa-exclamation-triangle"></i>
+                                        </div>
+                                        <span class="badge-text">PENDING</span>
+                                    </span>
+                                </div>
+                            </div>
+                            
+                            <div style="display: flex; align-items: center; padding: var(--space-3); border-bottom: 1px solid var(--neutral-grey-150);">
+                                <div style="width: 40px; height: 40px; border-radius: var(--radius-full); background-color: var(--error-red-100); display: flex; align-items: center; justify-content: center; margin-right: var(--space-4);">
+                                    <i class="fas fa-exclamation-circle" style="color: var(--error-red-500-base);"></i>
+                                </div>
+                                <div style="flex: 1;">
+                                    <p class="body-text-medium">Equipment Request</p>
+                                    <p class="small-body-text">Sarah Johnson - New laptop</p>
+                                </div>
+                                <div>
+                                    <span class="badge badge-warning badge-with-icon">
+                                        <div class="icon-container">
+                                            <i class="fas fa-exclamation-triangle"></i>
+                                        </div>
+                                        <span class="badge-text">DUE SOON</span>
+                                    </span>
+                                </div>
+                            </div>
+                            
+                            <div style="display: flex; align-items: center; padding: var(--space-3);">
+                                <div style="width: 40px; height: 40px; border-radius: var(--radius-full); background-color: var(--secondary-blue-100); display: flex; align-items: center; justify-content: center; margin-right: var(--space-4);">
+                                    <i class="fas fa-file-invoice" style="color: var(--secondary-blue-500-base);"></i>
+                                </div>
+                                <div style="flex: 1;">
+                                    <p class="body-text-medium">Reimbursement Request</p>
+                                    <p class="small-body-text">Robert Garcia - $245.00 for conference</p>
+                                </div>
+                                <div>
+                                    <span class="badge badge-warning badge-with-icon">
+                                        <div class="icon-container">
+                                            <i class="fas fa-exclamation-triangle"></i>
+                                        </div>
+                                        <span class="badge-text">PENDING</span>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card__footer">
+                        <button class="btn btn-secondary btn-medium">
+                            <span class="btn-text">View All Requests</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Upcoming Events -->
+            <div class="card">
+                <h2 class="card__title">Upcoming Events</h2>
+                <div class="card__content">
+                    <div style="display: flex; flex-direction: column; gap: var(--space-3);">
+                        <div style="display: flex; align-items: center; padding: var(--space-3); border-bottom: 1px solid var(--neutral-grey-150);">
+                            <div style="width: 40px; height: 40px; border-radius: var(--radius-full); background-color: var(--secondary-blue-100); display: flex; align-items: center; justify-content: center; margin-right: var(--space-4);">
+                                <i class="fas fa-users" style="color: var(--secondary-blue-500-base);"></i>
+                            </div>
+                            <div style="flex: 1;">
+                                <p class="body-text-medium">Team Building Workshop</p>
+                                <p class="small-body-text">June 15, 2023 • 2:00 PM - 5:00 PM • Main Conference Room</p>
+                            </div>
+                            <div>
+                                <button class="btn btn-secondary btn-small">
+                                    <span class="btn-text">View Details</span>
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <div style="display: flex; align-items: center; padding: var(--space-3); border-bottom: 1px solid var(--neutral-grey-150);">
+                            <div style="width: 40px; height: 40px; border-radius: var(--radius-full); background-color: var(--warning-orange-100); display: flex; align-items: center; justify-content: center; margin-right: var(--space-4);">
+                                <i class="fas fa-birthday-cake" style="color: var(--warning-orange-500-base);"></i>
+                            </div>
+                            <div style="flex: 1;">
+                                <p class="body-text-medium">Company Anniversary Celebration</p>
+                                <p class="small-body-text">June 20, 2023 • 12:00 PM - 3:00 PM • Rooftop Garden</p>
+                            </div>
+                            <div>
+                                <button class="btn btn-secondary btn-small">
+                                    <span class="btn-text">View Details</span>
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <div style="display: flex; align-items: center; padding: var(--space-3);">
+                            <div style="width: 40px; height: 40px; border-radius: var(--radius-full); background-color: var(--success-green-100); display: flex; align-items: center; justify-content: center; margin-right: var(--space-4);">
+                                <i class="fas fa-chalkboard-teacher" style="color: var(--success-green-500-base);"></i>
+                            </div>
+                            <div style="flex: 1;">
+                                <p class="body-text-medium">Leadership Training Session</p>
+                                <p class="small-body-text">June 25, 2023 • 9:00 AM - 12:00 PM • Training Room B</p>
+                            </div>
+                            <div>
+                                <button class="btn btn-secondary btn-small">
+                                    <span class="btn-text">View Details</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card__footer">
+                    <button class="btn btn-secondary btn-medium">
+                        <i class="fas fa-calendar-plus btn-icon"></i>
+                        <span class="btn-text">Add Event</span>
+                    </button>
+                    <button class="btn btn-primary btn-medium">
+                        <i class="fas fa-calendar btn-icon"></i>
+                        <span class="btn-text">View Calendar</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Future JavaScript for dashboard functionality
+        });
+    </script>
+</body>
+</html> 

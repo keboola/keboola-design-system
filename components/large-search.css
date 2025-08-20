@@ -1,0 +1,82 @@
+/**
+ * Large Search Component
+ * 
+ * A larger search component designed for main content areas like tables.
+ * Provides a prominent search experience with larger dimensions.
+ */
+
+.large-search {
+    position: relative;
+    width: 100%;
+    min-width: 240px;
+    background: var(--neutral-white);
+    border-radius: var(--radius-medium);
+    box-shadow: var(--card-shadow);
+}
+
+.large-search .large-search__content {
+    display: flex;
+    align-items: center;
+    padding: var(--space-4) var(--space-4);
+    gap: var(--space-3);
+    border: 1px solid transparent;
+    border-radius: var(--radius-medium);
+    transition: all 0.2s ease;
+}
+
+.large-search .large-search__icon {
+    color: var(--neutral-grey-400);
+    font-size: 16px;
+    flex-shrink: 0;
+}
+
+.large-search .large-search__input {
+    flex: 1;
+    border: none;
+    background: transparent;
+    font-family: var(--body-body-family);
+    font-size: var(--body-body-size);
+    line-height: var(--body-body-line-height);
+    color: var(--neutral-grey-800);
+    outline: none;
+    width: 100%;
+}
+
+.large-search .large-search__input::placeholder {
+    color: var(--neutral-grey-400);
+}
+
+.large-search .large-search__clear {
+    background: none;
+    border: none;
+    color: var(--neutral-grey-400);
+    cursor: pointer;
+    display: none;
+    padding: 0;
+    font-size: 16px;
+}
+
+.large-search .large-search__clear:hover {
+    color: var(--neutral-grey-600);
+}
+
+/* Show clear button when input has content */
+.large-search .large-search__content:has(.large-search__input:not(:placeholder-shown)) .large-search__clear {
+    display: block;
+}
+
+/* Focus state */
+.large-search .large-search__content:has(.large-search__input:focus) {
+    border-color: var(--secondary-blue-500-base);
+    box-shadow: var(--active-element);
+}
+
+/* Disabled state */
+.large-search.disabled {
+    opacity: 0.7;
+    pointer-events: none;
+}
+
+.large-search.disabled .large-search__input {
+    cursor: not-allowed;
+} 

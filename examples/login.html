@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Required Dependencies -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    
+    <!-- Design System CSS -->
+    <link href="../dist/design-system.css" rel="stylesheet">
+    
+    <style>
+        body {
+            background-color: var(--neutral-grey-50);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            margin: 0;
+        }
+        .auth-container {
+            width: 420px;
+        }
+    </style>
+</head>
+<body>
+    <div class="page-container">
+        <div style="display: flex; flex-direction: column; align-items: center; gap: var(--space-8);">
+            <h1 class="heading-1">Login</h1>
+            
+            <div class="auth-container">
+                <div class="card card--widget">
+                    <h2 class="card__title">Sign in to your account</h2>
+                    <div class="card__content">
+                        <form id="loginForm" style="display: flex; flex-direction: column; gap: var(--space-4);">
+                            <!-- Email field -->
+                            <div class="text-input size-medium required" id="emailField">
+                                <div class="label">
+                                    <span class="label-text">Email</span>
+                                </div>
+                                <div class="content">
+                                    <input type="email" id="email" placeholder="Enter your email address">
+                                </div>
+                                <div class="error-message">Please enter a valid email address</div>
+                            </div>
+                            
+                            <!-- Password field -->
+                            <div class="text-input size-medium required" id="passwordField">
+                                <div class="label">
+                                    <span class="label-text">Password</span>
+                                </div>
+                                <div class="content">
+                                    <input type="password" id="password" placeholder="Enter your password">
+                                </div>
+                                <div class="error-message">Please enter your password</div>
+                            </div>
+                            
+                            <!-- Remember me checkbox and forgot password link -->
+                            <div style="display: flex; justify-content: space-between; align-items: center;">
+                                <label class="checkbox">
+                                    <input type="checkbox" id="rememberMe">
+                                    <div class="checkbox-box"></div>
+                                    <div class="checkbox-label">
+                                        <span class="checkbox-label-text">Remember me</span>
+                                    </div>
+                                </label>
+                                <a href="#" class="link-small-body-medium">Forgot your password?</a>
+                            </div>
+                            
+                            <!-- Login button -->
+                            <div>
+                                <button type="submit" class="btn btn-primary btn-medium" style="width: 100%;">
+                                    <span class="btn-text">Login</span>
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="card__footer">
+                        <p class="small-body-text">Don't have an account? <a href="#" class="link-small-body-medium">Sign up</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const form = document.getElementById('loginForm');
+            
+            // Function to show error
+            function showError(fieldElement, show) {
+                if (show) {
+                    fieldElement.classList.add('error');
+                } else {
+                    fieldElement.classList.remove('error');
+                }
+            }
+            
+            form.addEventListener('submit', function(event) {
+                event.preventDefault();
+                
+                let isValid = true;
+                
+                // Email validation
+                const emailField = document.getElementById('emailField');
+                const emailInput = document.getElementById('email');
+                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                if (!emailRegex.test(emailInput.value.trim())) {
+                    showError(emailField, true);
+                    isValid = false;
+                } else {
+                    showError(emailField, false);
+                }
+                
+                // Password validation
+                const passwordField = document.getElementById('passwordField');
+                const passwordInput = document.getElementById('password');
+                if (!passwordInput.value.trim()) {
+                    showError(passwordField, true);
+                    isValid = false;
+                } else {
+                    showError(passwordField, false);
+                }
+                
+                if (isValid) {
+                    // Process form submission
+                    console.log('Login form submitted successfully!');
+                    // Here you would typically send the login credentials to a server
+                }
+            });
+            
+            // Add input event listeners to remove error state when user types
+            const inputs = form.querySelectorAll('input');
+            inputs.forEach(input => {
+                input.addEventListener('input', function() {
+                    const fieldContainer = this.closest('.text-input');
+                    showError(fieldContainer, false);
+                });
+            });
+
+            // Add CSS to show error messages
+            const style = document.createElement('style');
+            style.textContent = `
+                .text-input.error .error-message {
+                    display: block;
+                    color: var(--error-red-500-base);
+                    font-size: 14px;
+                    margin-top: 4px;
+                }
+                .error-message {
+                    display: none;
+                }
+            `;
+            document.head.appendChild(style);
+        });
+    </script>
+</body>
+</html> 

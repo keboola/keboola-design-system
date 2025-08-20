@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    
+    <!-- Required Dependencies -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    
+    <!-- Design System CSS -->
+    <link href="../dist/design-system.css" rel="stylesheet">
+    
+    <style>
+        body {
+            background-color: var(--neutral-grey-50);
+            margin: 0;
+            padding: 0;
+        }
+        
+        .main-content {
+            margin-top: var(--topbar-height);
+        }
+    </style>
+</head>
+<body>
+    <!-- Topbar -->
+    <div class="topbar">
+        <div class="topbar__header">
+            <div class="topbar__container">
+                <div class="topbar__section-primary">
+                    <div class="topbar__branding">
+                        <div class="topbar__logo"></div>
+                        <div class="topbar__details">
+                            <p class="topbar__subtitle">Dashboard</p>
+                            <h2 class="topbar__title">Analytics System</h2>
+                        </div>
+                    </div>
+                    <div class="topbar__context">
+                        <span class="topbar__context-name">Project Alpha</span>
+                        <i class="fas fa-chevron-down text-grey-400"></i>
+                    </div>
+                </div>
+                <div class="topbar__section-secondary">
+                    <div class="topbar__actions">
+                        <div class="topbar__action-item icon-container">
+                            <i class="fas fa-bell"></i>
+                        </div>
+                        <div class="topbar__action-item icon-container">
+                            <i class="fas fa-cog"></i>
+                        </div>
+                    </div>
+                    <div class="topbar__user"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <div class="page-container">
+            <div class="header">
+                <h1 class="header__title">Dashboard Overview</h1>
+                <div class="header__actions">
+                    <button class="btn btn-secondary btn-medium">
+                        <span class="btn-text">Export</span>
+                    </button>
+                    <button class="btn btn-primary btn-medium">
+                        <i class="fas fa-plus btn-icon"></i>
+                        <span class="btn-text">New Report</span>
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Overview Cards -->
+            <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: var(--space-4);">
+                <div class="overview-card">
+                    <div class="overview-card__header">
+                        <span class="overview-card__title">Total Users</span>
+                    </div>
+                    <div class="overview-card__value">1,245</div>
+                    <div class="overview-card__subtitle">
+                        <span style="color: var(--success-green-500-base);">+12% </span>since last month
+                    </div>
+                </div>
+                
+                <div class="overview-card">
+                    <div class="overview-card__header">
+                        <span class="overview-card__title">Active Sessions</span>
+                    </div>
+                    <div class="overview-card__value">268</div>
+                    <div class="overview-card__subtitle">
+                        <span style="color: var(--success-green-500-base);">+5% </span>since yesterday
+                    </div>
+                </div>
+                
+                <div class="overview-card">
+                    <div class="overview-card__header">
+                        <span class="overview-card__title">Conversion Rate</span>
+                    </div>
+                    <div class="overview-card__value">8.4%</div>
+                    <div class="overview-card__subtitle">
+                        <span style="color: var(--error-red-500-base);">-2.3% </span>since last week
+                    </div>
+                </div>
+                
+                <div class="overview-card">
+                    <div class="overview-card__header">
+                        <span class="overview-card__title">Total Revenue</span>
+                    </div>
+                    <div class="overview-card__value">$84,245</div>
+                    <div class="overview-card__subtitle">
+                        <span style="color: var(--success-green-500-base);">+18% </span>since last month
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Recent Activity -->
+            <div class="card">
+                <div class="card__header">
+                    <h2 class="card__title">Recent Activity</h2>
+                </div>
+                <div class="card__content">
+                    <div style="display: flex; flex-direction: column; gap: var(--space-3);">
+                        <div style="display: flex; align-items: center; padding: var(--space-3); border-bottom: 1px solid var(--neutral-grey-150);">
+                            <div style="width: 40px; height: 40px; border-radius: var(--radius-full); background-color: var(--secondary-blue-100); display: flex; align-items: center; justify-content: center; margin-right: var(--space-4);">
+                                <i class="fas fa-user" style="color: var(--secondary-blue-500-base);"></i>
+                            </div>
+                            <div style="flex: 1;">
+                                <p class="body-text-medium">New user registered</p>
+                                <p class="small-body-text">John Doe created an account</p>
+                            </div>
+                            <div class="small-body-text text-grey-400">10 min ago</div>
+                        </div>
+                        
+                        <div style="display: flex; align-items: center; padding: var(--space-3); border-bottom: 1px solid var(--neutral-grey-150);">
+                            <div style="width: 40px; height: 40px; border-radius: var(--radius-full); background-color: var(--success-green-100); display: flex; align-items: center; justify-content: center; margin-right: var(--space-4);">
+                                <i class="fas fa-shopping-cart" style="color: var(--success-green-500-base);"></i>
+                            </div>
+                            <div style="flex: 1;">
+                                <p class="body-text-medium">New order placed</p>
+                                <p class="small-body-text">Order #12345 was processed</p>
+                            </div>
+                            <div class="small-body-text text-grey-400">25 min ago</div>
+                        </div>
+                        
+                        <div style="display: flex; align-items: center; padding: var(--space-3); border-bottom: 1px solid var(--neutral-grey-150);">
+                            <div style="width: 40px; height: 40px; border-radius: var(--radius-full); background-color: var(--warning-orange-100); display: flex; align-items: center; justify-content: center; margin-right: var(--space-4);">
+                                <i class="fas fa-exclamation-triangle" style="color: var(--warning-orange-500-base);"></i>
+                            </div>
+                            <div style="flex: 1;">
+                                <p class="body-text-medium">System alert</p>
+                                <p class="small-body-text">Server load exceeded 80%</p>
+                            </div>
+                            <div class="small-body-text text-grey-400">1 hour ago</div>
+                        </div>
+                        
+                        <div style="display: flex; align-items: center; padding: var(--space-3);">
+                            <div style="width: 40px; height: 40px; border-radius: var(--radius-full); background-color: var(--error-red-100); display: flex; align-items: center; justify-content: center; margin-right: var(--space-4);">
+                                <i class="fas fa-file-alt" style="color: var(--error-red-500-base);"></i>
+                            </div>
+                            <div style="flex: 1;">
+                                <p class="body-text-medium">New report available</p>
+                                <p class="small-body-text">Monthly analytics report is ready</p>
+                            </div>
+                            <div class="small-body-text text-grey-400">2 hours ago</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Recent Tasks -->
+            <div class="card">
+                <div class="card__header">
+                    <h2 class="card__title">Recent Tasks</h2>
+                </div>
+                <div class="card__content">
+                    <div style="display: flex; flex-direction: column; gap: var(--space-3);">
+                        <div style="display: flex; align-items: center;">
+                            <div class="checkbox">
+                                <input type="checkbox" id="task1" checked>
+                                <label for="task1"></label>
+                            </div>
+                            <div style="margin-left: var(--space-3);">
+                                <p class="body-text-medium" style="text-decoration: line-through; color: var(--neutral-grey-400);">Prepare monthly report</p>
+                                <p class="small-body-text text-grey-400">Due: Today</p>
+                            </div>
+                        </div>
+                        
+                        <div style="display: flex; align-items: center;">
+                            <div class="checkbox">
+                                <input type="checkbox" id="task2">
+                                <label for="task2"></label>
+                            </div>
+                            <div style="margin-left: var(--space-3);">
+                                <p class="body-text-medium">Client meeting preparation</p>
+                                <p class="small-body-text text-grey-400">Due: Tomorrow</p>
+                            </div>
+                        </div>
+                        
+                        <div style="display: flex; align-items: center;">
+                            <div class="checkbox">
+                                <input type="checkbox" id="task3">
+                                <label for="task3"></label>
+                            </div>
+                            <div style="margin-left: var(--space-3);">
+                                <p class="body-text-medium">Update user documentation</p>
+                                <p class="small-body-text text-grey-400">Due: In 2 days</p>
+                            </div>
+                        </div>
+                        
+                        <div style="display: flex; align-items: center;">
+                            <div class="checkbox">
+                                <input type="checkbox" id="task4">
+                                <label for="task4"></label>
+                            </div>
+                            <div style="margin-left: var(--space-3);">
+                                <p class="body-text-medium">Review new feature requests</p>
+                                <p class="small-body-text text-grey-400">Due: Next week</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card__footer">
+                    <button class="btn btn-primary btn-medium">
+                        <span class="btn-text">Add New Task</span>
+                    </button>
+                    <button class="btn btn-secondary btn-medium">
+                        <span class="btn-text">View All Tasks</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html> 

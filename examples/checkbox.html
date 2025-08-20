@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkbox Example - Keboola</title>
+    
+    <!-- Required Dependencies -->
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" as="style">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
+    
+    <!-- Design System CSS -->
+    <link href="../dist/design-system.css" rel="stylesheet">
+    
+    <style>
+        .checkbox-row {
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-4);
+        }
+        
+        .state-section {
+            margin-bottom: var(--space-4);
+        }
+        
+        .state-section p {
+            margin-bottom: var(--space-1);
+        }
+        
+        /* Make checkbox with long text responsive */
+        .checkbox-responsive {
+            width: 100%;
+            max-width: 100%;
+            align-items: flex-start;
+        }
+        
+        .checkbox-responsive .checkbox-box {
+            margin-top: 3px;
+        }
+        
+        .checkbox-responsive .checkbox-label {
+            flex-shrink: 1;
+            flex-grow: 1;
+            width: auto;
+        }
+        
+        .checkbox-responsive .checkbox-label-text {
+            word-wrap: break-word;
+            overflow-wrap: break-word;
+            hyphens: auto;
+        }
+        
+        /* Media query for smaller screens */
+        @media (max-width: 768px) {
+            .checkbox-responsive {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body class="bg-grey-50">
+    <div class="page-container">
+        <h1 class="heading-1">Checkbox Examples</h1>
+
+        <!-- Basic Checkboxes -->
+        <div class="card">
+            <div class="card__header">
+                <h2 class="card__title">Basic Checkboxes</h2>
+            </div>
+            <div class="card__content">
+                <div class="checkbox-row">
+                    <!-- Default State -->
+                    <div class="state-section">
+                        <p class="small-body-text">Default</p>
+                        <label class="checkbox">
+                            <input type="checkbox">
+                            <div class="checkbox-box"></div>
+                            <div class="checkbox-label">
+                                <span class="checkbox-label-text">Default Checkbox</span>
+                            </div>
+                        </label>
+                    </div>
+
+                    <!-- Checked State -->
+                    <div class="state-section">
+                        <p class="small-body-text">Checked</p>
+                        <label class="checkbox">
+                            <input type="checkbox" checked>
+                            <div class="checkbox-box"></div>
+                            <div class="checkbox-label">
+                                <span class="checkbox-label-text">Checked Checkbox</span>
+                            </div>
+                        </label>
+                    </div>
+
+                    <!-- Disabled State -->
+                    <div class="state-section">
+                        <p class="small-body-text">Disabled</p>
+                        <label class="checkbox disabled">
+                            <input type="checkbox" disabled>
+                            <div class="checkbox-box"></div>
+                            <div class="checkbox-label">
+                                <span class="checkbox-label-text">Disabled Checkbox</span>
+                            </div>
+                        </label>
+                    </div>
+
+                    <!-- Disabled Checked State -->
+                    <div class="state-section">
+                        <p class="small-body-text">Disabled Checked</p>
+                        <label class="checkbox disabled">
+                            <input type="checkbox" checked disabled>
+                            <div class="checkbox-box"></div>
+                            <div class="checkbox-label">
+                                <span class="checkbox-label-text">Disabled Checked Checkbox</span>
+                            </div>
+                        </label>
+                    </div>
+
+                    <!-- Error State -->
+                    <div class="state-section">
+                        <p class="small-body-text">Error</p>
+                        <label class="checkbox error">
+                            <input type="checkbox">
+                            <div class="checkbox-box"></div>
+                            <div class="checkbox-label">
+                                <span class="checkbox-label-text">Error Checkbox</span>
+                            </div>
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Checkbox Variations -->
+        <div class="card">
+            <div class="card__header">
+                <h2 class="card__title">Checkbox Variations</h2>
+            </div>
+            <div class="card__content">
+                <div class="checkbox-row">
+                    <!-- Checkbox without label -->
+                    <div class="state-section">
+                        <p class="small-body-text">Without Label</p>
+                        <label class="checkbox no-label">
+                            <input type="checkbox">
+                            <div class="checkbox-box"></div>
+                            <div class="checkbox-label">
+                                <span class="checkbox-label-text">This label won't show</span>
+                            </div>
+                        </label>
+                    </div>
+
+                    <!-- Checkbox with longer text -->
+                    <div class="state-section">
+                        <p class="small-body-text">With Long Text</p>
+                        <label class="checkbox checkbox-responsive">
+                            <input type="checkbox">
+                            <div class="checkbox-box"></div>
+                            <div class="checkbox-label">
+                                <span class="checkbox-label-text">This is a checkbox with a longer label text that may wrap to multiple lines to demonstrate how the checkbox component handles longer content in its label.</span>
+                            </div>
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Checkbox Group -->
+        <div class="card">
+            <div class="card__header">
+                <h2 class="card__title">Checkbox Group Example</h2>
+            </div>
+            <div class="card__content">
+                <div style="display: flex; flex-direction: column; gap: var(--space-3);">
+                    <p class="body-text">Select your preferred notification methods:</p>
+                    
+                    <label class="checkbox">
+                        <input type="checkbox" checked>
+                        <div class="checkbox-box"></div>
+                        <div class="checkbox-label">
+                            <span class="checkbox-label-text">Email notifications</span>
+                        </div>
+                    </label>
+                    
+                    <label class="checkbox">
+                        <input type="checkbox">
+                        <div class="checkbox-box"></div>
+                        <div class="checkbox-label">
+                            <span class="checkbox-label-text">SMS notifications</span>
+                        </div>
+                    </label>
+                    
+                    <label class="checkbox">
+                        <input type="checkbox" checked>
+                        <div class="checkbox-box"></div>
+                        <div class="checkbox-label">
+                            <span class="checkbox-label-text">In-app notifications</span>
+                        </div>
+                    </label>
+                    
+                    <label class="checkbox disabled">
+                        <input type="checkbox" disabled>
+                        <div class="checkbox-box"></div>
+                        <div class="checkbox-label">
+                            <span class="checkbox-label-text">Push notifications (coming soon)</span>
+                        </div>
+                    </label>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Form Example -->
+        <div class="card">
+            <div class="card__header">
+                <h2 class="card__title">Form Example</h2>
+            </div>
+            <div class="card__content">
+                <form style="display: flex; flex-direction: column; gap: var(--space-4);">
+                    <!-- Full Name field using the text-input component structure -->
+                    <div class="text-input size-medium">
+                        <div class="label">
+                            <span class="label-text">Full Name</span>
+                        </div>
+                        <div class="content">
+                            <input type="text" placeholder="Enter your full name">
+                        </div>
+                    </div>
+                    
+                    <!-- Email field using the text-input component structure -->
+                    <div class="text-input size-medium">
+                        <div class="label">
+                            <span class="label-text">Email</span>
+                        </div>
+                        <div class="content">
+                            <input type="email" placeholder="Enter your email address">
+                        </div>
+                    </div>
+                    
+                    <div style="margin-top: var(--space-2);">
+                        <label class="checkbox">
+                            <input type="checkbox">
+                            <div class="checkbox-box"></div>
+                            <div class="checkbox-label">
+                                <span class="checkbox-label-text">I agree to the terms and conditions</span>
+                            </div>
+                        </label>
+                    </div>
+                    
+                    <div style="margin-top: var(--space-2);">
+                        <button type="submit" class="btn btn-primary btn-medium">
+                            <span class="btn-text">Submit</span>
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+</html> 

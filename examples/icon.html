@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Icon Example - Keboola</title>
+    
+    <!-- Required Dependencies -->
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" as="style">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
+    
+    <!-- Design System CSS -->
+    <link href="../dist/design-system.css" rel="stylesheet">
+    
+    <style>
+        .icon-example {
+            margin-bottom: var(--space-4);
+        }
+        
+        .icon-example-title {
+            margin-bottom: var(--space-2);
+        }
+        
+        .icons-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            gap: var(--space-6);
+        }
+        
+        .icon-card {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: var(--space-2);
+            padding: var(--space-4);
+            border-radius: var(--radius-medium);
+            background-color: white;
+            box-shadow: var(--shadow-sm);
+        }
+        
+        .icon-name {
+            text-align: center;
+        }
+        
+        .demo-section {
+            margin-bottom: var(--space-6);
+        }
+        
+        .demo-section-title {
+            font-size: var(--text-lg);
+            color: var(--neutral-grey-800);
+            margin-bottom: var(--space-4);
+        }
+        
+        .icon-row {
+            display: flex;
+            gap: var(--space-4); /* 16px gap between icon groups */
+            flex-wrap: wrap;
+            align-items: center;
+            margin-bottom: var(--space-4);
+        }
+        
+        .icon-label {
+            margin-left: var(--space-2);
+        }
+        
+        .icon-group {
+            display: flex;
+            align-items: center;
+        }
+        
+        /* Additional styles for icons in inputs - matching text-input-with-icons.html */
+        .text-input-with-icon .content {
+            position: relative;
+        }
+        
+        .input-icon {
+            color: var(--neutral-grey-400);
+            font-size: 16px;
+            flex-shrink: 0;
+        }
+        
+        .input-icon-prefix {
+            margin-right: var(--space-2);
+        }
+        
+        .input-icon-suffix {
+            margin-left: var(--space-2);
+        }
+    </style>
+</head>
+<body class="bg-grey-50">
+    <div class="container page-container" style="padding: var(--space-16)">
+        <div class="content-wrapper" style="display: flex; flex-direction: column; gap: var(--space-6)">
+            <h1 class="heading-1">Icon Component</h1>
+            
+            <!-- Icon Sizes -->
+            <div class="card">
+                <div class="card__header">
+                    <h2 class="card__title">Icon Sizes</h2>
+                    <p class="small-body-text" style="margin-top: var(--space-1);">Default color is muted grey</p>
+                </div>
+                <div class="card__content">
+                    <div class="icon-row">
+                        <div class="icon-group">
+                            <div class="icon-container icon-small icon-muted">
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <span class="icon-label body-text">Small (20px)</span>
+                        </div>
+                        
+                        <div class="icon-group">
+                            <div class="icon-container icon-medium icon-muted">
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <span class="icon-label body-text">Medium (24px)</span>
+                        </div>
+                        
+                        <div class="icon-group">
+                            <div class="icon-container icon-large icon-muted">
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <span class="icon-label body-text">Large (32px)</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Icon Colors -->
+            <div class="card">
+                <div class="card__header">
+                    <h2 class="card__title">Icon Colors</h2>
+                </div>
+                <div class="card__content">
+                    <div class="icon-row">
+                        <div class="icon-group">
+                            <div class="icon-container icon-medium icon-primary">
+                                <i class="fas fa-info-circle"></i>
+                            </div>
+                            <span class="icon-label body-text">Primary</span>
+                        </div>
+                        
+                        <div class="icon-group">
+                            <div class="icon-container icon-medium icon-muted">
+                                <i class="fas fa-info-circle"></i>
+                            </div>
+                            <span class="icon-label body-text">Muted</span>
+                        </div>
+                        
+                        <div class="icon-group">
+                            <div class="icon-container icon-medium icon-success">
+                                <i class="fas fa-check-circle"></i>
+                            </div>
+                            <span class="icon-label body-text">Success</span>
+                        </div>
+                        
+                        <div class="icon-group">
+                            <div class="icon-container icon-medium icon-warning">
+                                <i class="fas fa-exclamation-triangle"></i>
+                            </div>
+                            <span class="icon-label body-text">Warning</span>
+                        </div>
+                        
+                        <div class="icon-group">
+                            <div class="icon-container icon-medium icon-error">
+                                <i class="fas fa-exclamation-circle"></i>
+                            </div>
+                            <span class="icon-label body-text">Error</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Icon Library - Common Icons -->
+            <div class="card">
+                <div class="card__header">
+                    <h2 class="card__title">Common Icons</h2>
+                </div>
+                <div class="card__content">
+                    <div class="icons-grid">
+                        <div class="icon-card">
+                            <div class="icon-container icon-medium icon-primary">
+                                <i class="fas fa-home"></i>
+                            </div>
+                            <div class="icon-name small-body-text">home</div>
+                        </div>
+                        
+                        <div class="icon-card">
+                            <div class="icon-container icon-medium icon-primary">
+                                <i class="fas fa-user"></i>
+                            </div>
+                            <div class="icon-name small-body-text">user</div>
+                        </div>
+                        
+                        <div class="icon-card">
+                            <div class="icon-container icon-medium icon-primary">
+                                <i class="fas fa-cog"></i>
+                            </div>
+                            <div class="icon-name small-body-text">cog</div>
+                        </div>
+                        
+                        <div class="icon-card">
+                            <div class="icon-container icon-medium icon-primary">
+                                <i class="fas fa-search"></i>
+                            </div>
+                            <div class="icon-name small-body-text">search</div>
+                        </div>
+                        
+                        <div class="icon-card">
+                            <div class="icon-container icon-medium icon-primary">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <div class="icon-name small-body-text">envelope</div>
+                        </div>
+                        
+                        <div class="icon-card">
+                            <div class="icon-container icon-medium icon-primary">
+                                <i class="fas fa-bell"></i>
+                            </div>
+                            <div class="icon-name small-body-text">bell</div>
+                        </div>
+                        
+                        <div class="icon-card">
+                            <div class="icon-container icon-medium icon-primary">
+                                <i class="fas fa-calendar"></i>
+                            </div>
+                            <div class="icon-name small-body-text">calendar</div>
+                        </div>
+                        
+                        <div class="icon-card">
+                            <div class="icon-container icon-medium icon-primary">
+                                <i class="fas fa-file"></i>
+                            </div>
+                            <div class="icon-name small-body-text">file</div>
+                        </div>
+                        
+                        <div class="icon-card">
+                            <div class="icon-container icon-medium icon-primary">
+                                <i class="fas fa-download"></i>
+                            </div>
+                            <div class="icon-name small-body-text">download</div>
+                        </div>
+                        
+                        <div class="icon-card">
+                            <div class="icon-container icon-medium icon-primary">
+                                <i class="fas fa-upload"></i>
+                            </div>
+                            <div class="icon-name small-body-text">upload</div>
+                        </div>
+                        
+                        <div class="icon-card">
+                            <div class="icon-container icon-medium icon-primary">
+                                <i class="fas fa-trash"></i>
+                            </div>
+                            <div class="icon-name small-body-text">trash</div>
+                        </div>
+                        
+                        <div class="icon-card">
+                            <div class="icon-container icon-medium icon-primary">
+                                <i class="fas fa-edit"></i>
+                            </div>
+                            <div class="icon-name small-body-text">edit</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Usage Examples -->
+            <div class="card">
+                <div class="card__header">
+                    <h2 class="card__title">Usage Examples</h2>
+                </div>
+                <div class="card__content">
+                    <!-- With Text -->
+                    <div class="demo-section">
+                        <h3 class="section-title">Icons with Text</h3>
+                        <div class="icon-row">
+                            <div style="display: flex; align-items: center;">
+                                <div class="icon-container icon-small icon-success">
+                                    <i class="fas fa-check-circle"></i>
+                                </div>
+                                <span style="margin-left: var(--space-2);" class="body-text">Task completed successfully</span>
+                            </div>
+                        </div>
+                        
+                        <div class="icon-row">
+                            <div style="display: flex; align-items: center;">
+                                <div class="icon-container icon-small icon-error">
+                                    <i class="fas fa-exclamation-circle"></i>
+                                </div>
+                                <span style="margin-left: var(--space-2);" class="body-text">Error occurred during processing</span>
+                            </div>
+                        </div>
+                        
+                        <div class="icon-row">
+                            <div style="display: flex; align-items: center;">
+                                <div class="icon-container icon-small icon-warning">
+                                    <i class="fas fa-exclamation-triangle"></i>
+                                </div>
+                                <span style="margin-left: var(--space-2);" class="body-text">Warning: Your session will expire soon</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- In Buttons -->
+                    <div class="demo-section">
+                        <h3 class="section-title">Icons in Buttons</h3>
+                        <div class="icon-row">
+                            <button class="btn btn-primary btn-medium">
+                                <div class="btn-icon">
+                                    <i class="fas fa-plus"></i>
+                                </div>
+                                <span class="btn-text">Add Item</span>
+                            </button>
+                            
+                            <button class="btn btn-secondary btn-medium">
+                                <div class="btn-icon">
+                                    <i class="fas fa-download"></i>
+                                </div>
+                                <span class="btn-text">Download</span>
+                            </button>
+                            
+                            <button class="btn btn-primary btn-icon-only btn-medium">
+                                <div class="btn-icon">
+                                    <i class="fas fa-cog"></i>
+                                </div>
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <!-- In Form Elements -->
+                    <div class="demo-section">
+                        <h3 class="section-title">Icons in Form Elements</h3>
+                        <div style="max-width: 400px;">
+                            <div class="text-input text-input-with-icon size-medium">
+                                <div class="label">
+                                    <span class="label-text">Search</span>
+                                </div>
+                                <div class="content">
+                                    <i class="fas fa-search input-icon input-icon-prefix"></i>
+                                    <input type="text" placeholder="Search...">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html> 

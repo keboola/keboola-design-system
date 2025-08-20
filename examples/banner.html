@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Banner Example - Keboola</title>
+    
+    <!-- Required Dependencies -->
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" as="style">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
+    
+    <!-- Design System CSS -->
+    <link href="../dist/design-system.css" rel="stylesheet">
+</head>
+<body class="bg-grey-50">
+    <div class="page-container">
+        <h1 class="heading-1">Banner Examples</h1>
+        
+        <!-- Info Banner -->
+        <div class="banner">
+            <div class="icon-container">
+                <i class="fa-solid fa-info-circle"></i>
+            </div>
+            <div class="content">
+                <div class="title body-text-medium">Information Banner</div>
+                <div class="text body-text">This is an informational banner that provides context or guidance to users.</div>
+            </div>
+            <button class="button-close">
+                <div class="icon-container">
+                    <i class="fa-solid fa-times"></i>
+                </div>
+            </button>
+        </div>
+
+        <!-- Success Banner -->
+        <div class="banner style-variant-success">
+            <div class="icon-container">
+                <i class="fa-solid fa-check-circle"></i>
+            </div>
+            <div class="content">
+                <div class="title body-text-medium">Success Banner</div>
+                <div class="text body-text">Your operation has been completed successfully.</div>
+            </div>
+            <button class="button-close">
+                <div class="icon-container">
+                    <i class="fa-solid fa-times"></i>
+                </div>
+            </button>
+        </div>
+
+        <!-- Warning Banner -->
+        <div class="banner style-variant-warning">
+            <div class="icon-container">
+                <i class="fa-solid fa-exclamation-triangle"></i>
+            </div>
+            <div class="content">
+                <div class="title body-text-medium">Warning Banner</div>
+                <div class="text body-text">This action might have unexpected consequences. Please review before proceeding.</div>
+            </div>
+            <button class="button-close">
+                <div class="icon-container">
+                    <i class="fa-solid fa-times"></i>
+                </div>
+            </button>
+        </div>
+
+        <!-- Error Banner -->
+        <div class="banner style-variant-error">
+            <div class="icon-container">
+                <i class="fa-solid fa-exclamation-circle"></i>
+            </div>
+            <div class="content">
+                <div class="title body-text-medium">Error Banner</div>
+                <div class="text body-text">An error occurred while processing your request. Please try again later.</div>
+            </div>
+            <button class="button-close">
+                <div class="icon-container">
+                    <i class="fa-solid fa-times"></i>
+                </div>
+            </button>
+        </div>
+    </div>
+</body>
+</html> 

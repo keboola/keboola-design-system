@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sidebar Example</title>
+    <!-- Required Dependencies -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    
+    <!-- Design System CSS -->
+    <link href="../dist/design-system.css" rel="stylesheet">
+    
+    <style>
+        body {
+            background-color: var(--neutral-grey-50);
+            margin: 0;
+            padding: 0;
+        }
+        
+        .main-content {
+            margin-left: var(--sidebar-width);
+            padding: var(--space-8);
+        }
+    </style>
+</head>
+<body>
+    <!-- Sidebar Component -->
+    <div class="sidebar">
+        <div class="sidebar__logo">
+            <div class="sidebar__logo-image"></div>
+        </div>
+        <div class="sidebar__nav">
+            <div class="sidebar__item active">
+                <i class="fas fa-home"></i>
+            </div>
+            <div class="sidebar__item">
+                <i class="fas fa-chart-bar"></i>
+            </div>
+            <div class="sidebar__item">
+                <i class="fas fa-user"></i>
+            </div>
+            <div class="sidebar__item">
+                <i class="fas fa-cog"></i>
+            </div>
+            <div class="sidebar__item">
+                <i class="fas fa-bell"></i>
+            </div>
+        </div>
+        <div class="sidebar__divider"></div>
+        <div class="sidebar__user">
+            <div class="sidebar__item-avatar">
+                <div class="sidebar__avatar"></div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Main Content Area -->
+    <div class="main-content">
+        <h1 class="heading-1">Sidebar Component Example</h1>
+        <p class="body-text">This example demonstrates the sidebar component with navigation icons.</p>
+    </div>
+</body>
+</html> 

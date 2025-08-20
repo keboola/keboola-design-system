@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Button Example - Keboola</title>
+    
+    <!-- Required Dependencies -->
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" as="style">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
+    
+    <!-- Design System CSS -->
+    <link href="../dist/design-system.css" rel="stylesheet">
+    
+    <style>
+        .button-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: var(--space-4);
+            margin-bottom: var(--space-4);
+        }
+        
+        .button-section-title {
+            margin-bottom: var(--space-2);
+        }
+        
+        .button-state-row {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: var(--space-8);
+            margin-bottom: var(--space-4);
+        }
+        
+        .button-state {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: var(--space-2);
+        }
+        
+        .state-label {
+            font-size: 14px;
+            color: var(--neutral-grey-600);
+        }
+        
+        @media (max-width: 768px) {
+            .button-state-row {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: var(--space-4);
+            }
+        }
+    </style>
+</head>
+<body class="bg-grey-50">
+    <div class="page-container">
+        <h1 class="heading-1">Button Examples</h1>
+        
+        <!-- Standard Buttons -->
+        <div class="card">
+            <div class="card__header">
+                <h2 class="card__title">Standard Buttons</h2>
+            </div>
+            <div class="card__content">
+                <!-- Primary Buttons -->
+                <div class="button-section">
+                    <h3 class="button-section-title heading-3">Primary Buttons</h3>
+                    
+                    <!-- Button States: Default, Hover, Active, Disabled -->
+                    <div class="button-state-row">
+                        <div class="button-state">
+                            <span class="state-label">Default</span>
+                            <button class="btn btn-primary btn-medium">
+                                <span class="btn-text">Primary Button</span>
+                            </button>
+                        </div>
+                        
+                        <div class="button-state">
+                            <span class="state-label">Hover</span>
+                            <button class="btn btn-primary btn-medium hover">
+                                <span class="btn-text">Primary Button</span>
+                            </button>
+                        </div>
+                        
+                        <div class="button-state">
+                            <span class="state-label">Active</span>
+                            <button class="btn btn-primary btn-medium active">
+                                <span class="btn-text">Primary Button</span>
+                            </button>
+                        </div>
+                        
+                        <div class="button-state">
+                            <span class="state-label">Disabled</span>
+                            <button class="btn btn-primary btn-medium" disabled>
+                                <span class="btn-text">Primary Button</span>
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <!-- Primary Button Sizes -->
+                    <div class="button-row">
+                        <button class="btn btn-primary btn-medium">
+                            <span class="btn-text">Medium Button</span>
+                        </button>
+                        
+                        <button class="btn btn-primary btn-small">
+                            <span class="btn-text">Small Button</span>
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Secondary Buttons -->
+                <div class="button-section">
+                    <h3 class="button-section-title heading-3">Secondary Buttons</h3>
+                    
+                    <!-- Button States: Default, Hover, Active, Disabled -->
+                    <div class="button-state-row">
+                        <div class="button-state">
+                            <span class="state-label">Default</span>
+                            <button class="btn btn-secondary btn-medium">
+                                <span class="btn-text">Secondary Button</span>
+                            </button>
+                        </div>
+                        
+                        <div class="button-state">
+                            <span class="state-label">Hover</span>
+                            <button class="btn btn-secondary btn-medium hover">
+                                <span class="btn-text">Secondary Button</span>
+                            </button>
+                        </div>
+                        
+                        <div class="button-state">
+                            <span class="state-label">Active</span>
+                            <button class="btn btn-secondary btn-medium active">
+                                <span class="btn-text">Secondary Button</span>
+                            </button>
+                        </div>
+                        
+                        <div class="button-state">
+                            <span class="state-label">Disabled</span>
+                            <button class="btn btn-secondary btn-medium" disabled>
+                                <span class="btn-text">Secondary Button</span>
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <!-- Secondary Button Sizes -->
+                    <div class="button-row">
+                        <button class="btn btn-secondary btn-medium">
+                            <span class="btn-text">Medium Button</span>
+                        </button>
+                        
+                        <button class="btn btn-secondary btn-small">
+                            <span class="btn-text">Small Button</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Buttons with Icons -->
+        <div class="card">
+            <div class="card__header">
+                <h2 class="card__title">Buttons with Icons</h2>
+            </div>
+            <div class="card__content">
+                <!-- Primary Buttons with Icons -->
+                <div class="button-section">
+                    <h3 class="button-section-title heading-3">Primary Buttons with Icons</h3>
+                    
+                    <div class="button-row">
+                        <!-- Icon on the left -->
+                        <button class="btn btn-primary btn-medium">
+                            <i class="fas fa-plus btn-icon"></i>
+                            <span class="btn-text">Create New</span>
+                        </button>
+                        
+                        <!-- Icon on the right -->
+                        <button class="btn btn-primary btn-medium">
+                            <span class="btn-text">Download</span>
+                            <i class="fas fa-download btn-icon"></i>
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Secondary Buttons with Icons -->
+                <div class="button-section">
+                    <h3 class="button-section-title heading-3">Secondary Buttons with Icons</h3>
+                    
+                    <div class="button-row">
+                        <!-- Icon on the left -->
+                        <button class="btn btn-secondary btn-medium">
+                            <i class="fas fa-arrow-left btn-icon"></i>
+                            <span class="btn-text">Back</span>
+                        </button>
+                        
+                        <!-- Icon on the right -->
+                        <button class="btn btn-secondary btn-medium">
+                            <span class="btn-text">Next</span>
+                            <i class="fas fa-arrow-right btn-icon"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Icon-Only Buttons -->
+        <div class="card">
+            <div class="card__header">
+                <h2 class="card__title">Icon-Only Buttons</h2>
+            </div>
+            <div class="card__content">
+                <!-- Primary Icon-Only Buttons -->
+                <div class="button-section">
+                    <h3 class="button-section-title heading-3">Primary Icon-Only Buttons</h3>
+                    
+                    <div class="button-row">
+                        <button class="btn btn-primary btn-medium btn-icon-only">
+                            <i class="fas fa-plus btn-icon"></i>
+                        </button>
+                        
+                        <button class="btn btn-primary btn-medium btn-icon-only">
+                            <i class="fas fa-search btn-icon"></i>
+                        </button>
+                        
+                        <button class="btn btn-primary btn-medium btn-icon-only">
+                            <i class="fas fa-trash btn-icon"></i>
+                        </button>
+                    </div>
+                    
+                    <!-- Small Icon-Only Buttons -->
+                    <div class="button-row">
+                        <button class="btn btn-primary btn-small btn-icon-only">
+                            <i class="fas fa-plus btn-icon"></i>
+                        </button>
+                        
+                        <button class="btn btn-primary btn-small btn-icon-only">
+                            <i class="fas fa-search btn-icon"></i>
+                        </button>
+                        
+                        <button class="btn btn-primary btn-small btn-icon-only">
+                            <i class="fas fa-trash btn-icon"></i>
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Secondary Icon-Only Buttons -->
+                <div class="button-section">
+                    <h3 class="button-section-title heading-3">Secondary Icon-Only Buttons</h3>
+                    
+                    <div class="button-row">
+                        <button class="btn btn-secondary btn-medium btn-icon-only">
+                            <i class="fas fa-edit btn-icon"></i>
+                        </button>
+                        
+                        <button class="btn btn-secondary btn-medium btn-icon-only">
+                            <i class="fas fa-cog btn-icon"></i>
+                        </button>
+                        
+                        <button class="btn btn-secondary btn-medium btn-icon-only">
+                            <i class="fas fa-download btn-icon"></i>
+                        </button>
+                    </div>
+                    
+                    <!-- Small Icon-Only Buttons -->
+                    <div class="button-row">
+                        <button class="btn btn-secondary btn-small btn-icon-only">
+                            <i class="fas fa-edit btn-icon"></i>
+                        </button>
+                        
+                        <button class="btn btn-secondary btn-small btn-icon-only">
+                            <i class="fas fa-cog btn-icon"></i>
+                        </button>
+                        
+                        <button class="btn btn-secondary btn-small btn-icon-only">
+                            <i class="fas fa-download btn-icon"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Button Usage Examples -->
+        <div class="card">
+            <div class="card__header">
+                <h2 class="card__title">Button Usage Examples</h2>
+            </div>
+            <div class="card__content">
+                <!-- Form Actions -->
+                <div class="button-section">
+                    <h3 class="button-section-title heading-3">Form Actions</h3>
+                    
+                    <div style="display: flex; gap: var(--space-4);">
+                        <button class="btn btn-primary btn-medium">
+                            <span class="btn-text">Save Changes</span>
+                        </button>
+                        
+                        <button class="btn btn-secondary btn-medium">
+                            <span class="btn-text">Cancel</span>
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Dialog Actions -->
+                <div class="button-section">
+                    <h3 class="button-section-title heading-3">Dialog Actions</h3>
+                    
+                    <div style="display: flex; gap: var(--space-4);">
+                        <button class="btn btn-primary btn-medium">
+                            <span class="btn-text">Confirm</span>
+                        </button>
+                        
+                        <button class="btn btn-secondary btn-medium">
+                            <span class="btn-text">Close</span>
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Multiple Actions -->
+                <div class="button-section">
+                    <h3 class="button-section-title heading-3">Multiple Actions</h3>
+                    
+                    <div style="display: flex; flex-wrap: wrap; gap: var(--space-4);">
+                        <button class="btn btn-primary btn-medium">
+                            <i class="fas fa-plus btn-icon"></i>
+                            <span class="btn-text">Add New</span>
+                        </button>
+                        
+                        <button class="btn btn-secondary btn-medium">
+                            <i class="fas fa-upload btn-icon"></i>
+                            <span class="btn-text">Import</span>
+                        </button>
+                        
+                        <button class="btn btn-secondary btn-medium">
+                            <i class="fas fa-download btn-icon"></i>
+                            <span class="btn-text">Export</span>
+                        </button>
+                        
+                        <button class="btn btn-secondary btn-medium">
+                            <i class="fas fa-trash btn-icon"></i>
+                            <span class="btn-text">Delete</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html> 

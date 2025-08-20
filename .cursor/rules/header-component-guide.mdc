@@ -1,0 +1,344 @@
+---
+description: 
+globs: 
+alwaysApply: true
+---
+# Header Component Guide
+
+Headers are layout components that provide page titles and primary actions. This guide provides comprehensive instructions for implementing headers in your application.
+
+## Basic Header Structure
+
+The base header component follows a consistent structure with specific class naming conventions:
+
+```html
+<div class="header">
+    <h1 class="header__title">Page Title</h1>
+    <div class="header__actions">
+        <button class="btn btn-secondary btn-medium">
+            <span class="btn-text">Secondary Action</span>
+        </button>
+        <button class="btn btn-primary btn-medium">
+            <span class="btn-text">Primary Action</span>
+        </button>
+    </div>
+</div>
+```
+
+By default, headers have the following styling:
+- Fixed height of 40px (`var(--space-10)`)
+- Flex layout with space-between for title and actions
+- Proper vertical alignment of all elements
+- Consistent spacing between action buttons
+
+## Header Elements
+
+### Title Element
+
+The title provides the primary heading for the page:
+
+```html
+<h1 class="header__title">Page Title</h1>
+```
+
+The `header__title` element:
+- Uses the system's heading typography tokens
+- Has zero margin to ensure proper alignment
+- Uses `var(--neutral-grey-800)` for consistent color
+- Inherits proper line height and font weight from the system typography
+
+### Actions Section
+
+The actions section contains buttons for primary and secondary page actions:
+
+```html
+<div class="header__actions">
+    <button class="btn btn-secondary btn-medium">
+        <span class="btn-text">Secondary Action</span>
+    </button>
+    <button class="btn btn-primary btn-medium">
+        <span class="btn-text">Primary Action</span>
+    </button>
+</div>
+```
+
+The `header__actions` element:
+- Uses flex layout to arrange buttons horizontally
+- Provides consistent spacing between buttons (`gap: var(--space-4)`)
+- Ensures proper vertical alignment with the title
+- Automatically orders buttons: primary button last, secondary buttons first
+
+## Button Order
+
+The header component automatically enforces a consistent order for action buttons:
+
+```css
+/* Ensure primary button is always last */
+.header__actions .btn-primary {
+    order: 1;
+}
+
+.header__actions .btn-secondary {
+    order: 0;
+}
+```
+
+This means:
+- The primary action will always appear as the rightmost button
+- Secondary actions will appear to the left of the primary action
+- This order is maintained regardless of the DOM order in your HTML
+
+## Implementation Examples
+
+### Basic Page Header
+
+For a standard page header with a title and actions:
+
+```html
+<div class="header">
+    <h1 class="header__title">Dashboard Overview</h1>
+    <div class="header__actions">
+        <button class="btn btn-secondary btn-medium">
+            <span class="btn-text">Export</span>
+        </button>
+        <button class="btn btn-primary btn-medium">
+            <i class="fas fa-plus btn-icon"></i>
+            <span class="btn-text">New Report</span>
+        </button>
+    </div>
+</div>
+```
+
+### Dashboard Header
+
+For a dashboard interface with data-focused actions:
+
+```html
+<div class="header">
+    <h1 class="header__title">Analytics Dashboard</h1>
+    <div class="header__actions">
+        <button class="btn btn-secondary btn-medium">
+            <i class="fas fa-filter btn-icon"></i>
+            <span class="btn-text">Filter</span>
+        </button>
+        <button class="btn btn-secondary btn-medium">
+            <i class="fas fa-download btn-icon"></i>
+            <span class="btn-text">Export</span>
+        </button>
+        <button class="btn btn-primary btn-medium">
+            <i class="fas fa-sync btn-icon"></i>
+            <span class="btn-text">Refresh Data</span>
+        </button>
+    </div>
+</div>
+```
+
+### HR Dashboard Header
+
+For an HR system with report generation functionality:
+
+```html
+<div class="header">
+    <h1 class="header__title">HR Dashboard</h1>
+    <div class="header__actions">
+        <button class="btn btn-secondary btn-medium">
+            <i class="fas fa-download btn-icon"></i>
+            <span class="btn-text">Export Data</span>
+        </button>
+        <button class="btn btn-primary btn-medium">
+            <i class="fas fa-file-alt btn-icon"></i>
+            <span class="btn-text">Generate Report</span>
+        </button>
+    </div>
+</div>
+```
+
+## Header with Icons in Buttons
+
+For enhanced visual identification of actions:
+
+```html
+<div class="header">
+    <h1 class="header__title">User Management</h1>
+    <div class="header__actions">
+        <button class="btn btn-secondary btn-medium">
+            <i class="fas fa-cog btn-icon"></i>
+            <span class="btn-text">Settings</span>
+        </button>
+        <button class="btn btn-primary btn-medium">
+            <i class="fas fa-user-plus btn-icon"></i>
+            <span class="btn-text">Add User</span>
+        </button>
+    </div>
+</div>
+```
+
+## Placement in Page Structure
+
+The header component should be placed at the top of the main content area, typically directly under the topbar (if present) or as the first element in the page container:
+
+```html
+<!-- With Topbar -->
+<div class="topbar">
+    <!-- Topbar content -->
+</div>
+
+<div class="main-content">
+    <div class="page-container">
+        <div class="header">
+            <h1 class="header__title">Page Title</h1>
+            <div class="header__actions">
+                <!-- Actions -->
+            </div>
+        </div>
+        
+        <!-- Page content goes here -->
+    </div>
+</div>
+
+<!-- With Sidebar -->
+<div class="sidebar">
+    <!-- Sidebar content -->
+</div>
+
+<div class="main-content">
+    <div class="page-container">
+        <div class="header">
+            <h1 class="header__title">Page Title</h1>
+            <div class="header__actions">
+                <!-- Actions -->
+            </div>
+        </div>
+        
+        <!-- Page content goes here -->
+    </div>
+</div>
+```
+
+## Best Practices
+
+1. **Title Clarity**: Use clear, concise page titles that describe the current view or content.
+   - Keep titles short and descriptive
+   - Use sentence case for page titles
+   - Ensure titles accurately reflect the current page/view
+
+2. **Action Prioritization**: Include only the most important actions in the header.
+   - Limit to 2-3 action buttons for optimal usability
+   - Use a single primary action (rightmost position)
+   - Include only the most essential secondary actions
+
+3. **Button Consistency**: Use consistent button styling across similar page types.
+   - Use primary buttons for the main action a user should take
+   - Use secondary buttons for alternative or less common actions
+   - Maintain consistent button sizes (typically btn-medium)
+
+4. **Icon Usage**: Use icons to enhance button recognition.
+   - Include relevant icons that represent the action
+   - Always use the btn-icon class for proper spacing
+   - Pair icons with text for clarity (don't use icon-only buttons in headers)
+
+5. **Responsive Considerations**: Ensure the header works well at different screen sizes.
+   - Consider stacking or hiding secondary actions on small screens
+   - Ensure the title remains readable when space is limited
+   - Test various screen widths to ensure proper layout
+
+6. **Consistent Placement**: Position the header consistently across different pages.
+   - Always place at the top of the page content
+   - Maintain consistent spacing with other page elements
+   - Ensure proper alignment within the page-container
+
+7. **Action Naming**: Use clear, action-oriented button text.
+   - Use verbs to indicate actions (e.g., "Create", "Export", "Add")
+   - Keep button text concise
+   - Ensure text clearly communicates the action's result
+
+## Common Anti-Patterns to Avoid
+
+1. **Too Many Actions**: Overcrowding the header with numerous buttons.
+   ```html
+   <!-- INCORRECT -->
+   <div class="header">
+       <h1 class="header__title">Dashboard</h1>
+       <div class="header__actions">
+           <!-- 5+ action buttons -->
+       </div>
+   </div>
+   ```
+
+2. **Inconsistent Button Order**: Manually ordering buttons instead of using the built-in order.
+   ```html
+   <!-- INCORRECT -->
+   <div class="header__actions" style="flex-direction: row-reverse;">
+       <!-- Overriding the default button order -->
+   </div>
+   ```
+
+3. **Missing Actions Container**: Not using the header__actions class for buttons.
+   ```html
+   <!-- INCORRECT -->
+   <div class="header">
+       <h1 class="header__title">Dashboard</h1>
+       <button class="btn btn-primary btn-medium">
+           <!-- Direct child of header -->
+       </button>
+   </div>
+   ```
+
+4. **Inconsistent Title Element**: Using elements other than h1 for the title.
+   ```html
+   <!-- INCORRECT -->
+   <div class="header">
+       <h2 class="header__title">Dashboard</h2> <!-- Should be h1 -->
+   </div>
+   ```
+
+5. **Custom Spacing**: Adding custom margins or padding to header elements.
+   ```html
+   <!-- INCORRECT -->
+   <div class="header">
+       <h1 class="header__title" style="margin-right: 20px;">Dashboard</h1>
+   </div>
+   ```
+
+6. **Vertical Stacking**: Manually changing the header to stack elements vertically.
+   ```html
+   <!-- INCORRECT -->
+   <div class="header" style="flex-direction: column;">
+       <!-- Breaking the horizontal layout -->
+   </div>
+   ```
+
+7. **Excessive Title Length**: Using overly long titles that wrap or overflow.
+   ```html
+   <!-- INCORRECT -->
+   <div class="header">
+       <h1 class="header__title">This is an extremely long dashboard title that will likely cause layout issues</h1>
+   </div>
+   ```
+
+8. **Nested Components**: Placing complex components inside the header.
+   ```html
+   <!-- INCORRECT -->
+   <div class="header">
+       <h1 class="header__title">Dashboard</h1>
+       <div class="header__actions">
+           <div class="tabs">
+               <!-- Tabs don't belong in a header -->
+           </div>
+       </div>
+   </div>
+   ```
+
+## Accessibility Considerations
+
+1. **Semantic Structure**: Use proper heading hierarchy with h1 for the page title.
+
+2. **Button Focus**: Ensure all action buttons are keyboard accessible and have visible focus states.
+
+3. **Clear Button Text**: Use descriptive text for buttons to ensure screen reader users understand their purpose.
+
+4. **Sufficient Contrast**: Maintain proper contrast between the title text, buttons, and background.
+
+5. **Button Size**: Ensure buttons are large enough to be easily targeted (min 44px touch target).
+
+By following these guidelines, you'll create consistent, usable header components that align with the design system's principles and provide clear page identification with essential actions.

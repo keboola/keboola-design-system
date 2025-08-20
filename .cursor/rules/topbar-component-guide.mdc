@@ -1,0 +1,266 @@
+---
+description: 
+globs: 
+alwaysApply: true
+---
+# Topbar Component Guide
+
+The topbar is a fundamental navigation component that appears at the top of the application. It provides branding, navigation context, and essential user actions.
+
+## Basic Structure
+
+The topbar follows a consistent structure with specific class naming conventions:
+
+```html
+<div class="topbar">
+    <div class="topbar__header">
+        <div class="topbar__container">
+            <div class="topbar__section-primary">
+                <!-- Branding and context selectors -->
+            </div>
+            <div class="topbar__section-secondary">
+                <!-- Actions and user profile -->
+            </div>
+        </div>
+    </div>
+</div>
+```
+
+## Topbar Height
+
+The topbar has a fixed height defined by the CSS variable:
+
+```css
+:root {
+    --topbar-height: 68px;
+}
+```
+
+This variable should be used when calculating content positioning to ensure consistent layout.
+
+## Branding Section
+
+The primary section typically includes branding and context information:
+
+```html
+<div class="topbar__section-primary">
+    <div class="topbar__branding">
+        <div class="topbar__logo"></div>
+        <div class="topbar__details">
+            <p class="topbar__subtitle">Optional Subtitle</p>
+            <h2 class="topbar__title">Application Name</h2>
+        </div>
+    </div>
+    
+    <!-- Optional Context Selector -->
+    <div class="topbar__context">
+        <span class="topbar__context-name">Context Name</span>
+        <i class="fas fa-chevron-down text-grey-400"></i>
+    </div>
+</div>
+```
+
+> **IMPORTANT:** The subtitle element must come before the title element in the DOM to match the CSS order. This ensures proper styling as the `.topbar__subtitle` class is defined before `.topbar__title` in the CSS.
+
+> **IMPORTANT:** Use the `text-grey-400` class on dropdown icons to maintain consistent muted styling across the topbar.
+
+## Actions Section
+
+The secondary section typically includes action icons and user profile:
+
+```html
+<div class="topbar__section-secondary">
+    <div class="topbar__actions">
+        <div class="topbar__action-item icon-container">
+            <i class="fas fa-bell"></i>
+        </div>
+        <div class="topbar__action-item icon-container">
+            <i class="fas fa-cog"></i>
+        </div>
+    </div>
+    <div class="topbar__user">
+        <!-- User avatar implementation - see User Avatar Section below -->
+    </div>
+</div>
+```
+
+## User Avatar Section
+
+The `.topbar__user` component in the topbar requires specific implementation to maintain design system consistency:
+
+### Basic Structure
+
+```html
+<div class="topbar__user">
+    <!-- Optional: Only include img tag when displaying a specific user's image -->
+</div>
+```
+
+### Default Implementation
+
+By default, the `.topbar__user` element displays a placeholder avatar through CSS background-image. No additional HTML is needed:
+
+```html
+<div class="topbar__user"></div>
+```
+
+The CSS provides:
+- Fixed dimensions (36px × 36px)
+- Circular shape via border-radius
+- Default placeholder background image
+- Hover effect (opacity change)
+
+### With User Image
+
+To display an actual user's image:
+
+```html
+<div class="topbar__user">
+    <img src="/path/to/user/avatar.jpg" alt="User's name">
+</div>
+```
+
+The img element will automatically:
+- Fill the container (width/height: 100%)
+- Maintain aspect ratio (object-fit: cover)
+- Be properly centered
+
+### Implementation Don'ts
+
+1. **Don't** use Font Awesome icons inside the `.topbar__user` element
+   ```html
+   <!-- INCORRECT -->
+   <div class="topbar__user">
+       <i class="fas fa-user"></i>
+   </div>
+   ```
+
+2. **Don't** use `.icon-container` or similar classes inside `.topbar__user`
+   ```html
+   <!-- INCORRECT -->
+   <div class="topbar__user">
+       <div class="icon-container">
+           <i class="fas fa-user"></i>
+       </div>
+   </div>
+   ```
+
+3. **Don't** override the width/height with inline styles
+
+### Accessibility Considerations
+
+- Always include descriptive alt text when using actual user images
+- Consider adding an aria-label to the empty `.topbar__user` element:
+  ```html
+  <div class="topbar__user" aria-label="User profile"></div>
+  ```
+
+### Interactive States
+
+The `.topbar__user` element includes:
+- Cursor: pointer (for clickable behavior)
+- Hover effect: opacity reduction to 0.8
+- Transition: smooth opacity change (0.2s ease)
+
+No additional CSS is needed to achieve these effects.
+
+## Content Spacing
+
+When using the topbar, ensure proper content spacing below it:
+
+```css
+.page-content {
+    margin-top: calc(var(--topbar-height) + var(--content-top-spacing));
+}
+```
+
+The `--content-top-spacing` variable (default 32px) provides consistent spacing between the topbar and content.
+
+## Complete Example
+
+A complete topbar implementation looks like this:
+
+```html
+<div class="topbar">
+    <div class="topbar__header">
+        <div class="topbar__container">
+            <div class="topbar__section-primary">
+                <div class="topbar__branding">
+                    <div class="topbar__logo"></div>
+                    <div class="topbar__details">
+                        <p class="topbar__subtitle">Application Name</p>
+                        <h2 class="topbar__title">Design System</h2>
+                    </div>
+                </div>
+                <div class="topbar__context">
+                    <span class="topbar__context-name">Current Project</span>
+                    <i class="fas fa-chevron-down text-grey-400"></i>
+                </div>
+            </div>
+            <div class="topbar__section-secondary">
+                <div class="topbar__actions">
+                    <div class="topbar__action-item icon-container">
+                        <i class="fas fa-bell"></i>
+                    </div>
+                    <div class="topbar__action-item icon-container">
+                        <i class="fas fa-cog"></i>
+                    </div>
+                    <div class="topbar__action-item icon-container">
+                        <i class="fas fa-question-circle"></i>
+                    </div>
+                </div>
+                <div class="topbar__user"></div>
+            </div>
+        </div>
+    </div>
+</div>
+```
+
+## Implementation Best Practices
+
+1. **Fixed Position**: The topbar is fixed at the top of the screen for persistent navigation.
+
+2. **Icon Centering**: Icons must be properly centered in containers with flexbox:
+   ```css
+   .topbar__action-item.icon-container {
+       display: flex;
+       align-items: center;
+       justify-content: center;
+   }
+   ```
+
+3. **Responsive Considerations**: For smaller screens, consider:
+   - Simplifying or hiding the context selector
+
+4. **Content Adjustment**: Always adjust content placement to account for the topbar's height:
+   ```css
+   html {
+       scroll-padding-top: var(--topbar-height);
+   }
+   ```
+
+5. **Z-Index Management**: The topbar has a z-index of 100. Ensure other fixed or absolute elements have appropriate z-index values relative to this.
+
+6. **Action Items**: Limit action items to 3-5 essential functions to prevent overcrowding.
+
+7. **User Avatar**: Use a consistent size and styling for the user avatar element (see User Avatar Section).
+
+8. **DOM Order for Branding**: Always place the subtitle before the title in the DOM structure.
+
+9. **Icon Styling**: Apply the `text-grey-400` class to dropdown icons and other secondary icons.
+
+## Accessibility Considerations
+
+1. **Color Contrast**: Ensure text and icons have sufficient contrast against the topbar background.
+
+2. **Focus States**: Add proper focus states for interactive elements.
+
+3. **Keyboard Navigation**: Ensure all interactive elements are keyboard accessible.
+
+4. **Screen Readers**: Use appropriate ARIA attributes for context changes and dynamic content.
+
+```html
+<div class="topbar__action-item icon-container" aria-label="Notifications">
+    <i class="fas fa-bell"></i>
+</div>
+``` 

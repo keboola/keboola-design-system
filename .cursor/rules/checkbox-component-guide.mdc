@@ -1,0 +1,545 @@
+---
+description: 
+globs: 
+alwaysApply: true
+---
+# Checkbox Component Guide
+
+Checkboxes are form elements that allow users to select one or more options from a set. This guide provides comprehensive instructions for implementing checkboxes in your application.
+
+## CRITICAL: Container Element Requirements
+
+The checkbox component MUST use a `<label>` element as its container - NEVER use a `<div>` or other element. This is essential for proper functionality:
+
+```html
+<!-- CORRECT - ALWAYS USE THIS PATTERN -->
+<label class="checkbox">
+    <!-- Checkbox content -->
+</label>
+
+<!-- INCORRECT - DO NOT USE -->
+<div class="checkbox">
+    <!-- Checkbox content -->
+</div>
+```
+
+Without the `<label>` element, the checkbox will not be clickable in its entirety and fails accessibility requirements.
+
+## Basic Checkbox Structure
+
+The base checkbox component follows a consistent structure with specific class naming conventions:
+
+```html
+<label class="checkbox">
+    <input type="checkbox">
+    <div class="checkbox-box"></div>
+    <div class="checkbox-label">
+        <span class="checkbox-label-text">Checkbox Label</span>
+    </div>
+</label>
+```
+
+By default, checkboxes have the following styling:
+- Custom styled checkbox appearance (via `checkbox-box`)
+- Label positioned to the right of the checkbox
+- Proper spacing between checkbox and label
+- Flex layout for alignment
+
+## Checkbox Elements
+
+### Input Element
+
+The native checkbox input is visually hidden but remains accessible:
+
+```html
+<input type="checkbox">
+```
+
+This element:
+- Maintains accessibility
+- Handles the checkbox's checked state
+- Can receive attributes like `checked`, `disabled`, `required`, etc.
+
+### Checkbox Box
+
+The visible checkbox indicator:
+
+```html
+<div class="checkbox-box"></div>
+```
+
+The `checkbox-box` element:
+- Provides the visual checkbox representation
+- Shows different styles for each state (checked, unchecked, disabled)
+- Uses a check icon for the checked state
+
+### Checkbox Label
+
+The label associated with the checkbox:
+
+```html
+<div class="checkbox-label">
+    <span class="checkbox-label-text">Checkbox Label</span>
+</div>
+```
+
+The `checkbox-label` element:
+- Contains the label text
+- Maintains proper alignment with the checkbox
+- Has consistent typography
+
+## Checkbox States
+
+### Default State
+
+The normal appearance of an unchecked checkbox:
+
+```html
+<label class="checkbox">
+    <input type="checkbox">
+    <div class="checkbox-box"></div>
+    <div class="checkbox-label">
+        <span class="checkbox-label-text">Default Checkbox</span>
+    </div>
+</label>
+```
+
+### Checked State
+
+When the checkbox is selected:
+
+```html
+<label class="checkbox">
+    <input type="checkbox" checked>
+    <div class="checkbox-box"></div>
+    <div class="checkbox-label">
+        <span class="checkbox-label-text">Checked Checkbox</span>
+    </div>
+</label>
+```
+
+### Disabled State
+
+When the checkbox is not interactive:
+
+```html
+<label class="checkbox disabled">
+    <input type="checkbox" disabled>
+    <div class="checkbox-box"></div>
+    <div class="checkbox-label">
+        <span class="checkbox-label-text">Disabled Checkbox</span>
+    </div>
+</label>
+```
+
+**Important:** Add both the `disabled` class to the label and the `disabled` attribute to the input element.
+
+### Disabled Checked State
+
+When a checkbox is both selected and disabled:
+
+```html
+<label class="checkbox disabled">
+    <input type="checkbox" checked disabled>
+    <div class="checkbox-box"></div>
+    <div class="checkbox-label">
+        <span class="checkbox-label-text">Disabled Checked Checkbox</span>
+    </div>
+</label>
+```
+
+### Error State
+
+For invalid selections or required checkboxes that haven't been selected:
+
+```html
+<label class="checkbox error">
+    <input type="checkbox">
+    <div class="checkbox-box"></div>
+    <div class="checkbox-label">
+        <span class="checkbox-label-text">Error Checkbox</span>
+    </div>
+</label>
+```
+
+For checkboxes with error messages:
+
+```html
+<div class="checkbox-container" id="termsField">
+    <label class="checkbox">
+        <input type="checkbox" id="terms">
+        <div class="checkbox-box"></div>
+        <div class="checkbox-label">
+            <span class="checkbox-label-text">I agree to the terms</span>
+        </div>
+    </label>
+    <div class="error-message">You must accept the terms to continue</div>
+</div>
+```
+
+## Checkbox Variations
+
+### Checkbox without Label
+
+When you need just the checkbox without visible text, but still want to maintain accessibility:
+
+```html
+<label class="checkbox no-label">
+    <input type="checkbox">
+    <div class="checkbox-box"></div>
+    <div class="checkbox-label">
+        <span class="checkbox-label-text"></span>
+    </div>
+</label>
+```
+
+**Note:** The `no-label` class hides the label visually while maintaining the checkbox structure. For components where the checkbox's purpose is visually evident from context (like task lists or item selection), use an empty label text as shown above. For standalone checkboxes that require screen reader support, include descriptive text that explains the checkbox's purpose:
+
+```html
+<label class="checkbox no-label">
+    <input type="checkbox">
+    <div class="checkbox-box"></div>
+    <div class="checkbox-label">
+        <span class="checkbox-label-text">Mark as complete</span>
+    </div>
+</label>
+```
+
+### Checkbox with Long Text
+
+For checkboxes with longer label text that may wrap:
+
+```html
+<label class="checkbox checkbox-responsive">
+    <input type="checkbox">
+    <div class="checkbox-box"></div>
+    <div class="checkbox-label">
+        <span class="checkbox-label-text">This is a checkbox with a longer label text that may wrap to multiple lines to demonstrate how the checkbox component handles longer content in its label.</span>
+    </div>
+</label>
+```
+
+The `checkbox-responsive` modifier:
+- Ensures proper text wrapping
+- Maintains alignment between the checkbox and the first line of text
+- Allows the checkbox to scale responsively
+
+## Checkbox Groups
+
+For related checkboxes, group them with proper spacing:
+
+```html
+<div style="display: flex; flex-direction: column; gap: var(--space-3);">
+    <p class="body-text">Select your preferred notification methods:</p>
+    
+    <label class="checkbox">
+        <input type="checkbox" checked>
+        <div class="checkbox-box"></div>
+        <div class="checkbox-label">
+            <span class="checkbox-label-text">Email notifications</span>
+        </div>
+    </label>
+    
+    <label class="checkbox">
+        <input type="checkbox">
+        <div class="checkbox-box"></div>
+        <div class="checkbox-label">
+            <span class="checkbox-label-text">SMS notifications</span>
+        </div>
+    </label>
+    
+    <label class="checkbox">
+        <input type="checkbox" checked>
+        <div class="checkbox-box"></div>
+        <div class="checkbox-label">
+            <span class="checkbox-label-text">In-app notifications</span>
+        </div>
+    </label>
+</div>
+```
+
+**Best Practice:** Use a consistent gap of `var(--space-3)` (12px) between checkboxes in a group.
+
+## Form Integration
+
+When integrating checkboxes into forms:
+
+```html
+<form style="display: flex; flex-direction: column; gap: var(--space-4);">
+    <!-- Form fields here -->
+    
+    <div class="checkbox-container" id="termsField">
+        <label class="checkbox">
+            <input type="checkbox" id="terms">
+            <div class="checkbox-box"></div>
+            <div class="checkbox-label">
+                <span class="checkbox-label-text">I agree to the <a href="#" class="link-body-medium">Terms of Service</a></span>
+            </div>
+        </label>
+        <div class="error-message">You must accept the terms to continue</div>
+    </div>
+    
+    <!-- Form submission button -->
+</form>
+```
+
+**Note:** For checkboxes that need validation with error messages, use the `checkbox-container` wrapper.
+
+## Checkbox with Links
+
+For checkboxes that include links in the label:
+
+```html
+<label class="checkbox">
+    <input type="checkbox">
+    <div class="checkbox-box"></div>
+    <div class="checkbox-label">
+        <span class="checkbox-label-text">I agree to the <a href="#" class="link-body-medium">Terms of Service</a> and <a href="#" class="link-body-medium">Privacy Policy</a></span>
+    </div>
+</label>
+```
+
+**Style Specification:**
+- Use the `link-body-medium` class for links within checkbox labels
+- Links should have appropriate hover states
+
+## Spacing Guidelines
+
+1. **Within Checkbox**: Maintain the default spacing between the checkbox box and label.
+
+2. **Between Checkboxes**: Use `gap: var(--space-3)` (12px) when stacking checkboxes.
+
+3. **Within Forms**: For checkboxes in forms, follow the form's gap pattern, typically `gap: var(--space-4)` (16px).
+
+4. **Error Messages**: Error messages should have `margin-top: var(--space-1)` (4px) for proper spacing.
+
+## JavaScript Validation
+
+For client-side validation of checkboxes:
+
+```javascript
+// Function to show error
+function showError(fieldElement, show) {
+    if (show) {
+        fieldElement.classList.add('error');
+    } else {
+        fieldElement.classList.remove('error');
+    }
+}
+
+// Validation example
+const termsField = document.getElementById('termsField');
+const termsInput = document.getElementById('terms');
+
+if (!termsInput.checked) {
+    showError(termsField, true);
+    isValid = false;
+} else {
+    showError(termsField, false);
+}
+
+// Event listener to clear error state when checkbox is clicked
+termsInput.addEventListener('input', function() {
+    termsField.classList.remove('error');
+});
+```
+
+## Implementation Examples
+
+### Basic Usage in a Form
+
+```html
+<form style="display: flex; flex-direction: column; gap: var(--space-4);">
+    <!-- Other form fields -->
+    
+    <label class="checkbox">
+        <input type="checkbox">
+        <div class="checkbox-box"></div>
+        <div class="checkbox-label">
+            <span class="checkbox-label-text">Subscribe to newsletter</span>
+        </div>
+    </label>
+    
+    <!-- Submit button -->
+</form>
+```
+
+### Terms Acceptance with Error
+
+```html
+<div class="checkbox-container" id="termsField">
+    <label class="checkbox">
+        <input type="checkbox" id="terms">
+        <div class="checkbox-box"></div>
+        <div class="checkbox-label">
+            <span class="checkbox-label-text">I agree to the <a href="#" class="link-body-medium">Terms of Service</a> and <a href="#" class="link-body-medium">Privacy Policy</a></span>
+        </div>
+    </label>
+    <div class="error-message">You must accept the terms to continue</div>
+</div>
+```
+
+### Preference Selection Group
+
+```html
+<div style="display: flex; flex-direction: column; gap: var(--space-3);">
+    <p class="body-text">Choose delivery options:</p>
+    
+    <label class="checkbox">
+        <input type="checkbox" checked>
+        <div class="checkbox-box"></div>
+        <div class="checkbox-label">
+            <span class="checkbox-label-text">Express delivery</span>
+        </div>
+    </label>
+    
+    <label class="checkbox">
+        <input type="checkbox">
+        <div class="checkbox-box"></div>
+        <div class="checkbox-label">
+            <span class="checkbox-label-text">Gift wrapping</span>
+        </div>
+    </label>
+    
+    <label class="checkbox disabled">
+        <input type="checkbox" disabled>
+        <div class="checkbox-box"></div>
+        <div class="checkbox-label">
+            <span class="checkbox-label-text">Same-day delivery (unavailable)</span>
+        </div>
+    </label>
+</div>
+```
+
+## CSS Styling
+
+For proper error message display:
+
+```css
+/* Show error messages when parent has error class */
+.checkbox-container.error .error-message {
+    display: block;
+}
+
+/* Custom container for checkbox with error handling */
+.checkbox-container {
+    position: relative;
+}
+
+.checkbox-container .error-message {
+    color: var(--error-red-500-base);
+    font-size: 14px;
+    display: none;
+    margin-top: var(--space-1);
+}
+
+/* Checkbox link styling */
+.checkbox-label-text a {
+    color: var(--secondary-blue-500-base);
+    text-decoration: underline;
+    transition: all 0.2s ease;
+}
+
+.checkbox-label-text a:hover {
+    color: var(--secondary-blue-600);
+    text-decoration: none;
+}
+```
+
+## Best Practices
+
+1. **Clear Labels**: Use concise, clear text that describes the option.
+   - Avoid vague or technical language
+   - Be explicit about what the user is agreeing to
+   - Use sentence case for labels (capitalize first word only)
+
+2. **Required Checkboxes**: For required checkboxes like terms acceptance:
+   - Use the `checkbox-container` with error message
+   - Implement proper validation
+   - Clearly indicate the requirement in the label if needed
+
+3. **Grouping**: Group related checkboxes together for better usability.
+   - Use consistent spacing
+   - Consider adding a group title or description
+   - Keep groups of related options together
+
+4. **Responsive Behavior**: For long labels or mobile views:
+   - Use the `checkbox-responsive` class
+   - Test wrapping behavior on different screen sizes
+   - Ensure tap targets are large enough for mobile use
+
+5. **Accessibility**: Ensure checkboxes are accessible.
+   - Maintain proper label association
+   - Include error messages for screen readers
+   - Test keyboard navigation
+
+6. **Default Values**: Set sensible defaults where appropriate.
+   - Pre-check options that most users would want
+   - Don't pre-check consent or terms acceptance boxes
+   - Consider legal requirements in your jurisdiction
+
+7. **Visual Feedback**: Ensure users get clear feedback when interacting with checkboxes.
+   - Show error states clearly
+   - Provide immediate visual confirmation when checked/unchecked
+   - Consider transitions for state changes
+
+## Common Anti-Patterns to Avoid
+
+1. **Missing Label Structure**: Not using the proper `checkbox-label` and `checkbox-label-text` structure.
+   ```html
+   <!-- INCORRECT -->
+   <label class="checkbox">
+       <input type="checkbox">
+       <div class="checkbox-box"></div>
+       Checkbox Label <!-- Missing proper structure -->
+   </label>
+   ```
+
+2. **Direct Styling**: Applying styles directly to the native checkbox input.
+   ```html
+   <!-- INCORRECT -->
+   <input type="checkbox" style="width: 20px; height: 20px;">
+   ```
+
+3. **Inconsistent Spacing**: Using different spacing values for checkbox groups.
+   ```html
+   <!-- INCORRECT -->
+   <label class="checkbox" style="margin-bottom: 20px;"> <!-- Inconsistent spacing -->
+       <!-- Checkbox content -->
+   </label>
+   ```
+
+4. **Missing Disabled Class**: Forgetting to add the `disabled` class when using the disabled attribute.
+   ```html
+   <!-- INCORRECT -->
+   <label class="checkbox"> <!-- Missing 'disabled' class -->
+       <input type="checkbox" disabled>
+       <!-- Rest of checkbox -->
+   </label>
+   ```
+
+5. **Irregular Nesting**: Creating irregular nesting patterns or incorrect class structure.
+   ```html
+   <!-- INCORRECT -->
+   <div class="checkbox">
+       <input type="checkbox">
+       <span>Label</span> <!-- Incorrect structure -->
+   </div>
+   ```
+
+6. **Missing Error Container**: Not using the `checkbox-container` for validation.
+   ```html
+   <!-- INCORRECT -->
+   <label class="checkbox error">
+       <!-- Checkbox content -->
+       <span class="error-message">Error message</span> <!-- Incorrect placement -->
+   </label>
+   ```
+
+7. **Inaccessible Implementation**: Creating checkboxes that can't be accessed by keyboard or screen readers.
+   ```html
+   <!-- INCORRECT -->
+   <div class="checkbox-box" onclick="toggleCheck()"></div> <!-- Not accessible -->
+   ```
+
+By following these guidelines, you'll create consistent, usable checkbox interfaces that align with the design system's principles.

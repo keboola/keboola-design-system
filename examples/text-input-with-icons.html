@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Text Input with Icons - Keboola</title>
+    
+    <!-- Required Dependencies -->
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" as="style">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
+    
+    <!-- Design System CSS -->
+    <link href="../dist/design-system.css" rel="stylesheet">
+    
+    <style>
+        /* Additional styles for icons in inputs */
+        .text-input-with-icon .content {
+            position: relative;
+        }
+        
+        .input-icon {
+            color: var(--neutral-grey-400);
+            font-size: 16px;
+            flex-shrink: 0;
+        }
+        
+        .input-icon-prefix {
+            margin-right: var(--space-2);
+        }
+        
+        .input-icon-suffix {
+            margin-left: var(--space-2);
+        }
+        
+        /* Search input is already defined in text-input.css */
+        
+        .input-example {
+            margin-bottom: var(--space-4);
+        }
+        
+        .input-example-title {
+            font-size: var(--text-sm);
+            color: var(--neutral-grey-600);
+            margin-bottom: var(--space-2);
+        }
+        
+        .inputs-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: var(--space-6);
+        }
+        
+        @media (min-width: 768px) {
+            .inputs-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+    </style>
+</head>
+<body class="bg-grey-50">
+    <div class="page-container">
+        <h1 class="heading-1">Text Input with Icons</h1>
+        
+        <!-- Prefix Icons -->
+        <div class="card">
+            <div class="card__header">
+                <h2 class="card__title">Inputs with Prefix Icons</h2>
+            </div>
+            <div class="card__content">
+                <div class="inputs-grid">
+                    <div class="input-example">
+                        <div class="input-example-title">Email Input with Icon</div>
+                        <div class="text-input text-input-with-icon size-medium">
+                            <div class="label">
+                                <span class="label-text">Email</span>
+                            </div>
+                            <div class="content">
+                                <i class="fas fa-envelope input-icon input-icon-prefix"></i>
+                                <input type="email" placeholder="Enter your email address">
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="input-example">
+                        <div class="input-example-title">User Input with Icon</div>
+                        <div class="text-input text-input-with-icon size-medium">
+                            <div class="label">
+                                <span class="label-text">Username</span>
+                            </div>
+                            <div class="content">
+                                <i class="fas fa-user input-icon input-icon-prefix"></i>
+                                <input type="text" placeholder="Enter your username">
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="input-example">
+                        <div class="input-example-title">Password Input with Icon</div>
+                        <div class="text-input text-input-with-icon size-medium">
+                            <div class="label">
+                                <span class="label-text">Password</span>
+                            </div>
+                            <div class="content">
+                                <i class="fas fa-lock input-icon input-icon-prefix"></i>
+                                <input type="password" placeholder="Enter your password">
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="input-example">
+                        <div class="input-example-title">Search Input (standard)</div>
+                        <div class="text-input text-input-with-icon size-medium">
+                            <div class="label">
+                                <span class="label-text">Search</span>
+                            </div>
+                            <div class="content">
+                                <i class="fas fa-search input-icon input-icon-prefix"></i>
+                                <input type="text" placeholder="Search...">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Suffix Icons -->
+        <div class="card">
+            <div class="card__header">
+                <h2 class="card__title">Inputs with Suffix Icons</h2>
+            </div>
+            <div class="card__content">
+                <div class="inputs-grid">
+                    <div class="input-example">
+                        <div class="input-example-title">Calendar Input</div>
+                        <div class="text-input text-input-with-icon size-medium">
+                            <div class="label">
+                                <span class="label-text">Date</span>
+                            </div>
+                            <div class="content">
+                                <input type="text" placeholder="Select a date">
+                                <i class="fas fa-calendar-alt input-icon input-icon-suffix"></i>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="input-example">
+                        <div class="input-example-title">Link Input</div>
+                        <div class="text-input text-input-with-icon size-medium">
+                            <div class="label">
+                                <span class="label-text">Website</span>
+                            </div>
+                            <div class="content">
+                                <input type="url" placeholder="https://example.com">
+                                <i class="fas fa-link input-icon input-icon-suffix"></i>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="input-example">
+                        <div class="input-example-title">Info Helper</div>
+                        <div class="text-input text-input-with-icon size-medium">
+                            <div class="label">
+                                <span class="label-text">API Key</span>
+                            </div>
+                            <div class="content">
+                                <input type="text" placeholder="Enter your API key">
+                                <i class="fas fa-info-circle input-icon input-icon-suffix" title="Your API key can be found in your account settings"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Interactive Icons -->
+        <div class="card">
+            <div class="card__header">
+                <h2 class="card__title">Inputs with Interactive Icons</h2>
+            </div>
+            <div class="card__content">
+                <div class="inputs-grid">
+                    <div class="input-example">
+                        <div class="input-example-title">Password Toggle</div>
+                        <div class="text-input text-input-with-icon size-medium">
+                            <div class="label">
+                                <span class="label-text">Password</span>
+                            </div>
+                            <div class="content">
+                                <input type="password" id="passwordField" placeholder="Enter your password">
+                                <i class="fas fa-eye-slash input-icon input-icon-suffix toggle-password" id="passwordToggle"></i>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="input-example">
+                        <div class="input-example-title">Clearable Input</div>
+                        <div class="text-input text-input-with-icon size-medium">
+                            <div class="label">
+                                <span class="label-text">Search Term</span>
+                            </div>
+                            <div class="content">
+                                <input type="text" id="clearableField" placeholder="Enter search term">
+                                <i class="fas fa-times input-icon input-icon-suffix clear-input" id="clearButton" style="display: none; cursor: pointer;"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Form Example -->
+        <div class="card">
+            <div class="card__header">
+                <h2 class="card__title">Login Form with Icons</h2>
+            </div>
+            <div class="card__content">
+                <form id="loginForm" novalidate style="display: flex; flex-direction: column; gap: var(--space-4);">
+                    <!-- Email field -->
+                    <div class="text-input text-input-with-icon size-medium required" id="loginEmailField">
+                        <div class="label">
+                            <span class="label-text">Email Address</span>
+                        </div>
+                        <div class="content">
+                            <i class="fas fa-envelope input-icon input-icon-prefix"></i>
+                            <input type="email" id="loginEmail" placeholder="Enter your email address">
+                        </div>
+                        <div class="error-message">Please enter a valid email address</div>
+                    </div>
+                    
+                    <!-- Password field -->
+                    <div class="text-input text-input-with-icon size-medium required" id="loginPasswordField">
+                        <div class="label">
+                            <span class="label-text">Password</span>
+                        </div>
+                        <div class="content">
+                            <i class="fas fa-lock input-icon input-icon-prefix"></i>
+                            <input type="password" id="loginPassword" placeholder="Enter your password">
+                            <i class="fas fa-eye-slash input-icon input-icon-suffix toggle-password" id="loginPasswordToggle"></i>
+                        </div>
+                        <div class="error-message">Please enter your password</div>
+                    </div>
+                    
+                    <!-- Submit button -->
+                    <div style="margin-top: var(--space-2);">
+                        <button type="submit" class="btn btn-primary btn-medium">
+                            <span class="btn-text">Log In</span>
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Password toggle functionality
+            const passwordToggle = document.getElementById('passwordToggle');
+            const passwordField = document.getElementById('passwordField');
+            
+            passwordToggle.addEventListener('click', function() {
+                const type = passwordField.getAttribute('type') === 'password' ? 'text' : 'password';
+                passwordField.setAttribute('type', type);
+                this.classList.toggle('fa-eye');
+                this.classList.toggle('fa-eye-slash');
+            });
+            
+            // Login form password toggle
+            const loginPasswordToggle = document.getElementById('loginPasswordToggle');
+            const loginPassword = document.getElementById('loginPassword');
+            
+            loginPasswordToggle.addEventListener('click', function() {
+                const type = loginPassword.getAttribute('type') === 'password' ? 'text' : 'password';
+                loginPassword.setAttribute('type', type);
+                this.classList.toggle('fa-eye');
+                this.classList.toggle('fa-eye-slash');
+            });
+            
+            // Clearable input functionality
+            const clearableField = document.getElementById('clearableField');
+            const clearButton = document.getElementById('clearButton');
+            
+            clearableField.addEventListener('input', function() {
+                clearButton.style.display = this.value ? 'block' : 'none';
+            });
+            
+            clearButton.addEventListener('click', function() {
+                clearableField.value = '';
+                this.style.display = 'none';
+                clearableField.focus();
+            });
+            
+            // Form validation
+            const loginForm = document.getElementById('loginForm');
+            
+            loginForm.addEventListener('submit', function(event) {
+                event.preventDefault();
+                
+                let isValid = true;
+                
+                // Email validation
+                const emailField = document.getElementById('loginEmailField');
+                const emailInput = document.getElementById('loginEmail');
+                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                
+                if (!emailRegex.test(emailInput.value.trim())) {
+                    emailField.classList.add('error');
+                    isValid = false;
+                } else {
+                    emailField.classList.remove('error');
+                }
+                
+                // Password validation
+                const passwordField = document.getElementById('loginPasswordField');
+                const passwordInput = document.getElementById('loginPassword');
+                
+                if (!passwordInput.value.trim()) {
+                    passwordField.classList.add('error');
+                    isValid = false;
+                } else {
+                    passwordField.classList.remove('error');
+                }
+                
+                if (isValid) {
+                    alert('Login form submitted successfully!');
+                    loginForm.reset();
+                }
+            });
+            
+            // Remove error state when user types
+            const inputs = loginForm.querySelectorAll('input');
+            inputs.forEach(input => {
+                input.addEventListener('input', function() {
+                    const fieldContainer = this.closest('.text-input');
+                    fieldContainer.classList.remove('error');
+                });
+            });
+        });
+    </script>
+</body>
+</html> 

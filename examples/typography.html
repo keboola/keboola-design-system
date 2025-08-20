@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Typography Example - Design System</title>
+    
+    <!-- Required Dependencies -->
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" as="style">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
+    
+    <!-- Design System CSS -->
+    <link href="../dist/design-system.css" rel="stylesheet">
+    
+    <style>
+        .typography-example {
+            display: flex;
+            align-items: center;
+            gap: var(--space-8);
+            margin-bottom: var(--space-6);
+            padding: var(--space-4);
+            border-radius: var(--radius-medium);
+            background-color: var(--neutral-white);
+            box-shadow: var(--shadow-xs);
+        }
+        
+        .typography-details {
+            flex: 1;
+        }
+        
+        .typography-spec {
+            font-family: 'Inter', sans-serif;
+            font-size: 14px;
+            line-height: 1.5;
+            color: var(--neutral-grey-600);
+            margin-top: var(--space-2);
+        }
+        
+        .typography-preview {
+            flex: 2;
+        }
+        
+        .color-example {
+            padding: var(--space-4);
+            border-radius: var(--radius-medium);
+            margin-bottom: var(--space-4);
+        }
+        
+        .color-swatch {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+            gap: var(--space-4);
+        }
+        
+        .swatch {
+            padding: var(--space-4);
+            border-radius: var(--radius-medium);
+            height: 80px;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+        }
+        
+        .swatch-details {
+            background-color: rgba(255, 255, 255, 0.9);
+            border-radius: var(--radius-small);
+            padding: var(--space-2);
+            font-size: 12px;
+        }
+        
+        .dark-text {
+            color: var(--neutral-grey-900);
+        }
+        
+        .light-text {
+            color: var(--neutral-white);
+        }
+        
+        @media (max-width: 768px) {
+            .typography-example {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: var(--space-4);
+            }
+        }
+    </style>
+</head>
+<body class="bg-grey-50">
+    <div class="page-container">
+        <h1 class="heading-1">Typography Examples</h1>
+        
+        <!-- Headings -->
+        <div class="card">
+            <div class="card__header">
+                <h2 class="card__title">Headings</h2>
+            </div>
+            <div class="card__content">
+                <div class="typography-example">
+                    <div class="typography-details">
+                        <h3 class="heading-3">Heading 1</h3>
+                        <p class="typography-spec">
+                            Font: Inter<br>
+                            Weight: 500 (Medium)<br>
+                            Size: 32px<br>
+                            Line height: 40px
+                        </p>
+                    </div>
+                    <div class="typography-preview">
+                        <h1 class="heading-1">This is a Heading 1</h1>
+                    </div>
+                </div>
+                
+                <div class="typography-example">
+                    <div class="typography-details">
+                        <h3 class="heading-3">Heading 2</h3>
+                        <p class="typography-spec">
+                            Font: Inter<br>
+                            Weight: 500 (Medium)<br>
+                            Size: 24px<br>
+                            Line height: 32px
+                        </p>
+                    </div>
+                    <div class="typography-preview">
+                        <h2 class="heading-2">This is a Heading 2</h2>
+                    </div>
+                </div>
+                
+                <div class="typography-example">
+                    <div class="typography-details">
+                        <h3 class="heading-3">Heading 3</h3>
+                        <p class="typography-spec">
+                            Font: Inter<br>
+                            Weight: 500 (Medium)<br>
+                            Size: 20px<br>
+                            Line height: 28px
+                        </p>
+                    </div>
+                    <div class="typography-preview">
+                        <h3 class="heading-3">This is a Heading 3</h3>
+                    </div>
+                </div>
+                
+                <div class="typography-example">
+                    <div class="typography-details">
+                        <h3 class="heading-3">Heading 4</h3>
+                        <p class="typography-spec">
+                            Font: Inter<br>
+                            Weight: 500 (Medium)<br>
+                            Size: 16px<br>
+                            Line height: 24px
+                        </p>
+                    </div>
+                    <div class="typography-preview">
+                        <h4 class="heading-4">This is a Heading 4</h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Body Text -->
+        <div class="card">
+            <div class="card__header">
+                <h2 class="card__title">Body Text</h2>
+            </div>
+            <div class="card__content">
+                <div class="typography-example">
+                    <div class="typography-details">
+                        <h3 class="heading-3">Body Text</h3>
+                        <p class="typography-spec">
+                            Font: Inter<br>
+                            Weight: 400 (Regular)<br>
+                            Size: 16px<br>
+                            Line height: 24px
+                        </p>
+                    </div>
+                    <div class="typography-preview">
+                        <p class="body-text">This is a standard body text paragraph. It provides the main content text styling for the design system. Body text is optimized for readability across different screen sizes and should be used for most paragraph content.</p>
+                    </div>
+                </div>
+                
+                <div class="typography-example">
+                    <div class="typography-details">
+                        <h3 class="heading-3">Small Body Text</h3>
+                        <p class="typography-spec">
+                            Font: Inter<br>
+                            Weight: 400 (Regular)<br>
+                            Size: 14px<br>
+                            Line height: 20px
+                        </p>
+                    </div>
+                    <div class="typography-preview">
+                        <p class="small-body-text">This is a small body text paragraph. It provides a more compact alternative to the standard body text, useful for secondary content, captions, or areas where space is constrained.</p>
+                    </div>
+                </div>
+                
+                <div class="typography-example">
+                    <div class="typography-details">
+                        <h3 class="heading-3">Badge Text</h3>
+                        <p class="typography-spec">
+                            Font: Inter<br>
+                            Weight: 500 (Medium)<br>
+                            Size: 11px<br>
+                            Line height: 16px<br>
+                            Letter spacing: 1px
+                        </p>
+                    </div>
+                    <div class="typography-preview">
+                        <span class="badge badge-primary">
+                            <span class="badge-text">Badge Example</span>
+                        </span>
+                        <span class="badge badge-success" style="margin-left: var(--space-2);">
+                            <span class="badge-text">Success</span>
+                        </span>
+                        <span class="badge badge-warning" style="margin-left: var(--space-2);">
+                            <span class="badge-text">Warning</span>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Text Variants -->
+        <div class="card">
+            <div class="card__header">
+                <h2 class="card__title">Text Variations</h2>
+            </div>
+            <div class="card__content">
+                <div class="typography-example">
+                    <div class="typography-details">
+                        <h3 class="heading-3">Link Text</h3>
+                        <p class="typography-spec">
+                            Interactive link styling
+                        </p>
+                    </div>
+                    <div class="typography-preview">
+                        <p class="body-text">This paragraph contains <a href="#" class="link-body">a hyperlink</a> that can be clicked to navigate to another page.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Text Colors -->
+        <div class="card">
+            <div class="card__header">
+                <h2 class="card__title">Text Colors</h2>
+            </div>
+            <div class="card__content">
+                <div class="typography-example">
+                    <div class="typography-details">
+                        <h3 class="heading-3">Default Text</h3>
+                        <p class="typography-spec">
+                            Color: Neutral Grey 900
+                        </p>
+                    </div>
+                    <div class="typography-preview">
+                        <p class="body-text">This is the default text color used for most content.</p>
+                    </div>
+                </div>
+                
+                <div class="typography-example">
+                    <div class="typography-details">
+                        <h3 class="heading-3">Secondary Text</h3>
+                        <p class="typography-spec">
+                            Color: Neutral Grey 600
+                        </p>
+                    </div>
+                    <div class="typography-preview">
+                        <p class="body-text" style="color: var(--neutral-grey-600);">This is secondary text, useful for less emphasized content.</p>
+                    </div>
+                </div>
+                
+                <div class="typography-example">
+                    <div class="typography-details">
+                        <h3 class="heading-3">Success Text</h3>
+                        <p class="typography-spec">
+                            Color: Success Green 600
+                        </p>
+                    </div>
+                    <div class="typography-preview">
+                        <p class="body-text" style="color: var(--success-green-600);">This text indicates successful actions or positive status.</p>
+                    </div>
+                </div>
+                
+                <div class="typography-example">
+                    <div class="typography-details">
+                        <h3 class="heading-3">Error Text</h3>
+                        <p class="typography-spec">
+                            Color: Danger Red 600
+                        </p>
+                    </div>
+                    <div class="typography-preview">
+                        <p class="body-text" style="color: var(--danger-red-600);">This text indicates errors or warnings that require attention.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Typography in Context -->
+        <div class="card">
+            <div class="card__header">
+                <h2 class="card__title">Typography in Context</h2>
+            </div>
+            <div class="card__content">
+                <div class="card" style="margin-bottom: var(--space-6);">
+                    <h2 class="card__title">Example Content Card</h2>
+                    <div class="card__content">
+                        <h3 class="heading-3">Card Heading</h3>
+                        <p class="body-text">This is an example of how typography looks within a content card. The proper hierarchy helps users quickly understand the structure of the content.</p>
+                        <p class="small-body-text" style="color: var(--neutral-grey-600); margin-top: var(--space-2);">Last updated: January 15, 2023</p>
+                    </div>
+                </div>
+                
+                <div style="padding: var(--space-4); background-color: var(--neutral-white); border-radius: var(--radius-medium);">
+                    <h2 class="heading-2">Form Example</h2>
+                    <p class="body-text" style="margin-bottom: var(--space-4);">See how typography is used in form elements:</p>
+                    
+                    <div class="text-input size-medium">
+                        <div class="label">
+                            <span class="label-text">Input Label</span>
+                        </div>
+                        <div class="content">
+                            <input type="text" placeholder="Placeholder text">
+                        </div>
+                        <div class="error-message">Error message text</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Links -->
+        <div class="card">
+            <div class="card__header">
+                <h2 class="card__title">Links</h2>
+            </div>
+            <div class="card__content">
+                <div class="typography-example">
+                    <div class="typography-details">
+                        <h3 class="heading-3">Link H3</h3>
+                        <p class="typography-spec">
+                            Font: Inter<br>
+                            Size: Based on H3<br>
+                            Default and hover states
+                        </p>
+                    </div>
+                    <div class="typography-preview">
+                        <a href="#" class="link-h3">H3 Link Example</a>
+                        <span class="small-body-text" style="display: block; margin-top: var(--space-2); color: var(--neutral-grey-600);">Hover to see state change</span>
+                    </div>
+                </div>
+                
+                <div class="typography-example">
+                    <div class="typography-details">
+                        <h3 class="heading-3">Link Body</h3>
+                        <p class="typography-spec">
+                            Font: Inter<br>
+                            Size: Based on body text<br>
+                            Used in paragraphs
+                        </p>
+                    </div>
+                    <div class="typography-preview">
+                        <p class="body-text">This paragraph contains a <a href="#" class="link-body">link-body class link</a> which follows the design system styling.</p>
+                    </div>
+                </div>
+                
+                <div class="typography-example">
+                    <div class="typography-details">
+                        <h3 class="heading-3">Link Body Medium</h3>
+                        <p class="typography-spec">
+                            Font: Inter<br>
+                            Medium weight<br>
+                            Used for emphasis
+                        </p>
+                    </div>
+                    <div class="typography-preview">
+                        <p class="body-text">For more emphasized links, use <a href="#" class="link-body-medium">link-body-medium class</a> in your content.</p>
+                    </div>
+                </div>
+                
+                <div class="typography-example">
+                    <div class="typography-details">
+                        <h3 class="heading-3">Link Small Body Medium</h3>
+                        <p class="typography-spec">
+                            Font: Inter<br>
+                            Size: Small<br>
+                            Medium weight
+                        </p>
+                    </div>
+                    <div class="typography-preview">
+                        <p class="small-body-text">For smaller text links, use <a href="#" class="link-small-body-medium">link-small-body-medium class</a> in secondary content.</p>
+                    </div>
+                </div>
+                
+                <div class="typography-example">
+                    <div class="typography-details">
+                        <h3 class="heading-3">Hover States</h3>
+                        <p class="typography-spec">
+                            Showing hover state with<br>
+                            .hover-state class
+                        </p>
+                    </div>
+                    <div class="typography-preview" style="display: flex; flex-direction: column; gap: var(--space-4);">
+                        <a href="#" class="link-body hover-state">Link Body (Hover State)</a>
+                        <a href="#" class="link-body-medium hover-state">Link Body Medium (Hover State)</a>
+                        <a href="#" class="link-small-body-medium hover-state">Link Small Body Medium (Hover State)</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,526 @@
+---
+description: 
+globs: 
+alwaysApply: true
+---
+# Large Search Component Guide
+
+The Large Search component provides a prominent, elevated search experience for main content areas of applications. It's designed for high-visibility search functionality with clear visual hierarchy and interactive feedback.
+
+## Basic Structure
+
+The base large search component follows a consistent structure with specific class naming conventions:
+
+```html
+<div class="large-search">
+    <div class="large-search__content">
+        <i class="fas fa-search large-search__icon"></i>
+        <input type="text" class="large-search__input" placeholder="Search...">
+        <button class="large-search__clear">
+            <i class="fas fa-times"></i>
+        </button>
+    </div>
+</div>
+```
+
+By default, the large search has the following styling:
+- White background with medium border radius
+- Card-like elevation with subtle shadow
+- Focus indicators with blue border
+- Clear button that appears when text is entered
+- Consistent padding and spacing
+
+## Component Elements
+
+### Container
+
+The main wrapper that provides structure and positioning:
+
+```html
+<div class="large-search">
+    <!-- Content goes here -->
+</div>
+```
+
+The `.large-search` element:
+- Establishes the component boundary
+- Provides positioning context
+- Handles disabled states
+- Maximum height of 68px
+
+### Content Wrapper
+
+The content wrapper contains all interactive elements:
+
+```html
+<div class="large-search__content">
+    <!-- Icon, input, and clear button -->
+</div>
+```
+
+The `.large-search__content` element:
+- Uses flex layout to arrange children
+- Provides padding (var(--space-4) on all sides)
+- Has a transparent border that becomes visible on focus
+- Border radius of var(--radius-medium)
+
+### Search Icon
+
+The visual indicator of search functionality:
+
+```html
+<i class="fas fa-search large-search__icon"></i>
+```
+
+The `.large-search__icon` element:
+- Uses Font Awesome icon
+- Size of 16px
+- Gray color (var(--neutral-grey-400))
+- Positioned at the start of the input
+
+### Input Field
+
+The actual text input element:
+
+```html
+<input type="text" class="large-search__input" placeholder="Search...">
+```
+
+The `.large-search__input` element:
+- Takes up most of the available width
+- Has no visible border (uses parent for focus states)
+- Uses system typography tokens
+- Customizable placeholder text
+
+### Clear Button
+
+The button to quickly clear entered text:
+
+```html
+<button class="large-search__clear">
+    <i class="fas fa-times"></i>
+</button>
+```
+
+The `.large-search__clear` element:
+- Only appears when text has been entered
+- Uses Font Awesome times (×) icon
+- Provides hover feedback with darker color
+- Allows quick content clearing
+
+## States
+
+### Default State
+
+The normal appearance of the search component:
+
+```html
+<div class="large-search">
+    <div class="large-search__content">
+        <i class="fas fa-search large-search__icon"></i>
+        <input type="text" class="large-search__input" placeholder="Search dashboards, reports, metrics...">
+        <button class="large-search__clear">
+            <i class="fas fa-times"></i>
+        </button>
+    </div>
+</div>
+```
+
+### Focus State
+
+When the input field receives focus:
+
+```html
+<!-- Add focus to input to see effect -->
+<div class="large-search">
+    <div class="large-search__content">
+        <i class="fas fa-search large-search__icon"></i>
+        <input type="text" class="large-search__input" placeholder="Search..." autofocus>
+        <button class="large-search__clear">
+            <i class="fas fa-times"></i>
+        </button>
+    </div>
+</div>
+```
+
+The focus state:
+- Shows blue border (var(--secondary-blue-500-base))
+- Adds subtle glow effect with box-shadow
+- Provides clear visual indication of active state
+
+### With Content
+
+When the user has entered text:
+
+```html
+<div class="large-search">
+    <div class="large-search__content">
+        <i class="fas fa-search large-search__icon"></i>
+        <input type="text" class="large-search__input" value="Dashboard metrics" placeholder="Search...">
+        <button class="large-search__clear">
+            <i class="fas fa-times"></i>
+        </button>
+    </div>
+</div>
+```
+
+When content is present:
+- Clear button becomes visible
+- User can click to remove all text
+- Input retains focus after clearing
+
+### Disabled State
+
+When the search functionality is unavailable:
+
+```html
+<div class="large-search disabled">
+    <div class="large-search__content">
+        <i class="fas fa-search large-search__icon"></i>
+        <input type="text" class="large-search__input" placeholder="Search unavailable" disabled>
+        <button class="large-search__clear">
+            <i class="fas fa-times"></i>
+        </button>
+    </div>
+</div>
+```
+
+The disabled state:
+- Reduced opacity (0.7)
+- Pointer events disabled
+- Cursor set to not-allowed
+- Visual indication that interaction is not possible
+
+## JavaScript Integration
+
+To implement the clear button functionality:
+
+```html
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const clearButtons = document.querySelectorAll('.large-search__clear');
+        
+        clearButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                // Find the associated input
+                const input = this.closest('.large-search__content').querySelector('.large-search__input');
+                input.value = '';
+                input.focus();
+            });
+        });
+    });
+</script>
+```
+
+This script:
+- Finds all clear buttons in the document
+- Adds click event listeners
+- Clears the input value
+- Returns focus to the input field
+
+## Implementation Examples
+
+### Dashboard Search
+
+For searching across dashboard content:
+
+```html
+<div class="large-search">
+    <div class="large-search__content">
+        <i class="fas fa-search large-search__icon"></i>
+        <input type="text" class="large-search__input" placeholder="Search dashboards, reports, metrics...">
+        <button class="large-search__clear">
+            <i class="fas fa-times"></i>
+        </button>
+    </div>
+</div>
+```
+
+### User Management Search
+
+For searching users in an admin interface:
+
+```html
+<div class="large-search">
+    <div class="large-search__content">
+        <i class="fas fa-search large-search__icon"></i>
+        <input type="text" class="large-search__input" placeholder="Search users by name, email, or ID...">
+        <button class="large-search__clear">
+            <i class="fas fa-times"></i>
+        </button>
+    </div>
+</div>
+```
+
+### Content Library Search
+
+For searching across a content library:
+
+```html
+<div class="large-search">
+    <div class="large-search__content">
+        <i class="fas fa-search large-search__icon"></i>
+        <input type="text" class="large-search__input" placeholder="Search documents, files, and folders...">
+        <button class="large-search__clear">
+            <i class="fas fa-times"></i>
+        </button>
+    </div>
+</div>
+```
+
+## Customization
+
+### With Custom Icon
+
+For specialized search contexts:
+
+```html
+<div class="large-search">
+    <div class="large-search__content">
+        <i class="fas fa-file-alt large-search__icon"></i>
+        <input type="text" class="large-search__input" placeholder="Search documents only...">
+        <button class="large-search__clear">
+            <i class="fas fa-times"></i>
+        </button>
+    </div>
+</div>
+```
+
+### With Additional Action Button
+
+For advanced search functionality:
+
+```html
+<div class="large-search">
+    <div class="large-search__content">
+        <i class="fas fa-search large-search__icon"></i>
+        <input type="text" class="large-search__input" placeholder="Search...">
+        <button class="large-search__clear">
+            <i class="fas fa-times"></i>
+        </button>
+        <button class="large-search__action" style="margin-left: var(--space-2); color: var(--secondary-blue-500-base);">
+            <i class="fas fa-sliders-h"></i>
+        </button>
+    </div>
+</div>
+```
+
+**Note:** When adding custom elements, maintain consistent spacing and styling.
+
+## Placement Patterns
+
+The large search component should be positioned according to its context and purpose. There are three primary placement patterns:
+
+### 1. Dashboard Pattern: Below Page Title
+
+For dashboards and main application views, place the search component directly below the page title as a full-width element. This creates a clear search area at the top of the content.
+
+```html
+<div class="page-container">
+    <h1 class="heading-1">HR Dashboard</h1>
+    <div class="large-search">
+        <!-- Search content -->
+    </div>
+    <!-- Dashboard content -->
+</div>
+```
+
+**IMPORTANT**: The spacing between the search and surrounding elements should be controlled by the parent container's gap, not by adding margins to the search component itself.
+
+```html
+<!-- CORRECT: Let parent container control spacing -->
+<div class="page-container" style="display: flex; flex-direction: column; gap: var(--space-6);">
+    <h1 class="heading-1">HR Dashboard</h1>
+    <div class="large-search">
+        <!-- Search content -->
+    </div>
+    <!-- More content -->
+</div>
+
+<!-- INCORRECT: Don't add margins directly to search component -->
+<div class="page-container">
+    <h1 class="heading-1">HR Dashboard</h1>
+    <div class="large-search" style="margin-bottom: var(--space-6);">
+        <!-- Search content -->
+    </div>
+    <!-- More content -->
+</div>
+```
+
+### 2. Side-by-Side Pattern: Card Headers
+
+For filtering specific card content, place the search component beside the card title, with constrained width:
+
+```html
+<div class="card">
+    <div class="card__header" style="display: flex; justify-content: space-between; align-items: center;">
+        <h2 class="card__title">User Activity</h2>
+        <div class="large-search" style="width: 300px;">
+            <!-- Search content -->
+        </div>
+    </div>
+    <div class="card__content">
+        <!-- Card content -->
+    </div>
+</div>
+```
+
+### 3. Side-by-Side Pattern: Secondary Page Headers
+
+For secondary pages where search isn't the primary focus, you can place it beside the title:
+
+```html
+<div class="page-container">
+    <div style="display: flex; justify-content: space-between; align-items: center;">
+        <h1 class="heading-1">Document Library</h1>
+        <div class="large-search" style="width: 400px;">
+            <!-- Search content -->
+        </div>
+    </div>
+    <!-- Page content -->
+</div>
+```
+
+## Best Practices
+
+1. **Clear Placeholder Text**: Use descriptive placeholder text that indicates what users can search for.
+   - Be specific about searchable content types
+   - Keep text concise but informative
+   - Consider your audience's terminology
+
+2. **Appropriate Width**: Size the search component appropriately for its context.
+   - Use full width for dashboard pattern searches
+   - Use constrained width in card headers (300-400px typical)
+   - Ensure the input is wide enough for typical search terms
+
+3. **Visual Hierarchy**: Position the search component to reflect its importance.
+   - Primary dashboard views: use full-width below page title
+   - Card filtering: use side-by-side with constrained width
+   - Maintain consistent placement pattern across similar pages
+
+4. **Proper Spacing**: Follow spacing best practices.
+   - Never add margins or padding directly to the `.large-search` component
+   - Let the parent container control spacing through gap or other layout properties
+   - Use the page-container's built-in gap for proper vertical rhythm
+
+5. **Feedback Mechanisms**: Provide clear feedback during and after search.
+   - Clear button appears only when needed
+   - Focus states are clearly visible
+   - Consider adding loading states for async search
+
+6. **Keyboard Accessibility**: Ensure search works well with keyboard navigation.
+   - Tab focus should work predictably
+   - Enter key should trigger search
+   - Escape key should clear input
+
+7. **Responsive Behavior**: Adapt search for different screen sizes.
+   - Full width on mobile for all placement patterns
+   - Consider collapsible search on very small screens
+   - Maintain minimum touch target sizes (44px)
+
+8. **Consistent Styling**: Maintain consistency with the design system.
+   - Use the defined variables for spacing and colors
+   - Don't modify core component styles without purpose
+   - Follow established patterns for focus states
+
+## Common Anti-Patterns to Avoid
+
+1. **Missing Clear Button**: Always include the clear button to help users reset their search.
+   ```html
+   <!-- INCORRECT -->
+   <div class="large-search">
+       <div class="large-search__content">
+           <i class="fas fa-search large-search__icon"></i>
+           <input type="text" class="large-search__input" placeholder="Search...">
+           <!-- Missing clear button -->
+       </div>
+   </div>
+   ```
+
+2. **Custom Input Styling**: Don't override the input's styling directly.
+   ```html
+   <!-- INCORRECT -->
+   <div class="large-search">
+       <div class="large-search__content">
+           <i class="fas fa-search large-search__icon"></i>
+           <input type="text" class="large-search__input" placeholder="Search..." style="font-size: 16px; color: blue;">
+           <button class="large-search__clear">
+               <i class="fas fa-times"></i>
+           </button>
+       </div>
+   </div>
+   ```
+
+3. **Incorrect Icon Usage**: Stick to Font Awesome for icons.
+   ```html
+   <!-- INCORRECT -->
+   <div class="large-search">
+       <div class="large-search__content">
+           <span class="large-search__icon">🔍</span> <!-- Emoji instead of Font Awesome -->
+           <input type="text" class="large-search__input" placeholder="Search...">
+           <button class="large-search__clear">
+               <i class="fas fa-times"></i>
+           </button>
+       </div>
+   </div>
+   ```
+
+4. **Nesting Inside Text Inputs**: Don't nest the large search inside other form components.
+   ```html
+   <!-- INCORRECT -->
+   <div class="text-input">
+       <div class="label">
+           <span class="label-text">Search</span>
+       </div>
+       <div class="content">
+           <div class="large-search">
+               <!-- Search content --> 
+           </div>
+       </div>
+   </div>
+   ```
+
+5. **Missing Hover Effects**: Don't remove the hover effects from interactive elements.
+   ```css
+   /* INCORRECT */
+   .large-search .large-search__clear:hover {
+       color: var(--neutral-grey-400); /* Removing hover effect */
+   }
+   ```
+
+6. **Excessive Width Constraints**: Don't make the search too narrow for its content.
+   ```html
+   <!-- INCORRECT -->
+   <div class="large-search" style="max-width: 150px;"> <!-- Too narrow -->
+       <!-- Search content -->
+   </div>
+   ```
+
+7. **Inconsistent Border Radius**: Don't mix different border radius values.
+   ```css
+   /* INCORRECT */
+   .large-search {
+       border-radius: var(--radius-medium);
+   }
+   .large-search .large-search__content {
+       border-radius: var(--radius-small); /* Inconsistent with parent */
+   }
+   ```
+
+8. **Direct Margin or Padding on Search Component**: Never add spacing directly to the search component.
+   ```html
+   <!-- INCORRECT -->
+   <div class="large-search" style="margin-bottom: var(--space-6);">
+       <!-- Search content -->
+   </div>
+   
+   <!-- CORRECT: Let parent container control spacing -->
+   <div style="display: flex; flex-direction: column; gap: var(--space-6);">
+       <div class="large-search">
+           <!-- Search content -->
+       </div>
+       <!-- Next component -->
+   </div>
+   ```
+
+By following these guidelines, you'll create consistent, usable search experiences that align with the design system's principles.

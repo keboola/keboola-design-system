@@ -1,0 +1,693 @@
+---
+description: 
+globs: 
+alwaysApply: true
+---
+# Tabs Component Guide
+
+Tabs are navigation components that allow users to switch between different views or sections within the same context. This guide provides comprehensive instructions for implementing tabs in your application.
+
+## Basic Structure
+
+The base tabs component follows a consistent structure with specific class naming conventions:
+
+```html
+<div class="tabs">
+    <div class="tab-item active">
+        <div class="tab-content">
+            <div class="tab-icon icon-container">
+                <i class="fas fa-home"></i>
+            </div>
+            <span class="tab-text">Home</span>
+        </div>
+        <div class="tab-active-line"></div>
+    </div>
+    <div class="tab-item">
+        <!-- Additional tab items -->
+    </div>
+</div>
+```
+
+By default, tabs have the following styling:
+- Horizontal layout with consistent spacing between items (`gap: var(--space-8)`)
+- Bottom border with light gray color (`var(--neutral-grey-200)`)
+- Fixed height of 40px (`var(--space-10)`)
+- Active indicator line for the selected tab
+
+## Layout Placement
+
+### Edge-to-Edge Positioning
+
+Tabs should always span the full width of their container and be positioned as a standalone row in the layout:
+
+```html
+<div class="page-container" style="display: flex; flex-direction: column; gap: var(--space-6);">
+    <!-- Header above tabs -->
+    <div class="header">
+        <h1 class="header__title">Dashboard Overview</h1>
+        <div class="header__actions">
+            <!-- Action buttons -->
+        </div>
+    </div>
+    
+    <!-- Tabs as a standalone component -->
+    <div class="tabs">
+        <div class="tab-item active">
+            <!-- Tab content -->
+        </div>
+        <!-- Additional tabs -->
+    </div>
+    
+    <!-- Content below tabs -->
+    <div class="large-search">
+        <!-- Search component -->
+    </div>
+</div>
+```
+
+**IMPORTANT RULES:**
+1. Tabs must span the full width of their container (edge-to-edge)
+2. No elements should be placed beside tabs at the same level
+3. Tabs should occupy their own distinct row in a vertical layout
+4. Avoid placing tabs in the same flex/grid cell as other components
+5. Maintain consistent vertical spacing above and below the tabs component
+
+**INCORRECT PLACEMENT:**
+```html
+<!-- INCORRECT: Placing elements beside tabs -->
+<div style="display: flex; justify-content: space-between;">
+    <div class="tabs" style="width: 70%;">
+        <!-- Tab items -->
+    </div>
+    <button class="btn btn-primary">Action</button>
+</div>
+
+<!-- INCORRECT: Constraining tabs width -->
+<div class="tabs" style="width: 80%; margin: 0 auto;">
+    <!-- Tab items -->
+</div>
+```
+
+## Tabs Elements
+
+### Container
+
+The main tabs container establishes the horizontal layout:
+
+```html
+<div class="tabs">
+    <!-- Tab items go here -->
+</div>
+```
+
+The `.tabs` element:
+- Uses flex layout for horizontal arrangement
+- Has a light bottom border
+- Maintains consistent height
+- Creates proper spacing between tab items
+
+### Tab Item
+
+Each individual tab follows this structure:
+
+```html
+<div class="tab-item">
+    <div class="tab-content">
+        <div class="tab-icon icon-container">
+            <i class="fas fa-chart-bar"></i>
+        </div>
+        <span class="tab-text">Analytics</span>
+    </div>
+    <div class="tab-active-line"></div>
+</div>
+```
+
+The `.tab-item` element:
+- Uses flex column layout
+- Has a cursor pointer for interactive behavior
+- Maintains fixed height of 40px
+- Contains content and active indicator elements
+
+### Tab Content
+
+The content part of each tab contains the icon and text:
+
+```html
+<div class="tab-content">
+    <div class="tab-icon icon-container">
+        <i class="fas fa-chart-bar"></i>
+    </div>
+    <span class="tab-text">Tab Label</span>
+</div>
+```
+
+The `.tab-content` element:
+- Uses flex layout with centered alignment
+- Creates consistent spacing between icon and text
+- Has default gray color for inactive state
+- Changes color in hover and active states
+
+### Tab Text
+
+The text label of each tab:
+
+```html
+<span class="tab-text">Tab Label</span>
+```
+
+The `.tab-text` element:
+- Uses medium font weight
+- Maintains consistent text size
+- Uses nowrap to prevent text wrapping
+
+### Tab Icon
+
+The icon container within each tab:
+
+```html
+<div class="tab-icon icon-container">
+    <i class="fas fa-chart-bar"></i>
+</div>
+```
+
+The `.tab-icon` element:
+- Contains a Font Awesome icon
+- Has fixed dimensions (16px × 16px)
+- Uses centered alignment
+- Changes color in different states
+
+### Active Line
+
+The bottom indicator showing the active state:
+
+```html
+<div class="tab-active-line"></div>
+```
+
+The `.tab-active-line` element:
+- Has absolute positioning at the bottom of the tab
+- Spans the full width of the tab
+- Shows blue indicator when active
+- Has a transition effect for smooth state changes
+
+## Tab States
+
+### Default State
+
+The normal appearance of an inactive tab:
+
+```html
+<div class="tab-item">
+    <div class="tab-content">
+        <div class="tab-icon icon-container">
+            <i class="fas fa-chart-bar"></i>
+        </div>
+        <span class="tab-text">Analytics</span>
+    </div>
+    <div class="tab-active-line"></div>
+</div>
+```
+
+### Active State
+
+To mark a tab as active, add the `active` class:
+
+```html
+<div class="tab-item active">
+    <div class="tab-content">
+        <div class="tab-icon icon-container">
+            <i class="fas fa-home"></i>
+        </div>
+        <span class="tab-text">Home</span>
+    </div>
+    <div class="tab-active-line"></div>
+</div>
+```
+
+The active state:
+- Changes text and icon color to blue (`var(--secondary-blue-500-base)`)
+- Shows the blue active line indicator at the bottom
+- Only one tab should be active at a time
+
+### Hover State
+
+The appearance when a user hovers over an inactive tab:
+
+```html
+<!-- This happens automatically via CSS when user hovers -->
+<div class="tab-item">
+    <div class="tab-content">
+        <div class="tab-icon icon-container">
+            <i class="fas fa-chart-bar"></i>
+        </div>
+        <span class="tab-text">Analytics</span>
+    </div>
+    <div class="tab-active-line"></div>
+</div>
+```
+
+The hover state:
+- Changes text and icon color to blue (`var(--secondary-blue-500-base)`)
+- Shows a light blue active line indicator
+- Does not apply to already active or disabled tabs
+
+### Disabled State
+
+For tabs that are not currently interactive:
+
+```html
+<div class="tab-item disabled">
+    <div class="tab-content">
+        <div class="tab-icon icon-container">
+            <i class="fas fa-lock"></i>
+        </div>
+        <span class="tab-text">Restricted</span>
+    </div>
+    <div class="tab-active-line"></div>
+</div>
+```
+
+The disabled state:
+- Reduces opacity to 0.5
+- Changes cursor to not-allowed
+- Uses lighter gray color
+- Does not respond to hover events
+
+## Size Variants
+
+### Default (Medium) Size
+
+The standard tab size, used in most interfaces:
+
+```html
+<div class="tabs">
+    <!-- Tab items -->
+</div>
+```
+
+### Large Size
+
+For more prominent tab navigation:
+
+```html
+<div class="tabs tabs-large">
+    <!-- Tab items -->
+</div>
+```
+
+## JavaScript Integration
+
+To implement tab switching functionality:
+
+```html
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const tabItems = document.querySelectorAll('.tab-item');
+        
+        tabItems.forEach(tab => {
+            tab.addEventListener('click', function() {
+                // Skip if tab is disabled
+                if (this.classList.contains('disabled')) {
+                    return;
+                }
+                
+                // Remove active class from all tabs
+                tabItems.forEach(item => {
+                    item.classList.remove('active');
+                });
+                
+                // Add active class to clicked tab
+                this.classList.add('active');
+                
+                // Additional logic to show corresponding content
+                // const tabId = this.getAttribute('data-tab');
+                // showTabContent(tabId);
+            });
+        });
+    });
+</script>
+```
+
+This script:
+- Finds all tab items in the document
+- Adds click event listeners
+- Prevents interaction with disabled tabs
+- Handles the active state switching
+- Can be extended to show corresponding content
+
+## Implementation Examples
+
+### Basic Navigation Tabs
+
+For a simple set of navigation tabs:
+
+```html
+<div class="tabs">
+    <div class="tab-item active">
+        <div class="tab-content">
+            <div class="tab-icon icon-container">
+                <i class="fas fa-home"></i>
+            </div>
+            <span class="tab-text">Home</span>
+        </div>
+        <div class="tab-active-line"></div>
+    </div>
+    
+    <div class="tab-item">
+        <div class="tab-content">
+            <div class="tab-icon icon-container">
+                <i class="fas fa-chart-bar"></i>
+            </div>
+            <span class="tab-text">Analytics</span>
+        </div>
+        <div class="tab-active-line"></div>
+    </div>
+    
+    <div class="tab-item">
+        <div class="tab-content">
+            <div class="tab-icon icon-container">
+                <i class="fas fa-users"></i>
+            </div>
+            <span class="tab-text">Users</span>
+        </div>
+        <div class="tab-active-line"></div>
+    </div>
+    
+    <div class="tab-item">
+        <div class="tab-content">
+            <div class="tab-icon icon-container">
+                <i class="fas fa-cog"></i>
+            </div>
+            <span class="tab-text">Settings</span>
+        </div>
+        <div class="tab-active-line"></div>
+    </div>
+</div>
+```
+
+### Dashboard Tabs
+
+For tabbed sections in a dashboard:
+
+```html
+<div class="page-container">
+    <h1 class="heading-1">Dashboard Overview</h1>
+    
+    <div class="tabs">
+        <div class="tab-item active">
+            <div class="tab-content">
+                <div class="tab-icon icon-container">
+                    <i class="fas fa-chart-pie"></i>
+                </div>
+                <span class="tab-text">Overview</span>
+            </div>
+            <div class="tab-active-line"></div>
+        </div>
+        
+        <div class="tab-item">
+            <div class="tab-content">
+                <div class="tab-icon icon-container">
+                    <i class="fas fa-chart-line"></i>
+                </div>
+                <span class="tab-text">Analytics</span>
+            </div>
+            <div class="tab-active-line"></div>
+        </div>
+        
+        <div class="tab-item">
+            <div class="tab-content">
+                <div class="tab-icon icon-container">
+                    <i class="fas fa-users"></i>
+                </div>
+                <span class="tab-text">Users</span>
+            </div>
+            <div class="tab-active-line"></div>
+        </div>
+        
+        <div class="tab-item">
+            <div class="tab-content">
+                <div class="tab-icon icon-container">
+                    <i class="fas fa-cog"></i>
+                </div>
+                <span class="tab-text">Settings</span>
+            </div>
+            <div class="tab-active-line"></div>
+        </div>
+    </div>
+    
+    <!-- Tab content for the active tab -->
+    <div class="tab-content-container">
+        <!-- Content for Overview tab -->
+    </div>
+</div>
+```
+
+### Card Tabs
+
+For tabs within a card component:
+
+```html
+<div class="card">
+    <div class="card__header">
+        <h2 class="card__title">Project Details</h2>
+    </div>
+    
+    <div class="tabs">
+        <div class="tab-item active">
+            <div class="tab-content">
+                <div class="tab-icon icon-container">
+                    <i class="fas fa-info-circle"></i>
+                </div>
+                <span class="tab-text">Info</span>
+            </div>
+            <div class="tab-active-line"></div>
+        </div>
+        
+        <div class="tab-item">
+            <div class="tab-content">
+                <div class="tab-icon icon-container">
+                    <i class="fas fa-tasks"></i>
+                </div>
+                <span class="tab-text">Tasks</span>
+            </div>
+            <div class="tab-active-line"></div>
+        </div>
+        
+        <div class="tab-item">
+            <div class="tab-content">
+                <div class="tab-icon icon-container">
+                    <i class="fas fa-comment"></i>
+                </div>
+                <span class="tab-text">Comments</span>
+            </div>
+            <div class="tab-active-line"></div>
+        </div>
+    </div>
+    
+    <div class="card__content">
+        <!-- Content for Info tab -->
+        <p class="body-text">This project was created on January 15, 2023.</p>
+        <p class="body-text">Owner: John Smith</p>
+    </div>
+</div>
+```
+
+## Tab Content Implementation
+
+For implementing the content associated with each tab:
+
+```html
+<div class="tabs">
+    <div class="tab-item active" data-tab="tab1">
+        <!-- Tab 1 content -->
+    </div>
+    <div class="tab-item" data-tab="tab2">
+        <!-- Tab 2 content -->
+    </div>
+</div>
+
+<div class="tab-content-container">
+    <div id="tab1" class="tab-panel active">
+        <!-- Content for Tab 1 -->
+    </div>
+    <div id="tab2" class="tab-panel">
+        <!-- Content for Tab 2 -->
+    </div>
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const tabItems = document.querySelectorAll('.tab-item');
+        const tabPanels = document.querySelectorAll('.tab-panel');
+        
+        tabItems.forEach(tab => {
+            tab.addEventListener('click', function() {
+                // Skip if tab is disabled
+                if (this.classList.contains('disabled')) {
+                    return;
+                }
+                
+                // Update tab states
+                tabItems.forEach(item => {
+                    item.classList.remove('active');
+                });
+                this.classList.add('active');
+                
+                // Show corresponding content
+                const tabId = this.getAttribute('data-tab');
+                tabPanels.forEach(panel => {
+                    panel.classList.remove('active');
+                });
+                document.getElementById(tabId).classList.add('active');
+            });
+        });
+    });
+</script>
+
+<style>
+    .tab-panel {
+        display: none;
+    }
+    
+    .tab-panel.active {
+        display: block;
+    }
+</style>
+```
+
+## Best Practices
+
+1. **Tab Selection**: Choose appropriate tab labels and icons.
+   - Use clear, concise labels (1-2 words ideally)
+   - Select icons that clearly represent the content
+   - Maintain consistent terminology with content
+
+2. **Tab Order**: Organize tabs in a logical sequence.
+   - Place the most important or frequently used tab first
+   - Group related tabs together
+   - Consider the natural flow of user tasks
+
+3. **Active State**: Always indicate the current tab.
+   - Use the `active` class on the current tab
+   - Ensure one tab is always active
+   - Match the active tab to displayed content
+
+4. **Spacing and Alignment**: Maintain consistent spacing.
+   - Use the default gap provided by the tabs container
+   - Don't add custom margins to individual tabs
+   - Ensure vertical alignment of all tab elements
+
+5. **Content Changes**: Handle content transitions smoothly.
+   - Consider adding simple fade transitions
+   - Ensure content height changes don't cause layout shifts
+   - Maintain scroll position when appropriate
+
+6. **Responsive Behavior**: Adapt tabs for different screen sizes.
+   - Consider wrapping tab text on smaller screens
+   - Potentially switch to dropdown menu on very small screens
+   - Test tab usability on touch devices
+
+7. **Accessibility**: Ensure tabs are accessible.
+   - Use proper keyboard navigation (arrow keys)
+   - Include appropriate ARIA attributes
+   - Provide sufficient contrast for all states
+
+   Basic ARIA implementation:
+   ```html
+   <div class="tabs" role="tablist">
+       <div class="tab-item active" role="tab" aria-selected="true" id="tab1" aria-controls="panel1">
+           <!-- Tab content -->
+       </div>
+   </div>
+   <div id="panel1" role="tabpanel" aria-labelledby="tab1">
+       <!-- Panel content -->
+   </div>
+   ```
+
+## Common Anti-Patterns to Avoid
+
+1. **Inconsistent Tab Structure**: Not using the proper structure for tabs.
+   ```html
+   <!-- INCORRECT -->
+   <div class="tabs">
+       <a href="#" class="tab-item">Tab 1</a> <!-- Missing proper structure -->
+   </div>
+   ```
+
+2. **Too Many Tabs**: Overwhelming users with too many options.
+   ```html
+   <!-- INCORRECT -->
+   <div class="tabs">
+       <!-- 8+ tabs in a single row --> <!-- Information overload -->
+   </div>
+   ```
+
+3. **Missing Active Indicator**: Failing to show which tab is currently active.
+   ```html
+   <!-- INCORRECT -->
+   <div class="tabs">
+       <div class="tab-item"> <!-- Missing 'active' class -->
+           <!-- Tab content -->
+       </div>
+   </div>
+   ```
+
+4. **Inconsistent Spacing**: Adding custom margins to individual tabs.
+   ```html
+   <!-- INCORRECT -->
+   <div class="tabs">
+       <div class="tab-item" style="margin-right: 20px;"> <!-- Inconsistent spacing -->
+           <!-- Tab content -->
+       </div>
+   </div>
+   ```
+
+5. **Direct Text**: Not using the tab-text wrapper for text content.
+   ```html
+   <!-- INCORRECT -->
+   <div class="tab-item">
+       <div class="tab-content">
+           <div class="tab-icon icon-container">
+               <i class="fas fa-home"></i>
+           </div>
+           Home <!-- Missing tab-text wrapper -->
+       </div>
+   </div>
+   ```
+
+6. **Inconsistent Icon Usage**: Not using the proper icon container structure.
+   ```html
+   <!-- INCORRECT -->
+   <div class="tab-item">
+       <div class="tab-content">
+           <i class="fas fa-home"></i> <!-- Missing tab-icon and icon-container -->
+           <span class="tab-text">Home</span>
+       </div>
+   </div>
+   ```
+
+7. **All Tabs Disabled**: Making all tabs inaccessible.
+   ```html
+   <!-- INCORRECT -->
+   <div class="tabs">
+       <div class="tab-item disabled">Tab 1</div>
+       <div class="tab-item disabled">Tab 2</div>
+       <div class="tab-item disabled">Tab 3</div>
+   </div>
+   ```
+
+8. **Missing Active Line**: Not including the active line element.
+   ```html
+   <!-- INCORRECT -->
+   <div class="tab-item active">
+       <div class="tab-content">
+           <div class="tab-icon icon-container">
+               <i class="fas fa-home"></i>
+           </div>
+           <span class="tab-text">Home</span>
+       </div>
+       <!-- Missing tab-active-line element -->
+   </div>
+   ```
+
+By following these guidelines, you'll create consistent, usable tab interfaces that align with the design system's principles.

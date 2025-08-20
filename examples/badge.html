@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Badge Example - Keboola</title>
+    
+    <!-- Required Dependencies -->
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" as="style">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
+    
+    <!-- Design System CSS -->
+    <link href="../dist/design-system.css" rel="stylesheet">
+</head>
+<body class="bg-grey-50">
+    <div class="page-container">
+        <h1 class="heading-1">Badge Examples</h1>
+        
+        <div class="card">
+            <div class="card__header">
+                <h2 class="card__title">Basic Badges</h2>
+            </div>
+            <div class="card__content" style="display: flex; gap: var(--space-4); flex-wrap: wrap; align-items: center;">
+                <!-- Default Badge (Blue) -->
+                <span class="badge">
+                    <span class="badge-text">Default</span>
+                </span>
+                
+                <!-- Success Badge (Green) -->
+                <span class="badge badge-success">
+                    <span class="badge-text">Success</span>
+                </span>
+                
+                <!-- Warning Badge (Orange) -->
+                <span class="badge badge-warning">
+                    <span class="badge-text">Warning</span>
+                </span>
+                
+                <!-- Error Badge (Red) -->
+                <span class="badge badge-error">
+                    <span class="badge-text">Error</span>
+                </span>
+            </div>
+        </div>
+        
+        <div class="card">
+            <div class="card__header">
+                <h2 class="card__title">Badges with Icons</h2>
+            </div>
+            <div class="card__content" style="display: flex; gap: var(--space-4); flex-wrap: wrap; align-items: center;">
+                <!-- Default Badge with Icon -->
+                <span class="badge badge-with-icon">
+                    <div class="icon-container">
+                        <i class="fa-solid fa-info-circle"></i>
+                    </div>
+                    <span class="badge-text">Info</span>
+                </span>
+                
+                <!-- Success Badge with Icon -->
+                <span class="badge badge-success badge-with-icon">
+                    <div class="icon-container">
+                        <i class="fa-solid fa-check-circle"></i>
+                    </div>
+                    <span class="badge-text">Success</span>
+                </span>
+                
+                <!-- Warning Badge with Icon -->
+                <span class="badge badge-warning badge-with-icon">
+                    <div class="icon-container">
+                        <i class="fa-solid fa-exclamation-triangle"></i>
+                    </div>
+                    <span class="badge-text">Warning</span>
+                </span>
+                
+                <!-- Error Badge with Icon -->
+                <span class="badge badge-error badge-with-icon">
+                    <div class="icon-container">
+                        <i class="fa-solid fa-exclamation-circle"></i>
+                    </div>
+                    <span class="badge-text">Error</span>
+                </span>
+            </div>
+        </div>
+        
+        <div class="card">
+            <div class="card__header">
+                <h2 class="card__title">Custom Color Badges</h2>
+            </div>
+            <div class="card__content" style="display: flex; gap: var(--space-4); flex-wrap: wrap; align-items: center;">
+                <!-- Purple Badge -->
+                <span class="badge badge-purple">
+                    <span class="badge-text">Purple</span>
+                </span>
+                
+                <!-- Grey Badge -->
+                <span class="badge badge-grey">
+                    <span class="badge-text">Grey</span>
+                </span>
+            </div>
+        </div>
+        
+        <div class="card">
+            <div class="card__header">
+                <h2 class="card__title">Badges Used Inline with Text</h2>
+            </div>
+            <div class="card__content">
+                <p class="body-text">
+                    This feature is currently in development 
+                    <span class="badge badge-inline">
+                        <span class="badge-text">Beta</span>
+                    </span>
+                </p>
+                
+                <p class="body-text" style="margin-top: var(--space-3);">
+                    This operation was completed successfully
+                    <span class="badge badge-success badge-inline">
+                        <span class="badge-text">Done</span>
+                    </span>
+                </p>
+                
+                <p class="body-text" style="margin-top: var(--space-3);">
+                    Your account requires verification
+                    <span class="badge badge-warning badge-inline">
+                        <span class="badge-text">Action Required</span>
+                    </span>
+                </p>
+            </div>
+        </div>
+    </div>
+</body>
+</html> 

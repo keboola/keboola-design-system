@@ -1,0 +1,241 @@
+---
+description: 
+globs: 
+alwaysApply: true
+---
+# Form Component Guide
+
+Forms are a common UI pattern for collecting user input. This guide provides best practices for implementing forms using the design system.
+
+## Registration Form Example
+
+A complete registration form implementation looks like this:
+
+```html
+<div class="card">
+    <div class="card__header">
+        <h2 class="card__title">Registration Form</h2>
+    </div>
+    <div class="card__content">
+        <form id="registrationForm" novalidate style="display: flex; flex-direction: column; gap: var(--space-4);">
+            <!-- Name field -->
+            <div class="text-input size-medium required" id="nameField">
+                <div class="label">
+                    <span class="label-text">Name</span>
+                </div>
+                <div class="content">
+                    <input type="text" id="name" placeholder="Enter your name">
+                </div>
+                <div class="error-message">Please enter your name</div>
+            </div>
+            
+            <!-- Username field -->
+            <div class="text-input size-medium required" id="usernameField">
+                <div class="label">
+                    <span class="label-text">Username</span>
+                </div>
+                <div class="content">
+                    <input type="text" id="username" placeholder="Choose a username">
+                </div>
+                <div class="error-message">Please enter a username</div>
+            </div>
+            
+            <!-- Email field -->
+            <div class="text-input size-medium required" id="emailField">
+                <div class="label">
+                    <span class="label-text">Email</span>
+                </div>
+                <div class="content">
+                    <input type="email" id="email" placeholder="Enter your email address">
+                </div>
+                <div class="error-message">Please enter a valid email address</div>
+            </div>
+            
+            <!-- City field (select) -->
+            <div class="select required" id="cityField">
+                <div class="label">
+                    <span class="label-text">City</span>
+                </div>
+                <div class="select-wrapper">
+                    <select id="city" class="select-trigger">
+                        <option value="" disabled selected>Select your city</option>
+                        <option value="new-york">New York</option>
+                        <!-- Additional options -->
+                    </select>
+                </div>
+                <div class="error-message">Please select a city</div>
+            </div>
+            
+            <!-- Register button -->
+            <div style="margin-top: var(--space-2);">
+                <button type="submit" class="btn btn-primary btn-medium">
+                    <span class="btn-text">Register</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+```
+
+## Custom Form Validation
+
+To implement custom form validation that uses design system's error states:
+
+```html
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const form = document.getElementById('registrationForm');
+        
+        // Function to show error
+        function showError(fieldElement, show) {
+            if (show) {
+                fieldElement.classList.add('error');
+            } else {
+                fieldElement.classList.remove('error');
+            }
+        }
+        
+        form.addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent default browser validation
+            
+            let isValid = true;
+            
+            // Name validation
+            const nameField = document.getElementById('nameField');
+            const nameInput = document.getElementById('name');
+            if (!nameInput.value.trim()) {
+                showError(nameField, true);
+                isValid = false;
+            } else {
+                showError(nameField, false);
+            }
+            
+            // Email validation
+            const emailField = document.getElementById('emailField');
+            const emailInput = document.getElementById('email');
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(emailInput.value.trim())) {
+                showError(emailField, true);
+                isValid = false;
+            } else {
+                showError(emailField, false);
+            }
+            
+            // Username validation
+            const usernameField = document.getElementById('usernameField');
+            const usernameInput = document.getElementById('username');
+            if (!usernameInput.value.trim()) {
+                showError(usernameField, true);
+                isValid = false;
+            } else {
+                showError(usernameField, false);
+            }
+            
+            // City validation
+            const cityField = document.getElementById('cityField');
+            const cityInput = document.getElementById('city');
+            if (!cityInput.value) {
+                showError(cityField, true);
+                isValid = false;
+            } else {
+                showError(cityField, false);
+            }
+            
+            if (isValid) {
+                // Process form submission
+                console.log('Form submitted successfully!');
+            }
+        });
+        
+        // Add input event listeners to remove error state when user types
+        const inputs = form.querySelectorAll('input, select, textarea');
+        inputs.forEach(input => {
+            input.addEventListener('input', function() {
+                const fieldContainer = this.closest('.text-input, .select');
+                showError(fieldContainer, false);
+            });
+        });
+    });
+</script>
+```
+
+To make error messages visible, include this CSS:
+
+```css
+.text-input.error .error-message,
+.select.error .error-message {
+    display: block;
+}
+```
+
+## Error State Example
+
+For inputs with validation errors, add the `error` class and include an error message:
+
+```html
+<!-- Email field with error state -->
+<div class="text-input size-medium required error" id="emailField">
+    <div class="label">
+        <span class="label-text">Email</span>
+    </div>
+    <div class="content">
+        <input type="email" id="email" placeholder="Enter your email address" value="invalid-email">
+    </div>
+    <div class="error-message">Please enter a valid email address</div>
+</div>
+```
+
+## Best Practices
+
+1. **Structure and Layout**
+   - Maintain consistent vertical spacing between form elements (use `gap: var(--space-4)`)
+   - Use a single column layout for simple forms
+   - Group related fields together
+
+2. **Styling and Appearance**
+   - Use appropriate size variants (`size-medium` is standard for most forms)
+   - Use primary button style for submit actions
+   - Place forms inside card components for visual containment
+
+3. **Validation and Feedback**
+   - Use the `novalidate` attribute on forms to disable browser default validation
+   - Add unique IDs to form elements to facilitate JavaScript validation
+   - Add the `required` class (not attribute) to indicate required fields visually
+   - Include the `error-message` element with appropriate validation messages
+   - Validate form inputs with JavaScript:
+     - On form submission for initial validation
+     - Add input listeners to clear errors as the user types
+     - For empty required fields, display "This field is required"
+     - For invalid format fields, display specific format requirements
+   - Always provide visual feedback when validation fails or succeeds
+
+4. **Authentication Forms**
+   - Set a fixed width of 420px for login and signup forms
+   - Center the form both horizontally and vertically on the page:
+     ```html
+     <style>
+       body {
+         display: flex;
+         align-items: center;
+         justify-content: center;
+         min-height: 100vh;
+       }
+       .auth-container {
+         width: 420px;
+       }
+     </style>
+     <div class="page-container">
+       <div style="display: flex; flex-direction: column; align-items: center; gap: var(--space-8);">
+         <h1 class="heading-1">Login</h1>
+         <div class="auth-container">
+           <div class="card card--widget">
+             <!-- Authentication form content -->
+           </div>
+         </div>
+       </div>
+     </div>
+     ```
+   - Always use the `card--widget` variant for authentication forms
+   - Center the page title to maintain visual symmetry
+   - Include a footer section with secondary actions (e.g., "Don't have an account? Sign up")
+   - For sign-in buttons, consider setting `width: 100%` to make them span the full width of the form

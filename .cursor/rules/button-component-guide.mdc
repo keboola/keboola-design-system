@@ -1,0 +1,300 @@
+---
+description: 
+globs: 
+alwaysApply: true
+---
+# Button Component Guide
+
+Buttons are interactive elements that allow users to trigger actions or navigate to different views. This guide provides comprehensive instructions for implementing buttons in your application.
+
+## Basic Button Structure
+
+The base button component follows a consistent structure with specific class naming conventions:
+
+```html
+<button class="btn btn-primary btn-medium">
+    <span class="btn-text">Button Text</span>
+</button>
+```
+
+By default, buttons have the following styling:
+- Appropriate background color based on button type
+- Medium border radius (`var(--radius-medium)`)
+- Hover, active, and disabled states
+- Flex layout for consistent alignment
+
+## Button Types
+
+### Primary Button
+
+The primary button style is used for primary or the most important actions on a page.
+
+```html
+<button class="btn btn-primary btn-medium">
+    <span class="btn-text">Primary Button</span>
+</button>
+```
+
+**Specifications**:
+- Solid background color 
+- White text
+- Use for the most important actions on a page (Save, Submit, Confirm, etc.)
+
+### Secondary Button
+
+The secondary button style is used for secondary or less important actions.
+
+```html
+<button class="btn btn-secondary btn-medium">
+    <span class="btn-text">Secondary Button</span>
+</button>
+```
+
+**Specifications**:
+- Lighter background 
+- Darker text
+- Use for secondary actions (Cancel, Back, Close, etc.)
+
+## Button Sizes
+
+Buttons come in two different sizes to accommodate different UI needs:
+
+### Medium Button
+
+The default button size, appropriate for most usage contexts:
+
+```html
+<button class="btn btn-primary btn-medium">
+    <span class="btn-text">Medium Button</span>
+</button>
+```
+
+### Small Button
+
+A more compact button size for tight spaces or secondary actions:
+
+```html
+<button class="btn btn-primary btn-small">
+    <span class="btn-text">Small Button</span>
+</button>
+```
+
+## Buttons with Icons
+
+Icons can be added to buttons to provide additional visual cues about the action.
+
+### Icon on the Left
+
+```html
+<button class="btn btn-primary btn-medium">
+    <i class="fas fa-plus btn-icon"></i>
+    <span class="btn-text">Button Text</span>
+</button>
+```
+
+### Icon on the Right
+
+```html
+<button class="btn btn-primary btn-medium">
+    <span class="btn-text">Button Text</span>
+    <i class="fas fa-arrow-right btn-icon"></i>
+</button>
+```
+
+**Important:** Always use the `btn-icon` class on the icon element for proper spacing and alignment. Do not use inline margins.
+
+## Icon-Only Buttons
+
+For buttons that only contain an icon and no text:
+
+```html
+<button class="btn btn-primary btn-medium btn-icon-only">
+    <i class="fas fa-plus btn-icon"></i>
+</button>
+```
+
+**Specifications**:
+- Add the `btn-icon-only` class to the button element
+- Maintain the `btn-icon` class on the icon itself
+- Consider adding a `title` attribute for accessibility
+
+## Button States
+
+Buttons have several states that provide visual feedback to users:
+
+### Default State
+
+The normal appearance of a button:
+
+```html
+<button class="btn btn-primary btn-medium">
+    <span class="btn-text">Normal Button</span>
+</button>
+```
+
+### Hover State
+
+When testing or demonstrating, you can add the `hover` class:
+
+```html
+<button class="btn btn-primary btn-medium hover">
+    <span class="btn-text">Hover Button</span>
+</button>
+```
+
+In actual implementation, this state is handled automatically by CSS.
+
+### Active State
+
+When testing or demonstrating, you can add the `active` class:
+
+```html
+<button class="btn btn-primary btn-medium active">
+    <span class="btn-text">Active Button</span>
+</button>
+```
+
+In actual implementation, this state is handled automatically by CSS.
+
+### Disabled State
+
+For buttons that are not currently interactive:
+
+```html
+<button class="btn btn-primary btn-medium" disabled>
+    <span class="btn-text">Disabled Button</span>
+</button>
+```
+
+## Implementation Examples
+
+### Form Actions
+
+For form submission and cancellation:
+
+```html
+<div style="display: flex; gap: var(--space-4);">
+    <button class="btn btn-primary btn-medium">
+        <span class="btn-text">Save Changes</span>
+    </button>
+    
+    <button class="btn btn-secondary btn-medium">
+        <span class="btn-text">Cancel</span>
+    </button>
+</div>
+```
+
+### Dialog Actions
+
+For confirmations and modal actions:
+
+```html
+<div style="display: flex; gap: var(--space-4);">
+    <button class="btn btn-primary btn-medium">
+        <span class="btn-text">Confirm</span>
+    </button>
+    
+    <button class="btn btn-secondary btn-medium">
+        <span class="btn-text">Close</span>
+    </button>
+</div>
+```
+
+### Multiple Actions
+
+For a toolbar or action bar with multiple buttons:
+
+```html
+<div style="display: flex; flex-wrap: wrap; gap: var(--space-4);">
+    <button class="btn btn-primary btn-medium">
+        <i class="fas fa-plus btn-icon"></i>
+        <span class="btn-text">Add New</span>
+    </button>
+    
+    <button class="btn btn-secondary btn-medium">
+        <i class="fas fa-upload btn-icon"></i>
+        <span class="btn-text">Import</span>
+    </button>
+    
+    <button class="btn btn-secondary btn-medium">
+        <i class="fas fa-download btn-icon"></i>
+        <span class="btn-text">Export</span>
+    </button>
+</div>
+```
+
+## Button Grid Layout
+
+For creating a grid of buttons with equal width, use a grid layout:
+
+```html
+<div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: var(--space-4);">
+    <button class="btn btn-secondary btn-medium" style="width: 100%;">
+        <i class="fas fa-user-plus btn-icon"></i>
+        <span class="btn-text">Add User</span>
+    </button>
+    
+    <button class="btn btn-secondary btn-medium" style="width: 100%;">
+        <i class="fas fa-file-alt btn-icon"></i>
+        <span class="btn-text">View Report</span>
+    </button>
+    
+    <button class="btn btn-secondary btn-medium" style="width: 100%;">
+        <i class="fas fa-cog btn-icon"></i>
+        <span class="btn-text">Settings</span>
+    </button>
+</div>
+```
+
+## Best Practices
+
+1. **Button Hierarchy**: Maintain a clear hierarchy of actions.
+   - Use primary buttons for the most important action
+   - Use secondary buttons for less important or alternative actions
+   - Limit the number of primary buttons per view to avoid confusion
+
+2. **Button Placement**: Place buttons consistently throughout the UI.
+   - Primary action on the right in dialog buttons
+   - Form submission buttons at the bottom of forms
+   - Action buttons at the top of tables or lists
+
+3. **Button Spacing**: Maintain consistent spacing between buttons.
+   - Use `gap: var(--space-4)` for horizontal button groups
+   - Use proper containment for related button groups
+
+4. **Button Text**: Keep button text clear and concise.
+   - Use action verbs (Save, Delete, Create, etc.)
+   - Be specific about the action
+   - Avoid generic terms like "Submit" or "OK" when possible
+
+5. **Icon Usage**: Use icons to reinforce the button's action.
+   - Icons should be relevant to the action
+   - Use the `btn-icon` class for proper spacing
+   - Include text with icons for clarity (except for icon-only buttons)
+
+6. **Responsive Buttons**: Ensure buttons work well at all screen sizes.
+   - Use `flex-wrap: wrap` for button groups that might wrap
+   - Consider using full-width buttons on mobile
+
+7. **Accessibility**: Ensure buttons are accessible.
+   - Use proper contrast ratios for text and background
+   - Add `title` attributes to icon-only buttons
+   - Ensure disabled buttons are clearly distinguished
+
+## Common Anti-Patterns to Avoid
+
+1. **Mixed Button Types**: Do not mix primary and secondary button styles for actions of equal importance.
+
+2. **Inconsistent Styling**: Do not create custom button styles outside the design system.
+
+3. **Overloaded Interfaces**: Avoid having too many buttons in a single view.
+
+4. **Missing Visual Feedback**: Ensure buttons provide feedback for hover, active, and disabled states.
+
+5. **Improper Icon Implementation**: Do not use custom margins for icons – always use the `btn-icon` class.
+
+6. **Low Contrast**: Avoid buttons where the text doesn't have sufficient contrast against the background.
+
+7. **No Button Text Wrapper**: Always wrap button text in a `<span class="btn-text">` element for proper styling.
+
+By following these guidelines, you'll create consistent, usable button interfaces that align with the design system's principles.

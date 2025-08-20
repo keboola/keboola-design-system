@@ -1,0 +1,671 @@
+---
+description: 
+globs: 
+alwaysApply: true
+---
+# Design Generation Guidelines
+
+When creating new designs using the design system, follow these important guidelines:
+
+## Study Existing Examples First
+
+Before generating any new pages or components, thoroughly review the existing examples in the `examples/` directory. These examples demonstrate proper implementation of design system principles and components in real-world contexts. Pay special attention to:
+
+- How components are nested and organized
+- Spacing patterns between and within components
+- Typography hierarchy and usage
+- How cards and forms are structured
+
+Taking time to understand existing implementations will help ensure that new designs maintain consistency and follow established patterns. Examples like `dashboard.html`, `login.html`, and other templates contain valuable patterns that should be referenced before creating similar designs.
+
+## File Location
+
+1. **Root Folder Placement**: All new designs generated from the design system chat interface MUST be placed in the root folder for easy access and discoverability.
+
+```
+design-system/
+├── your-new-design.html  <-- Place new designs here
+├── your-new-component.html
+```
+
+## Component Reuse
+
+1. **100% Component Reuse**: Always use existing components from the design system. Do not create custom components or styles that deviate from the system.
+
+2. **Available Components**:
+   - Basic components like buttons.css, text-input.css, and select.css
+   - Advanced components like card.css, tabs.css, and banner.css
+
+3. **No Custom CSS**: Avoid writing custom CSS whenever possible. Use the existing classes and components.
+
+## Token Usage
+
+1. **Design Tokens Only**: Use only the design tokens defined in tokens/colors.css, tokens/variables.css, and tokens/typography.css.
+
+2. **Spacing Variables**: Always use spacing variables (`var(--space-*)`) for layout and spacing.
+
+3. **Color Tokens**: Always use the predefined color tokens like `var(--neutral-*)`, `var(--success-*)`, etc.
+
+   ### Available Color Variables Reference
+
+   #### Neutral Colors
+   ```css
+   --neutral-white: #ffffff;
+   --neutral-grey-50: #f2f4f7;
+   --neutral-grey-100: #edf0f5;
+   --neutral-grey-150: #d9dde5;
+   --neutral-grey-200: #c5cbd6;
+   --neutral-grey-300: #a2aab8;
+   --neutral-grey-400: #7c8594;
+   --neutral-grey-500-base: #565c66;
+   --neutral-grey-600: #454952;
+   --neutral-grey-800: #222529;
+   --neutral-grey-900: #101114;
+   ```
+
+   #### Secondary Colors - Blue (Information)
+   ```css
+   --secondary-blue-800: #064a8f;
+   --secondary-blue-700: #075fb8;
+   --secondary-blue-600: #0975e0;
+   --secondary-blue-500-base: #1f8fff;
+   --secondary-blue-450: #3e9eff;
+   --secondary-blue-200: #c2e0ff;
+   --secondary-blue-100: #e0f0ff;
+   ```
+
+   #### Success Colors - Green
+   ```css
+   --success-green-800: #158b15;
+   --success-green-700: #189f18;
+   --success-green-600: #1bb31b;
+   --success-green-500-base: #1ec71e;
+   --success-green-200: #baf5ba;
+   --success-green-100: #e0ffe0;
+   ```
+
+   #### Warning Colors - Orange (Not Yellow)
+   ```css
+   --warning-orange-600: #d17d00;
+   --warning-orange-550: #e38800;
+   --warning-orange-500-base: #f59300;
+   --warning-orange-300: #ffd699;
+   --warning-orange-200: #ffe7c2;
+   --warning-orange-100: #fff3e0;
+   ```
+
+   #### Error Colors - Red
+   ```css
+   --error-red-700: #a3001b;
+   --error-red-600: #b8001f;
+   --error-red-550: #c40021;
+   --error-red-500-base: #e00025;
+   --error-red-200: #ffc2cc;
+   --error-red-100: #ffe0e6;
+   ```
+
+   #### Accent Colors
+   ```css
+   --accent-purple-600: #6f36e0;
+   --accent-purple-500-base: #925cff;
+   --accent-purple-200: #d6c2ff;
+   --accent-purple-100: #ebe0ff;
+   --accent-cyan-600: #00a0b2;
+   --accent-cyan-500-base: #00bbd1;
+   --accent-cyan-200: #bef3ff;
+   --accent-cyan-100: #e0f9ff;
+   --accent-teal-600: #00a673;
+   --accent-teal-500-base: #00c287;
+   --accent-teal-200: #96ffce;
+   --accent-teal-100: #cfffe6;
+   ```
+
+   ### Common Color Usage Patterns
+
+   #### For Status Indicators:
+   - Success/Positive: `var(--success-green-500-base)` and `var(--success-green-100)`
+   - Warning/Pending: `var(--warning-orange-500-base)` and `var(--warning-orange-100)`
+   - Error/Negative: `var(--error-red-500-base)` and `var(--error-red-100)`
+   - Information/Neutral: `var(--secondary-blue-500-base)` and `var(--secondary-blue-100)`
+
+   #### For Text:
+   - Regular text: `var(--neutral-grey-800)`
+   - Secondary text: `var(--neutral-grey-600)`
+   - Disabled text: `var(--neutral-grey-300)`
+
+   #### For Backgrounds:
+   - Page background: `var(--neutral-grey-50)`
+   - Card background: `var(--neutral-white)`
+
+   #### For Icons:
+   - Icons: `var(--neutral-grey-400)`
+   - Status icons: Use respective status colors
+
+   #### For Borders:
+   - Default borders: `var(--neutral-grey-150)`
+   - Emphasized borders: `var(--neutral-grey-200)`
+
+   **IMPORTANT NOTE**: There are no yellow color variables in the design system. For warning indicators, always use the orange color variables (`var(--warning-orange-*)`) instead.
+
+4. **Background Color**: All pages MUST use `--neutral-grey-50` as the background color.
+
+5. **Typography**: Only use font styles defined in typography tokens. Do not use custom font sizes, weights, or families. Use the predefined typography classes:
+   - `heading-1`, `heading-2`, `heading-3` for headings
+   - `body-text` for regular paragraph text
+   - `small-body-text` for smaller text
+   - `label-text` for form labels
+
+## Color Legends and Visualizations
+
+When creating color legends, indicators, or data visualizations in your UI, be aware of potential CSS variable limitations:
+
+1. **CSS Variable Validation**: Always verify that color variables used in legends are properly defined in the design system:
+   ```html
+   <!-- POTENTIAL ISSUE: var(--secondary-purple-500) might not be defined -->
+   <div style="background-color: var(--secondary-purple-500);"></div>
+   
+   <!-- SAFE APPROACH: Use direct RGB equivalent of design token -->
+   <div style="background-color: rgb(147, 51, 234);"></div>
+   ```
+
+2. **Color Indicators & Legends**: For color indicators in legends, charts or other UI elements:
+   - Prefer using defined design tokens where proven to work
+   - For critical UI elements like legends, consider using direct RGB/HEX equivalents
+   - Always visually test to ensure all color indicators are visible
+   
+3. **Color Consistency**: Maintain consistency between visual indicators and their associated data:
+   ```html
+   <!-- Color legend must match the data visualization colors -->
+   <div style="display: flex; gap: var(--space-4);">
+     <div style="display: flex; align-items: center; gap: var(--space-2);">
+       <div style="width: 12px; height: 12px; border-radius: var(--radius-full); background-color: rgb(37, 99, 235);"></div>
+       <span class="small-body-text">Desktop</span>
+     </div>
+     <!-- Use the same exact color values in your visualizations -->
+   </div>
+   ```
+
+4. **Core Color Token Reliability**: The following design tokens are well-tested and reliable in all contexts:
+   - `var(--neutral-*)` family
+   - `var(--secondary-blue-500-base)`
+   - `var(--success-green-500-base)`
+   - `var(--error-red-500-base)`
+   
+   For other tokens, verify visual appearance or use direct RGB equivalents for critical UI elements.
+
+5. **Color Documentation**: When using direct RGB values, document the design token they represent:
+   ```html
+   <!-- rgb(147, 51, 234) equivalent to var(--secondary-purple-500) -->
+   <div style="background-color: rgb(147, 51, 234);"></div>
+   ```
+
+6. **Visual Testing**: Always visually test color indicators to ensure:
+   - All legend elements are visible
+   - Colors render consistently across browsers
+   - Color meaning is preserved according to design system intent
+
+## Spacing Best Practices
+
+1. **Choose ONE Spacing Method**: Choose either container gaps OR margins/padding - never combine both for the same parent-child relationship.
+
+2. **Prefer Container Gaps**: Use flexbox/grid `gap` for consistent spacing between elements:
+   ```html
+   <div style="display: flex; flex-direction: column; gap: var(--space-4);">
+     <div>Child 1</div>
+     <div>Child 2</div>
+   </div>
+   ```
+
+3. **Avoid Redundant Spacing**: Never combine parent `gap` with child margins:
+   ```html
+   <!-- INCORRECT -->
+   <div style="display: flex; flex-direction: column; gap: var(--space-4);">
+     <div>Child 1</div>
+     <div style="margin-top: var(--space-2);">Child 2</div> <!-- REDUNDANT! -->
+   </div>
+   ```
+
+4. **Consistent Spacing Scale**: Use the spacing token scale consistently throughout your design.
+
+## ⚠️ CRITICAL: Common Spacing Violations
+
+The most common design system violations involve redundant spacing methods. Always check your layouts for these patterns:
+
+1. **Grid containers with both gap AND margin-bottom/margin-top**:
+   ```css
+   /* INCORRECT */
+   .stats-grid {
+     display: grid;
+     gap: var(--space-6);
+     margin-bottom: var(--space-6); /* VIOLATION! */
+   }
+   
+   /* CORRECT */
+   .stats-grid {
+     display: grid;
+     gap: var(--space-6);
+     /* Let the parent container's gap handle spacing between this and the next element */
+   }
+   ```
+
+2. **Flex/grid containers with margin on direct children**:
+   ```html
+   <!-- INCORRECT -->
+   <div class="page-container"> <!-- already has gap: var(--space-6) -->
+     <div class="card">...</div>
+     <div class="card" style="margin-top: var(--space-4);">...</div> <!-- VIOLATION! -->
+   </div>
+   
+   <!-- CORRECT -->
+   <div class="page-container"> <!-- already has gap: var(--space-6) -->
+     <div class="card">...</div>
+     <div class="card">...</div> <!-- No additional margin needed -->
+   </div>
+   ```
+
+3. **Double margins between vertical elements**:
+   ```html
+   <!-- INCORRECT -->
+   <div style="margin-bottom: var(--space-4);">First element</div>
+   <div style="margin-top: var(--space-4);">Second element</div> <!-- VIOLATION! -->
+   
+   <!-- CORRECT: Use only one margin or gap -->
+   <div>First element</div>
+   <div style="margin-top: var(--space-4);">Second element</div>
+   ```
+
+4. **Cards with external margins**:
+   ```html
+   <!-- INCORRECT -->
+   <div class="card" style="margin-bottom: var(--space-6);">...</div> <!-- VIOLATION! -->
+   
+   <!-- CORRECT -->
+   <div class="card">...</div> <!-- Let the parent container handle spacing -->
+   ```
+
+5. **Card component spacing**:
+   The card component should never have external spacing applied directly to it:
+   ```html
+   <!-- INCORRECT -->
+   <div class="card" style="margin-top: var(--space-6);">...</div> <!-- VIOLATION! -->
+   <div class="card" style="margin-bottom: var(--space-6);">...</div> <!-- VIOLATION! -->
+   <div class="card" style="padding-top: var(--space-4);">...</div> <!-- VIOLATION! -->
+   
+   <!-- CORRECT -->
+   <div class="card">...</div> <!-- Let parent container's gap handle spacing -->
+   ```
+   
+   Cards should be direct children of flex/grid containers with gap, which will automatically handle the spacing:
+   ```html
+   <div class="page-container"> <!-- Already has gap: var(--space-6) -->
+     <div class="card">...</div>
+     <div class="card">...</div> <!-- Properly spaced by parent container -->
+   </div>
+   ```
+
+6. **Card content list items**:
+   When creating lists of items inside card content, do not add bottom borders to the last item:
+   ```html
+   <!-- INCORRECT -->
+   <div class="card__content">
+     <div style="display: flex; flex-direction: column; gap: var(--space-3);">
+       <div style="padding: var(--space-3); border-bottom: 1px solid var(--neutral-grey-150);">Item 1</div>
+       <div style="padding: var(--space-3); border-bottom: 1px solid var(--neutral-grey-150);">Item 2</div>
+       <div style="padding: var(--space-3); border-bottom: 1px solid var(--neutral-grey-150);">Last Item</div> <!-- VIOLATION! -->
+     </div>
+   </div>
+   
+   <!-- CORRECT -->
+   <div class="card__content">
+     <div style="display: flex; flex-direction: column; gap: var(--space-3);">
+       <div style="padding: var(--space-3); border-bottom: 1px solid var(--neutral-grey-150);">Item 1</div>
+       <div style="padding: var(--space-3); border-bottom: 1px solid var(--neutral-grey-150);">Item 2</div>
+       <div style="padding: var(--space-3);">Last Item</div> <!-- No border on last item -->
+     </div>
+   </div>
+   ```
+   This creates a cleaner visual transition between the content and the card footer.
+
+Remember: The `.page-container` class already provides a flex column layout with `gap: var(--space-6)`. This gap handles the vertical spacing between all direct children.
+
+## Topbar Spacing
+
+1. **Content Spacing with Topbar**: When implementing a topbar, always add spacing to the main content container:
+   ```html
+   <div class="topbar">
+     <!-- Topbar content -->
+   </div>
+   
+   <div class="main-content">
+     <div class="page-container">
+       <!-- Page content -->
+     </div>
+   </div>
+   ```
+
+2. **Use Topbar Height Variable**: Always use the `--topbar-height` variable to calculate spacing:
+   ```css
+   .main-content {
+     margin-top: var(--topbar-height);
+   }
+   ```
+
+## Page Width Best Practices
+
+1. **Consistent Maximum Width**: Always wrap page content in the `.page-container` class to ensure a consistent maximum width of 1280px:
+   ```html
+   <body class="bg-grey-50">
+     <div class="page-container">
+       <h1 class="heading-1">Page Title</h1>
+       <!-- All page content goes here -->
+     </div>
+   </body>
+   ```
+
+2. **Standard Container Layout**:
+   - The `.page-container` class automatically provides:
+     - Maximum width of 1280px
+     - Horizontal padding (var(--space-8)) on both sides
+     - Top and bottom padding (var(--space-16))
+     - Flex column layout with gap (var(--space-6))
+     - Proper box-sizing
+
+3. **Content Organization**:
+   - Place all content directly inside the page-container
+   - No need for additional content wrappers
+   - Elements will be automatically spaced with the built-in gap
+
+4. **Full-Width Backgrounds**: For designs that need full-width colored backgrounds:
+   ```html
+   <div class="bg-grey-50" style="width: 100%;">
+     <div class="page-container">
+       <!-- Content here -->
+     </div>
+   </div>
+   ```
+
+5. **Legacy Classes**: The `.container` class is deprecated and should not be used for new designs.
+
+## Implementation Checklist
+
+Before submitting new designs, ensure that:
+
+- [ ] All files are in the root directory
+- [ ] Only existing components are used
+- [ ] Only design tokens are used for styling
+- [ ] Only typography tokens are used for text styling
+- [ ] Proper semantic structure is followed
+- [ ] Core dependencies are included (fonts, icons)
+- [ ] Page background color is set to --neutral-grey-50
+- [ ] Spacing follows the gap OR margin rule (not both)
+
+## Example Structure
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Required Dependencies -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    
+    <!-- Design System CSS -->
+    <link href="./dist/design-system.css" rel="stylesheet">
+    
+    <style>
+        body {
+            background-color: var(--neutral-grey-50);
+        }
+    </style>
+</head>
+<body>
+    <div class="page-container">
+        <!-- Example using typography tokens -->
+        <h1 class="heading-1">Page Title</h1>
+        <p class="body-text">This is a paragraph using the body-text class from typography tokens.</p>
+        <p class="small-body-text">This is smaller text using the small-body-text class.</p>
+        
+        <!-- Card Component Example -->
+        <div class="card">
+            <h3 class="card__title">Card Title</h3>
+            <div class="card__content">
+                <p class="body-text">Card content goes here.</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+```
+
+## AI Design System Check Examples
+
+Before generating any new designs, AI should check these examples from the existing codebase to ensure compliance with the design system:
+
+### ✅ Correct Spacing Examples from Codebase
+
+1. **Dashboard with proper use of `page-container` and grid layout (from examples/dashboard.html):**
+   ```html
+   <div class="main-content">
+       <div class="page-container">
+           <h1 class="heading-1">Dashboard Overview</h1>
+           
+           <!-- Overview Cards with proper grid and gap -->
+           <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: var(--space-6);">
+               <div class="overview-card">
+                   <!-- Card content -->
+               </div>
+               <div class="overview-card">
+                   <!-- Card content -->
+               </div>
+               <!-- More overview cards -->
+           </div>
+           
+           <!-- Card as direct child of page-container, no margins needed -->
+           <div class="card">
+               <div class="card__header">
+                   <h2 class="card__title">Recent Activity</h2>
+               </div>
+               <div class="card__content">
+                   <!-- Content -->
+               </div>
+           </div>
+           
+           <!-- Another card as direct child, still no margins -->
+           <div class="card">
+               <div class="card__header">
+                   <h2 class="card__title">Recent Tasks</h2>
+               </div>
+               <div class="card__content">
+                   <!-- Content -->
+               </div>
+           </div>
+       </div>
+   </div>
+   ```
+
+2. **Login page with proper container and form spacing (from examples/login.html):**
+   ```html
+   <div class="page-container">
+       <div style="display: flex; flex-direction: column; align-items: center; gap: var(--space-8);">
+           <h1 class="heading-1">Login</h1>
+           
+           <div class="auth-container">
+               <div class="card card--widget">
+                   <h2 class="card__title">Sign in to your account</h2>
+                   <div class="card__content">
+                       <!-- Form with proper gap spacing -->
+                       <form id="loginForm" style="display: flex; flex-direction: column; gap: var(--space-4);">
+                           <!-- Form fields -->
+                       </form>
+                   </div>
+               </div>
+           </div>
+       </div>
+   </div>
+   ```
+
+3. **Proper topbar implementation with content spacing (from examples/dashboard.html):**
+   ```html
+   <!-- Topbar -->
+   <div class="topbar">
+       <div class="topbar__header">
+           <div class="topbar__container">
+               <!-- Topbar content -->
+           </div>
+       </div>
+   </div>
+
+   <!-- Main Content with proper margin-top -->
+   <div class="main-content">
+       <div class="page-container">
+           <!-- Page content -->
+       </div>
+   </div>
+   
+   <style>
+       .main-content {
+           margin-top: var(--topbar-height);
+       }
+   </style>
+   ```
+
+4. **Form with proper internal spacing (from examples/login.html):**
+   ```html
+   <form id="loginForm" style="display: flex; flex-direction: column; gap: var(--space-4);">
+       <!-- Email field -->
+       <div class="text-input size-medium required" id="emailField">
+           <div class="label">
+               <span class="label-text">Email</span>
+           </div>
+           <div class="content">
+               <input type="email" id="email" placeholder="Enter your email address">
+           </div>
+           <div class="error-message">Please enter a valid email address</div>
+       </div>
+       
+       <!-- Password field -->
+       <div class="text-input size-medium required" id="passwordField">
+           <!-- Input content -->
+       </div>
+       
+       <!-- Remember me + forgot password with space-between -->
+       <div style="display: flex; justify-content: space-between; align-items: center;">
+           <div class="checkbox">
+               <!-- Checkbox content -->
+           </div>
+           <a href="#" class="link-small-body-medium">Forgot your password?</a>
+       </div>
+       
+       <!-- Login button -->
+       <div>
+           <button type="submit" class="btn btn-primary btn-medium" style="width: 100%;">
+               <span class="btn-text">Login</span>
+           </button>
+       </div>
+   </form>
+   ```
+
+5. **Nested content with proper gap spacing (from examples/dashboard.html):**
+   ```html
+   <div class="card__content">
+       <div style="display: flex; flex-direction: column; gap: var(--space-3);">
+           <div style="display: flex; align-items: center; padding: var(--space-3); border-bottom: 1px solid var(--neutral-grey-150);">
+               <div style="width: 40px; height: 40px; border-radius: var(--radius-full); background-color: var(--secondary-blue-100); display: flex; align-items: center; justify-content: center; margin-right: var(--space-4);">
+                   <i class="fas fa-user" style="color: var(--secondary-blue-500-base);"></i>
+               </div>
+               <div style="flex: 1;">
+                   <p class="body-text-medium">New user registered</p>
+                   <p class="small-body-text">John Doe created an account</p>
+               </div>
+               <div class="small-body-text text-grey-400">10 min ago</div>
+           </div>
+           <!-- More similar items -->
+       </div>
+   </div>
+   ```
+
+### ❌ Incorrect Spacing Patterns to Avoid
+
+1. **NEVER add margins to cards:**
+   ```html
+   <!-- INCORRECT -->
+   <div class="page-container">
+     <div class="card" style="margin-bottom: var(--space-6);">...</div>
+     <div class="card" style="margin-top: var(--space-6);">...</div>
+   </div>
+   ```
+
+2. **NEVER combine gap with margins:**
+   ```html
+   <!-- INCORRECT -->
+   <div style="display: flex; flex-direction: column; gap: var(--space-6);">
+     <div>...</div>
+     <div style="margin-top: var(--space-4);">...</div>
+   </div>
+   ```
+
+3. **NEVER add spacing to both parent and child:**
+   ```html
+   <!-- INCORRECT -->
+   <div style="margin-bottom: var(--space-6);">
+     <div style="margin-top: var(--space-4);">...</div>
+   </div>
+   ```
+
+4. **NEVER use pixel values for spacing (except in very specific cases):**
+   ```html
+   <!-- INCORRECT -->
+   <div style="margin-bottom: 24px;">...</div>
+   
+   <!-- CORRECT (from examples) -->
+   <div style="margin-top: var(--space-4);">...</div>
+   ```
+
+5. **NEVER use hardcoded colors:**
+   ```html
+   <!-- INCORRECT -->
+   <div style="color: #2563eb;">...</div>
+   
+   <!-- CORRECT (from examples) -->
+   <div style="color: var(--secondary-blue-500-base);">...</div>
+   ```
+
+### Typography Examples from Codebase
+
+1. **Proper heading hierarchy (from examples/dashboard.html):**
+   ```html
+   <!-- Page title -->
+   <h1 class="heading-1">Dashboard Overview</h1>
+   
+   <!-- Card titles -->
+   <div class="card">
+       <div class="card__header">
+           <h2 class="card__title">Recent Activity</h2>
+       </div>
+       <!-- Card content -->
+   </div>
+   ```
+
+2. **Text styles with proper color tokens (from examples/dashboard.html):**
+   ```html
+   <div class="overview-card__subtitle">
+       <span style="color: var(--success-green-500-base);">+12% </span>since last month
+   </div>
+   
+   <p class="body-text-medium">New user registered</p>
+   <p class="small-body-text">John Doe created an account</p>
+   <div class="small-body-text text-grey-400">10 min ago</div>
+   ```
+
+3. **Form labels and links (from examples/login.html):**
+   ```html
+   <div class="label">
+       <span class="label-text">Email</span>
+   </div>
+   
+   <div class="card__footer">
+       <p class="small-body-text">Don't have an account? <a href="#" class="link-small-body-medium">Sign up</a></p>
+   </div>
+   ```
+
+By checking these real-world examples from the existing codebase before generating new designs, AI can ensure consistent application of the design system rules and avoid common violations.

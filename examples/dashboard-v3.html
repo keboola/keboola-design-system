@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard with Sidebar</title>
+    <!-- Required Dependencies -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    
+    <!-- Design System CSS -->
+    <link href="../dist/design-system.css" rel="stylesheet">
+    
+    <style>
+        body {
+            background-color: var(--neutral-grey-50);
+            margin: 0;
+            padding: 0;
+            animation: fadeIn 0.8s ease-in-out;
+        }
+        
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+        
+        .main-content {
+            margin-left: var(--sidebar-width);
+            padding-top: var(--space-4);
+        }
+        
+        /* Card grids */
+        .grid-container {
+            display: grid;
+            gap: var(--space-4);
+        }
+        
+        .grid-four-cols {
+            grid-template-columns: repeat(4, 1fr);
+        }
+        
+        .grid-three-cols {
+            grid-template-columns: repeat(3, 1fr);
+        }
+        
+        .grid-two-cols {
+            grid-template-columns: repeat(2, 1fr);
+        }
+        
+        /* Grey overview card variant */
+        .overview-card--grey {
+            background-color: var(--neutral-grey-100);
+            box-shadow: none;
+        }
+
+        /* Responsive breakpoints */
+        @media (max-width: 768px) {
+            .main-content {
+                margin-left: 0;
+            }
+            
+            .sidebar {
+                display: none;
+            }
+            
+            .grid-four-cols,
+            .grid-three-cols,
+            .grid-two-cols {
+                grid-template-columns: 1fr;
+            }
+            
+            /* Fix performance metrics flex layout on mobile */
+            .metrics-container > div {
+                flex-basis: 100%;
+            }
+        }
+        
+        @media (min-width: 769px) and (max-width: 1280px) {
+            .grid-four-cols {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .grid-three-cols {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Sidebar Component -->
+    <div class="sidebar">
+        <div class="sidebar__logo">
+            <div class="sidebar__logo-image"></div>
+        </div>
+        <div class="sidebar__nav">
+            <div class="sidebar__item active">
+                <i class="fas fa-home"></i>
+            </div>
+            <div class="sidebar__item">
+                <i class="fas fa-chart-bar"></i>
+            </div>
+            <div class="sidebar__item">
+                <i class="fas fa-user"></i>
+            </div>
+            <div class="sidebar__item">
+                <i class="fas fa-bell"></i>
+            </div>
+            <div class="sidebar__item">
+                <i class="fas fa-cog"></i>
+            </div>
+        </div>
+        <div class="sidebar__divider"></div>
+        <div class="sidebar__user">
+            <div class="sidebar__item-avatar">
+                <div class="sidebar__avatar"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <div class="page-container" style="display: flex; flex-direction: column; gap: var(--space-6);">
+            <div class="header">
+                <h1 class="header__title">Dashboard Overview</h1>
+                <div class="header__actions">
+                    <button class="btn btn-secondary btn-medium">
+                        <i class="fas fa-filter btn-icon"></i>
+                        <span class="btn-text">Filter</span>
+                    </button>
+                    <button class="btn btn-primary btn-medium">
+                        <i class="fas fa-sync btn-icon"></i>
+                        <span class="btn-text">Refresh Data</span>
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Tabs Component -->
+            <div class="tabs">
+                <div class="tab-item active">
+                    <div class="tab-content">
+                        <div class="tab-icon icon-container">
+                            <i class="fas fa-chart-pie"></i>
+                        </div>
+                        <span class="tab-text">Overview</span>
+                    </div>
+                    <div class="tab-active-line"></div>
+                </div>
+                <div class="tab-item">
+                    <div class="tab-content">
+                        <div class="tab-icon icon-container">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                        <span class="tab-text">Analytics</span>
+                    </div>
+                    <div class="tab-active-line"></div>
+                </div>
+                <div class="tab-item">
+                    <div class="tab-content">
+                        <div class="tab-icon icon-container">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <span class="tab-text">Users</span>
+                    </div>
+                    <div class="tab-active-line"></div>
+                </div>
+                <div class="tab-item">
+                    <div class="tab-content">
+                        <div class="tab-icon icon-container">
+                            <i class="fas fa-cog"></i>
+                        </div>
+                        <span class="tab-text">Settings</span>
+                    </div>
+                    <div class="tab-active-line"></div>
+                </div>
+            </div>
+            
+            <!-- Large Search Component -->
+            <div class="large-search">
+                <div class="large-search__content">
+                    <i class="fas fa-search large-search__icon"></i>
+                    <input type="text" class="large-search__input" placeholder="Search dashboards, reports, metrics...">
+                    <button class="large-search__clear">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Overview Cards -->
+            <div class="grid-container grid-four-cols">
+                <div class="overview-card">
+                    <div class="overview-card__header">
+                        <span class="overview-card__title">Total Users</span>
+                    </div>
+                    <div class="overview-card__value">1,245</div>
+                    <div class="overview-card__subtitle">
+                        <span class="badge badge-success">
+                            <span class="badge-text">+12%</span>
+                        </span>
+                        <span style="margin-left: var(--space-1);">since last month</span>
+                    </div>
+                </div>
+                
+                <div class="overview-card">
+                    <div class="overview-card__header">
+                        <span class="overview-card__title">Active Sessions</span>
+                    </div>
+                    <div class="overview-card__value">268</div>
+                    <div class="overview-card__subtitle">
+                        <span class="badge badge-success">
+                            <span class="badge-text">+5%</span>
+                        </span>
+                        <span style="margin-left: var(--space-1);">since yesterday</span>
+                    </div>
+                </div>
+                
+                <div class="overview-card">
+                    <div class="overview-card__header">
+                        <span class="overview-card__title">Conversion Rate</span>
+                    </div>
+                    <div class="overview-card__value">8.4%</div>
+                    <div class="overview-card__subtitle">
+                        <span class="badge badge-error">
+                            <span class="badge-text">-2.3%</span>
+                        </span>
+                        <span style="margin-left: var(--space-1);">since last week</span>
+                    </div>
+                </div>
+                
+                <div class="overview-card">
+                    <div class="overview-card__header">
+                        <span class="overview-card__title">Total Revenue</span>
+                    </div>
+                    <div class="overview-card__value">$84,245</div>
+                    <div class="overview-card__subtitle">
+                        <span class="badge badge-success">
+                            <span class="badge-text">+18%</span>
+                        </span>
+                        <span style="margin-left: var(--space-1);">since last month</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Recent Activity and Tasks Grid -->
+            <div class="grid-container grid-two-cols">
+                <!-- Recent Activity -->
+                <div class="card">
+                    <h2 class="card__title">Recent Activity</h2>
+                    <div class="card__content">
+                        <div style="display: flex; flex-direction: column; gap: var(--space-3);">
+                            <div style="display: flex; align-items: center; padding: var(--space-3); border-bottom: 1px solid var(--neutral-grey-150);">
+                                <div style="width: 40px; height: 40px; border-radius: var(--radius-full); background-color: var(--secondary-blue-100); display: flex; align-items: center; justify-content: center; margin-right: var(--space-4);">
+                                    <i class="fas fa-user" style="color: var(--secondary-blue-500-base);"></i>
+                                </div>
+                                <div style="flex: 1;">
+                                    <p class="body-text-medium">New user registered</p>
+                                    <p class="small-body-text">John Doe created an account</p>
+                                </div>
+                                <div class="small-body-text text-grey-400">10 min ago</div>
+                            </div>
+                            
+                            <div style="display: flex; align-items: center; padding: var(--space-3); border-bottom: 1px solid var(--neutral-grey-150);">
+                                <div style="width: 40px; height: 40px; border-radius: var(--radius-full); background-color: var(--success-green-100); display: flex; align-items: center; justify-content: center; margin-right: var(--space-4);">
+                                    <i class="fas fa-shopping-cart" style="color: var(--success-green-500-base);"></i>
+                                </div>
+                                <div style="flex: 1;">
+                                    <p class="body-text-medium">New order placed</p>
+                                    <p class="small-body-text">Order #12345 was processed</p>
+                                </div>
+                                <div class="small-body-text text-grey-400">25 min ago</div>
+                            </div>
+                            
+                            <div style="display: flex; align-items: center; padding: var(--space-3); border-bottom: 1px solid var(--neutral-grey-150);">
+                                <div style="width: 40px; height: 40px; border-radius: var(--radius-full); background-color: var(--warning-orange-100); display: flex; align-items: center; justify-content: center; margin-right: var(--space-4);">
+                                    <i class="fas fa-exclamation-triangle" style="color: var(--warning-orange-500-base);"></i>
+                                </div>
+                                <div style="flex: 1;">
+                                    <p class="body-text-medium">System alert</p>
+                                    <p class="small-body-text">Server load exceeded 80%</p>
+                                </div>
+                                <div class="small-body-text text-grey-400">1 hour ago</div>
+                            </div>
+                            
+                            <div style="display: flex; align-items: center; padding: var(--space-3);">
+                                <div style="width: 40px; height: 40px; border-radius: var(--radius-full); background-color: var(--error-red-100); display: flex; align-items: center; justify-content: center; margin-right: var(--space-4);">
+                                    <i class="fas fa-file-alt" style="color: var(--error-red-500-base);"></i>
+                                </div>
+                                <div style="flex: 1;">
+                                    <p class="body-text-medium">New report available</p>
+                                    <p class="small-body-text">Monthly analytics report is ready</p>
+                                </div>
+                                <div class="small-body-text text-grey-400">2 hours ago</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card__footer">
+                        <button class="btn btn-secondary btn-medium">
+                            <span class="btn-text">View All Activity</span>
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Recent Tasks -->
+                <div class="card">
+                    <h2 class="card__title">Recent Tasks</h2>
+                    <div class="card__content">
+                        <div style="display: flex; flex-direction: column; gap: var(--space-3);">
+                            <div style="margin-bottom: var(--space-2);">
+                                <button class="btn btn-secondary btn-medium" style="width: 100%;">
+                                    <i class="fas fa-plus btn-icon"></i>
+                                    <span class="btn-text">Add Task</span>
+                                </button>
+                            </div>
+                            
+                            <div style="display: flex; align-items: center;">
+                                <label class="checkbox">
+                                    <input type="checkbox" id="task1" checked>
+                                    <div class="checkbox-box"></div>
+                                    <div class="checkbox-label">
+                                        <span class="checkbox-label-text" style="text-decoration: line-through; color: var(--neutral-grey-400);">Prepare monthly report</span>
+                                    </div>
+                                </label>
+                                <div class="small-body-text text-grey-400" style="margin-left: auto;">Due: Today</div>
+                            </div>
+                            
+                            <div style="display: flex; align-items: center;">
+                                <label class="checkbox">
+                                    <input type="checkbox" id="task2">
+                                    <div class="checkbox-box"></div>
+                                    <div class="checkbox-label">
+                                        <span class="checkbox-label-text">Client meeting preparation</span>
+                                    </div>
+                                </label>
+                                <div class="small-body-text text-grey-400" style="margin-left: auto;">Due: Tomorrow</div>
+                            </div>
+                            
+                            <div style="display: flex; align-items: center;">
+                                <label class="checkbox">
+                                    <input type="checkbox" id="task3">
+                                    <div class="checkbox-box"></div>
+                                    <div class="checkbox-label">
+                                        <span class="checkbox-label-text">Update user documentation</span>
+                                    </div>
+                                </label>
+                                <div class="small-body-text text-grey-400" style="margin-left: auto;">Due: In 2 days</div>
+                            </div>
+                            
+                            <div style="display: flex; align-items: center;">
+                                <label class="checkbox">
+                                    <input type="checkbox" id="task4">
+                                    <div class="checkbox-box"></div>
+                                    <div class="checkbox-label">
+                                        <span class="checkbox-label-text">Review new feature requests</span>
+                                    </div>
+                                </label>
+                                <div class="small-body-text text-grey-400" style="margin-left: auto;">Due: Next week</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card__footer">
+                        <button class="btn btn-secondary btn-medium">
+                            <span class="btn-text">View All Tasks</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Performance Metrics Card with Grey Overview Cards -->
+            <div class="card">
+                <h2 class="card__title" style="display: flex; justify-content: space-between; align-items: center;">
+                    <span>Performance Metrics</span>
+                    <a href="#" class="link-body-medium" style="display: flex; align-items: center; gap: var(--space-1);">
+                        <i class="fas fa-download" style="font-size: 14px;"></i>
+                        Export Report
+                    </a>
+                </h2>
+                <div class="card__content">
+                    <div class="grid-container grid-three-cols">
+                        <div class="overview-card overview-card--grey">
+                            <div class="overview-card__header">
+                                <span class="overview-card__title">Page Load Time</span>
+                            </div>
+                            <div class="overview-card__value">1.8s</div>
+                            <div class="overview-card__subtitle">
+                                <span class="badge badge-success">
+                                    <span class="badge-text">12%</span>
+                                </span>
+                                <span style="margin-left: var(--space-1);">faster than last month</span>
+                            </div>
+                        </div>
+                        
+                        <div class="overview-card overview-card--grey">
+                            <div class="overview-card__header">
+                                <span class="overview-card__title">Bounce Rate</span>
+                            </div>
+                            <div class="overview-card__value">32%</div>
+                            <div class="overview-card__subtitle">
+                                <span class="badge badge-error">
+                                    <span class="badge-text">3%</span>
+                                </span>
+                                <span style="margin-left: var(--space-1);">increase since last month</span>
+                            </div>
+                        </div>
+                        
+                        <div class="overview-card overview-card--grey">
+                            <div class="overview-card__header">
+                                <span class="overview-card__title">User Satisfaction</span>
+                            </div>
+                            <div class="overview-card__value">4.7/5</div>
+                            <div class="overview-card__subtitle">
+                                <span class="badge badge-success">
+                                    <span class="badge-text">0.2</span>
+                                </span>
+                                <span style="margin-left: var(--space-1);">points higher than target</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        // Add functionality to clear buttons
+        document.addEventListener('DOMContentLoaded', function() {
+            const clearButtons = document.querySelectorAll('.large-search__clear');
+            
+            clearButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    // Find the associated input
+                    const input = this.closest('.large-search__content').querySelector('.large-search__input');
+                    input.value = '';
+                    input.focus();
+                });
+            });
+            
+            // Add functionality for tabs
+            const tabItems = document.querySelectorAll('.tab-item');
+            
+            tabItems.forEach(tab => {
+                tab.addEventListener('click', function() {
+                    // Remove active class from all tabs
+                    tabItems.forEach(item => {
+                        item.classList.remove('active');
+                    });
+                    
+                    // Add active class to clicked tab
+                    this.classList.add('active');
+                });
+            });
+        });
+    </script>
+</body>
+</html> 

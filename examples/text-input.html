@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Text Input Example - Keboola</title>
+    
+    <!-- Required Dependencies -->
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" as="style">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
+    
+    <!-- Design System CSS -->
+    <link href="../dist/design-system.css" rel="stylesheet">
+    
+    <style>
+        .input-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: var(--space-4);
+        }
+        
+        .input-section {
+            margin-bottom: var(--space-6);
+        }
+        
+        .input-section h3 {
+            margin-bottom: var(--space-2);
+        }
+        
+        .error-message {
+            display: none;
+            color: var(--danger-700);
+            font-size: 14px;
+            margin-top: var(--space-1);
+        }
+        
+        .text-input.error .error-message {
+            display: block;
+        }
+        
+        /* Example form styles */
+        .form-example {
+            max-width: 600px;
+        }
+        
+        /* Media query for smaller screens */
+        @media (max-width: 768px) {
+            .input-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body class="bg-grey-50">
+    <div class="page-container">
+        <h1 class="heading-1">Text Input Examples</h1>
+        
+        <!-- Size Variants -->
+        <div class="card">
+            <div class="card__header">
+                <h2 class="card__title">Size Variants</h2>
+            </div>
+            <div class="card__content">
+                <div class="input-section">
+                    <h3 class="heading-3">Small</h3>
+                    <div class="input-grid">
+                        <!-- Small Size Default -->
+                        <div class="text-input size-small">
+                            <div class="label">
+                                <span class="label-text">Small Input</span>
+                            </div>
+                            <div class="content">
+                                <input type="text" placeholder="Small input field">
+                            </div>
+                        </div>
+
+                        <!-- Small Size with Value -->
+                        <div class="text-input size-small">
+                            <div class="label">
+                                <span class="label-text">Small with Value</span>
+                            </div>
+                            <div class="content">
+                                <input type="text" value="Example value">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="input-section">
+                    <h3 class="heading-3">Medium (Default)</h3>
+                    <div class="input-grid">
+                        <!-- Medium Size Default -->
+                        <div class="text-input size-medium">
+                            <div class="label">
+                                <span class="label-text">Medium Input</span>
+                            </div>
+                            <div class="content">
+                                <input type="text" placeholder="Medium input field">
+                            </div>
+                        </div>
+
+                        <!-- Medium Size with Value -->
+                        <div class="text-input size-medium">
+                            <div class="label">
+                                <span class="label-text">Medium with Value</span>
+                            </div>
+                            <div class="content">
+                                <input type="text" value="Example value">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="input-section">
+                    <h3 class="heading-3">Large</h3>
+                    <div class="input-grid">
+                        <!-- Large Size Default -->
+                        <div class="text-input size-large">
+                            <div class="label">
+                                <span class="label-text">Large Input</span>
+                            </div>
+                            <div class="content">
+                                <input type="text" placeholder="Large input field">
+                            </div>
+                        </div>
+
+                        <!-- Large Size with Value -->
+                        <div class="text-input size-large">
+                            <div class="label">
+                                <span class="label-text">Large with Value</span>
+                            </div>
+                            <div class="content">
+                                <input type="text" value="Example value">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="input-section">
+                    <h3 class="heading-3">Full Width</h3>
+                    <!-- Full Width Size -->
+                    <div class="text-input size-full">
+                        <div class="label">
+                            <span class="label-text">Full Width Input</span>
+                        </div>
+                        <div class="content">
+                            <input type="text" placeholder="Full width input field that expands to the entire container width">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- State Variants -->
+        <div class="card">
+            <div class="card__header">
+                <h2 class="card__title">State Variants</h2>
+            </div>
+            <div class="card__content">
+                <div class="input-grid">
+                    <!-- Default State -->
+                    <div class="text-input size-medium">
+                        <div class="label">
+                            <span class="label-text">Default</span>
+                        </div>
+                        <div class="content">
+                            <input type="text" placeholder="Default state">
+                        </div>
+                    </div>
+
+                    <!-- Disabled State -->
+                    <div class="text-input size-medium disabled">
+                        <div class="label">
+                            <span class="label-text">Disabled</span>
+                        </div>
+                        <div class="content">
+                            <input type="text" placeholder="Disabled state" disabled>
+                        </div>
+                    </div>
+
+                    <!-- Required State -->
+                    <div class="text-input size-medium required">
+                        <div class="label">
+                            <span class="label-text">Required</span>
+                        </div>
+                        <div class="content">
+                            <input type="text" placeholder="Required field" required>
+                        </div>
+                    </div>
+
+                    <!-- Error State -->
+                    <div class="text-input size-medium error">
+                        <div class="label">
+                            <span class="label-text">Error</span>
+                        </div>
+                        <div class="content">
+                            <input type="text" placeholder="Error state" value="Invalid input">
+                        </div>
+                        <div class="error-message">This field contains an error</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Input Types -->
+        <div class="card">
+            <div class="card__header">
+                <h2 class="card__title">Input Types</h2>
+            </div>
+            <div class="card__content">
+                <div class="input-grid">
+                    <!-- Text Input -->
+                    <div class="text-input size-medium">
+                        <div class="label">
+                            <span class="label-text">Text Input</span>
+                        </div>
+                        <div class="content">
+                            <input type="text" placeholder="Enter text">
+                        </div>
+                    </div>
+
+                    <!-- Email Input -->
+                    <div class="text-input size-medium">
+                        <div class="label">
+                            <span class="label-text">Email Input</span>
+                        </div>
+                        <div class="content">
+                            <input type="email" placeholder="Enter email">
+                        </div>
+                    </div>
+
+                    <!-- Password Input -->
+                    <div class="text-input size-medium">
+                        <div class="label">
+                            <span class="label-text">Password Input</span>
+                        </div>
+                        <div class="content">
+                            <input type="password" placeholder="Enter password">
+                        </div>
+                    </div>
+
+                    <!-- Number Input -->
+                    <div class="text-input size-medium">
+                        <div class="label">
+                            <span class="label-text">Number Input</span>
+                        </div>
+                        <div class="content">
+                            <input type="number" placeholder="Enter number" min="0" max="100">
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Textarea -->
+                <div class="input-section">
+                    <h3 class="heading-3">Textarea</h3>
+                    <div class="text-input size-medium">
+                        <div class="label">
+                            <span class="label-text">Textarea Input</span>
+                        </div>
+                        <div class="content">
+                            <textarea placeholder="Enter multiple lines of text" rows="4"></textarea>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Form Example -->
+        <div class="card">
+            <div class="card__header">
+                <h2 class="card__title">Form Example</h2>
+            </div>
+            <div class="card__content">
+                <form class="form-example" style="display: flex; flex-direction: column; gap: var(--space-4);">
+                    <!-- Full Name field -->
+                    <div class="text-input size-medium required">
+                        <div class="label">
+                            <span class="label-text">Full Name</span>
+                        </div>
+                        <div class="content">
+                            <input type="text" placeholder="Enter your full name" required>
+                        </div>
+                    </div>
+                    
+                    <!-- Email field -->
+                    <div class="text-input size-medium required">
+                        <div class="label">
+                            <span class="label-text">Email</span>
+                        </div>
+                        <div class="content">
+                            <input type="email" placeholder="Enter your email address" required>
+                        </div>
+                    </div>
+                    
+                    <!-- Phone field -->
+                    <div class="text-input size-medium">
+                        <div class="label">
+                            <span class="label-text">Phone Number</span>
+                        </div>
+                        <div class="content">
+                            <input type="tel" placeholder="Enter your phone number">
+                        </div>
+                    </div>
+                    
+                    <!-- Message field -->
+                    <div class="text-input size-medium required">
+                        <div class="label">
+                            <span class="label-text">Message</span>
+                        </div>
+                        <div class="content">
+                            <textarea placeholder="Enter your message" rows="4" required></textarea>
+                        </div>
+                    </div>
+                    
+                    <div style="margin-top: var(--space-2);">
+                        <button type="submit" class="btn btn-primary btn-medium">
+                            <span class="btn-text">Submit</span>
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+</html> 

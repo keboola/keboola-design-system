@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <!-- Required Dependencies -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    
+    <!-- Design System CSS -->
+    <link href="../dist/design-system.css" rel="stylesheet">
+    
+    <title>Průzkum spokojenosti</title>
+    <style>
+        body {
+            background-color: var(--neutral-grey-50);
+        }
+        
+        .text-input.error .error-message,
+        .select.error .error-message {
+            display: block;
+        }
+        
+        .language-switcher {
+            display: flex;
+            align-items: center;
+            margin-right: var(--space-4);
+            cursor: pointer;
+        }
+        
+        .language-option {
+            padding: var(--space-1) var(--space-2);
+            border-radius: var(--radius-small);
+            margin-left: var(--space-1);
+            cursor: pointer;
+            font-weight: 500;
+        }
+        
+        .language-option.active {
+            background-color: var(--neutral-grey-100);
+        }
+    </style>
+</head>
+<body>
+    <div class="topbar">
+        <div class="topbar__header">
+            <div class="topbar__container">
+                <div class="topbar__section-primary">
+                    <div class="topbar__branding">
+                        <div class="topbar__logo"></div>
+                        <div class="topbar__details">
+                            <p class="topbar__subtitle" data-lang-cz="Uživatelský průzkum" data-lang-en="User Survey">Uživatelský průzkum</p>
+                            <h2 class="topbar__title" data-lang-cz="Průzkum spokojenosti" data-lang-en="Satisfaction Survey">Průzkum spokojenosti</h2>
+                        </div>
+                    </div>
+                </div>
+                <div class="topbar__section-secondary">
+                    <div class="language-switcher">
+                        <span class="language-option active" data-lang="cz">CZ</span>
+                        <span class="language-option" data-lang="en">EN</span>
+                    </div>
+                    <div class="topbar__user"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="main-content" style="margin-top: var(--topbar-height);">
+        <div class="page-container">
+            <div class="card">
+                <h2 class="card__title" data-lang-cz="Průzkum spokojenosti zákazníků" data-lang-en="Customer Satisfaction Survey">Průzkum spokojenosti zákazníků</h2>
+                <div class="card__content">
+                    <p class="body-text" data-lang-cz="Děkujeme, že jste si našli čas na vyplnění tohoto průzkumu. Vaše zpětná vazba nám pomůže zlepšit naše služby." data-lang-en="Thank you for taking the time to fill out this survey. Your feedback will help us improve our services.">Děkujeme, že jste si našli čas na vyplnění tohoto průzkumu. Vaše zpětná vazba nám pomůže zlepšit naše služby.</p>
+                    
+                    <form id="surveyForm" novalidate style="display: flex; flex-direction: column; gap: var(--space-4);">
+                        <!-- Osobní údaje -->
+                        <h3 class="heading-3" data-lang-cz="Osobní údaje" data-lang-en="Personal Information">Osobní údaje</h3>
+                        
+                        <div class="text-input size-medium required" id="nameField">
+                            <div class="label">
+                                <span class="label-text" data-lang-cz="Jméno a příjmení" data-lang-en="Full Name">Jméno a příjmení</span>
+                            </div>
+                            <div class="content">
+                                <input type="text" id="name" placeholder="Zadejte vaše jméno a příjmení" data-lang-cz-placeholder="Zadejte vaše jméno a příjmení" data-lang-en-placeholder="Enter your full name">
+                            </div>
+                            <div class="error-message" data-lang-cz="Prosím zadejte vaše jméno a příjmení" data-lang-en="Please enter your full name">Prosím zadejte vaše jméno a příjmení</div>
+                        </div>
+                        
+                        <div class="text-input size-medium required" id="emailField">
+                            <div class="label">
+                                <span class="label-text" data-lang-cz="E-mail" data-lang-en="Email">E-mail</span>
+                            </div>
+                            <div class="content">
+                                <input type="email" id="email" placeholder="Zadejte váš e-mail" data-lang-cz-placeholder="Zadejte váš e-mail" data-lang-en-placeholder="Enter your email">
+                            </div>
+                            <div class="error-message" data-lang-cz="Prosím zadejte platnou e-mailovou adresu" data-lang-en="Please enter a valid email address">Prosím zadejte platnou e-mailovou adresu</div>
+                        </div>
+                        
+                        <div class="select required" id="ageField">
+                            <div class="label">
+                                <span class="label-text" data-lang-cz="Věková skupina" data-lang-en="Age Group">Věková skupina</span>
+                            </div>
+                            <div class="select-wrapper">
+                                <select class="select-trigger" id="age">
+                                    <option value="" disabled selected data-lang-cz="Vyberte věkovou skupinu" data-lang-en="Select age group">Vyberte věkovou skupinu</option>
+                                    <option value="18-24" data-lang-cz="18-24 let" data-lang-en="18-24 years">18-24 let</option>
+                                    <option value="25-34" data-lang-cz="25-34 let" data-lang-en="25-34 years">25-34 let</option>
+                                    <option value="35-44" data-lang-cz="35-44 let" data-lang-en="35-44 years">35-44 let</option>
+                                    <option value="45-54" data-lang-cz="45-54 let" data-lang-en="45-54 years">45-54 let</option>
+                                    <option value="55+" data-lang-cz="55 a více let" data-lang-en="55+ years">55 a více let</option>
+                                </select>
+                            </div>
+                            <div class="error-message" data-lang-cz="Prosím vyberte vaši věkovou skupinu" data-lang-en="Please select your age group">Prosím vyberte vaši věkovou skupinu</div>
+                        </div>
+                        
+                        <!-- Otázky k hodnocení -->
+                        <h3 class="heading-3" data-lang-cz="Hodnocení služeb" data-lang-en="Service Rating">Hodnocení služeb</h3>
+                        
+                        <div class="select required" id="qualityField">
+                            <div class="label">
+                                <span class="label-text" data-lang-cz="Jak byste ohodnotili kvalitu našich služeb?" data-lang-en="How would you rate the quality of our services?">Jak byste ohodnotili kvalitu našich služeb?</span>
+                            </div>
+                            <div class="select-wrapper">
+                                <select class="select-trigger" id="quality">
+                                    <option value="" disabled selected data-lang-cz="Vyberte hodnocení" data-lang-en="Select rating">Vyberte hodnocení</option>
+                                    <option value="5" data-lang-cz="Vynikající" data-lang-en="Excellent">Vynikající</option>
+                                    <option value="4" data-lang-cz="Velmi dobré" data-lang-en="Very Good">Velmi dobré</option>
+                                    <option value="3" data-lang-cz="Dobré" data-lang-en="Good">Dobré</option>
+                                    <option value="2" data-lang-cz="Průměrné" data-lang-en="Average">Průměrné</option>
+                                    <option value="1" data-lang-cz="Podprůměrné" data-lang-en="Below Average">Podprůměrné</option>
+                                </select>
+                            </div>
+                            <div class="error-message" data-lang-cz="Prosím vyberte hodnocení kvality" data-lang-en="Please select a quality rating">Prosím vyberte hodnocení kvality</div>
+                        </div>
+                        
+                        <div class="select required" id="recommendField">
+                            <div class="label">
+                                <span class="label-text" data-lang-cz="Jak pravděpodobné je, že byste doporučili naše služby přátelům?" data-lang-en="How likely are you to recommend our services to friends?">Jak pravděpodobné je, že byste doporučili naše služby přátelům?</span>
+                            </div>
+                            <div class="select-wrapper">
+                                <select class="select-trigger" id="recommend">
+                                    <option value="" disabled selected data-lang-cz="Vyberte hodnocení" data-lang-en="Select rating">Vyberte hodnocení</option>
+                                    <option value="10" data-lang-cz="10 - Velmi pravděpodobné" data-lang-en="10 - Very likely">10 - Velmi pravděpodobné</option>
+                                    <option value="9">9</option>
+                                    <option value="8">8</option>
+                                    <option value="7">7</option>
+                                    <option value="6">6</option>
+                                    <option value="5">5</option>
+                                    <option value="4">4</option>
+                                    <option value="3">3</option>
+                                    <option value="2">2</option>
+                                    <option value="1">1</option>
+                                    <option value="0" data-lang-cz="0 - Velmi nepravděpodobné" data-lang-en="0 - Very unlikely">0 - Velmi nepravděpodobné</option>
+                                </select>
+                            </div>
+                            <div class="error-message" data-lang-cz="Prosím vyberte hodnocení pravděpodobnosti doporučení" data-lang-en="Please select a recommendation rating">Prosím vyberte hodnocení pravděpodobnosti doporučení</div>
+                        </div>
+                        
+                        <div class="select required" id="frequencyField">
+                            <div class="label">
+                                <span class="label-text" data-lang-cz="Jak často využíváte naše služby?" data-lang-en="How often do you use our services?">Jak často využíváte naše služby?</span>
+                            </div>
+                            <div class="select-wrapper">
+                                <select class="select-trigger" id="frequency">
+                                    <option value="" disabled selected data-lang-cz="Vyberte frekvenci" data-lang-en="Select frequency">Vyberte frekvenci</option>
+                                    <option value="daily" data-lang-cz="Denně" data-lang-en="Daily">Denně</option>
+                                    <option value="weekly" data-lang-cz="Týdně" data-lang-en="Weekly">Týdně</option>
+                                    <option value="monthly" data-lang-cz="Měsíčně" data-lang-en="Monthly">Měsíčně</option>
+                                    <option value="quarterly" data-lang-cz="Čtvrtletně" data-lang-en="Quarterly">Čtvrtletně</option>
+                                    <option value="yearly" data-lang-cz="Ročně" data-lang-en="Yearly">Ročně</option>
+                                    <option value="less" data-lang-cz="Méně často" data-lang-en="Less often">Méně často</option>
+                                </select>
+                            </div>
+                            <div class="error-message" data-lang-cz="Prosím vyberte frekvenci využívání našich služeb" data-lang-en="Please select how often you use our services">Prosím vyberte frekvenci využívání našich služeb</div>
+                        </div>
+                        
+                        <!-- Otevřený feedback -->
+                        <h3 class="heading-3" data-lang-cz="Vaše zpětná vazba" data-lang-en="Your Feedback">Vaše zpětná vazba</h3>
+                        
+                        <div class="text-input size-medium">
+                            <div class="label">
+                                <span class="label-text" data-lang-cz="Co se vám na našich službách líbí nejvíce?" data-lang-en="What do you like most about our services?">Co se vám na našich službách líbí nejvíce?</span>
+                            </div>
+                            <div class="content">
+                                <textarea rows="3" placeholder="Napište vaši odpověď..." data-lang-cz-placeholder="Napište vaši odpověď..." data-lang-en-placeholder="Write your answer..."></textarea>
+                            </div>
+                        </div>
+                        
+                        <div class="text-input size-medium">
+                            <div class="label">
+                                <span class="label-text" data-lang-cz="Co bychom mohli zlepšit?" data-lang-en="What could we improve?">Co bychom mohli zlepšit?</span>
+                            </div>
+                            <div class="content">
+                                <textarea rows="3" placeholder="Napište vaši odpověď..." data-lang-cz-placeholder="Napište vaši odpověď..." data-lang-en-placeholder="Write your answer..."></textarea>
+                            </div>
+                        </div>
+                        
+                        <!-- Submit sekce -->
+                        <div style="margin-top: var(--space-2);">
+                            <button type="submit" class="btn btn-primary btn-medium">
+                                <span class="btn-text" data-lang-cz="Odeslat odpovědi" data-lang-en="Submit Responses">Odeslat odpovědi</span>
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const form = document.getElementById('surveyForm');
+            
+            // Language switching functionality
+            const languageOptions = document.querySelectorAll('.language-option');
+            let currentLang = 'cz';
+            
+            function switchLanguage(lang) {
+                currentLang = lang;
+                document.documentElement.lang = lang === 'cz' ? 'cs' : 'en';
+                
+                // Update active language button
+                languageOptions.forEach(option => {
+                    if (option.dataset.lang === lang) {
+                        option.classList.add('active');
+                    } else {
+                        option.classList.remove('active');
+                    }
+                });
+                
+                // Update all text elements with language attributes
+                document.querySelectorAll(`[data-lang-${lang}]`).forEach(element => {
+                    element.textContent = element.getAttribute(`data-lang-${lang}`);
+                });
+                
+                // Update placeholders
+                document.querySelectorAll(`[data-lang-${lang}-placeholder]`).forEach(element => {
+                    element.placeholder = element.getAttribute(`data-lang-${lang}-placeholder`);
+                });
+                
+                // Update select options
+                document.querySelectorAll('option').forEach(option => {
+                    if (option.hasAttribute(`data-lang-${lang}`)) {
+                        option.textContent = option.getAttribute(`data-lang-${lang}`);
+                    }
+                });
+                
+                // Update document title
+                document.title = lang === 'cz' ? 'Průzkum spokojenosti' : 'Satisfaction Survey';
+                
+                // Update alert message
+                submitMessage = lang === 'cz' ? 'Děkujeme za vyplnění průzkumu!' : 'Thank you for completing the survey!';
+            }
+            
+            // Add click event listeners to language options
+            languageOptions.forEach(option => {
+                option.addEventListener('click', function() {
+                    const lang = this.dataset.lang;
+                    switchLanguage(lang);
+                });
+            });
+            
+            // Funkce pro zobrazení chyby
+            function showError(fieldElement, show) {
+                if (show) {
+                    fieldElement.classList.add('error');
+                } else {
+                    fieldElement.classList.remove('error');
+                }
+            }
+            
+            // Submit message initialization
+            let submitMessage = 'Děkujeme za vyplnění průzkumu!';
+            
+            form.addEventListener('submit', function(event) {
+                event.preventDefault();
+                
+                let isValid = true;
+                
+                // Validace jména
+                const nameField = document.getElementById('nameField');
+                const nameInput = document.getElementById('name');
+                if (!nameInput.value.trim()) {
+                    showError(nameField, true);
+                    isValid = false;
+                } else {
+                    showError(nameField, false);
+                }
+                
+                // Validace emailu
+                const emailField = document.getElementById('emailField');
+                const emailInput = document.getElementById('email');
+                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                if (!emailRegex.test(emailInput.value.trim())) {
+                    showError(emailField, true);
+                    isValid = false;
+                } else {
+                    showError(emailField, false);
+                }
+                
+                // Validace věkové skupiny
+                const ageField = document.getElementById('ageField');
+                const ageInput = document.getElementById('age');
+                if (!ageInput.value) {
+                    showError(ageField, true);
+                    isValid = false;
+                } else {
+                    showError(ageField, false);
+                }
+                
+                // Validace hodnocení kvality
+                const qualityField = document.getElementById('qualityField');
+                const qualityInput = document.getElementById('quality');
+                if (!qualityInput.value) {
+                    showError(qualityField, true);
+                    isValid = false;
+                } else {
+                    showError(qualityField, false);
+                }
+                
+                // Validace doporučení
+                const recommendField = document.getElementById('recommendField');
+                const recommendInput = document.getElementById('recommend');
+                if (!recommendInput.value) {
+                    showError(recommendField, true);
+                    isValid = false;
+                } else {
+                    showError(recommendField, false);
+                }
+                
+                // Validace frekvence
+                const frequencyField = document.getElementById('frequencyField');
+                const frequencyInput = document.getElementById('frequency');
+                if (!frequencyInput.value) {
+                    showError(frequencyField, true);
+                    isValid = false;
+                } else {
+                    showError(frequencyField, false);
+                }
+                
+                if (isValid) {
+                    alert(submitMessage);
+                    form.reset();
+                }
+            });
+            
+            // Přidání posluchačů událostí pro odebírání chybového stavu při psaní
+            const inputs = form.querySelectorAll('input, select, textarea');
+            inputs.forEach(input => {
+                input.addEventListener('input', function() {
+                    const fieldContainer = this.closest('.text-input, .select');
+                    showError(fieldContainer, false);
+                });
+            });
+        });
+    </script>
+</body>
+</html> 

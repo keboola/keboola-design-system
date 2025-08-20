@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration Form</title>
+    
+    <!-- Required Dependencies -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    
+    <!-- Design System CSS -->
+    <link href="../dist/design-system.css" rel="stylesheet">
+    
+    <style>
+        body {
+            background-color: var(--neutral-grey-50);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+        }
+        
+        .auth-container {
+            width: 420px;
+        }
+        
+        /* Custom card styles for registration */
+        .auth-container .card--widget {
+            padding-top: var(--space-4); /* Reduced top padding from default var(--space-6) */
+        }
+        
+        /* Show error messages when parent has error class */
+        .text-input.error .error-message,
+        .select.error .error-message,
+        .checkbox-container.error .error-message {
+            display: block;
+        }
+        
+        /* Custom container for checkbox with error handling */
+        .checkbox-container {
+            position: relative;
+        }
+        
+        .checkbox-container .error-message {
+            color: var(--error-red-500-base);
+            font-size: 14px;
+            display: none;
+            margin-top: var(--space-1);
+        }
+        
+        /* Checkbox link styling */
+        .checkbox-label-text a {
+            color: var(--secondary-blue-500-base);
+            text-decoration: underline;
+            transition: all 0.2s ease;
+        }
+        
+        .checkbox-label-text a:hover {
+            color: var(--secondary-blue-600);
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="page-container">
+        <div style="display: flex; flex-direction: column; align-items: center; gap: var(--space-8);">
+            <h1 class="heading-1">Create Account</h1>
+            
+            <div class="auth-container">
+                <div class="card card--widget">
+                    <h2 class="card__title">Registration Form</h2>
+                    <div class="card__content">
+                        <form id="registrationForm" novalidate style="display: flex; flex-direction: column; gap: var(--space-4);">
+                            <!-- Full Name field -->
+                            <div class="text-input size-medium required" id="nameField">
+                                <div class="label">
+                                    <span class="label-text">Full Name</span>
+                                </div>
+                                <div class="content">
+                                    <input type="text" id="name" placeholder="Enter your full name">
+                                </div>
+                                <div class="error-message">Please enter your full name</div>
+                            </div>
+                            
+                            <!-- Email field -->
+                            <div class="text-input size-medium required" id="emailField">
+                                <div class="label">
+                                    <span class="label-text">Email</span>
+                                </div>
+                                <div class="content">
+                                    <input type="email" id="email" placeholder="Enter your email address">
+                                </div>
+                                <div class="error-message">Please enter a valid email address</div>
+                            </div>
+                            
+                            <!-- Password field -->
+                            <div class="text-input size-medium required" id="passwordField">
+                                <div class="label">
+                                    <span class="label-text">Password</span>
+                                </div>
+                                <div class="content">
+                                    <input type="password" id="password" placeholder="Create a password">
+                                </div>
+                                <div class="error-message">Password must be at least 8 characters</div>
+                            </div>
+                            
+                            <!-- Confirm Password field -->
+                            <div class="text-input size-medium required" id="confirmPasswordField">
+                                <div class="label">
+                                    <span class="label-text">Confirm Password</span>
+                                </div>
+                                <div class="content">
+                                    <input type="password" id="confirmPassword" placeholder="Confirm your password">
+                                </div>
+                                <div class="error-message">Passwords do not match</div>
+                            </div>
+                            
+                            <!-- Country field (select) -->
+                            <div class="select required" id="countryField">
+                                <div class="label">
+                                    <span class="label-text">Country</span>
+                                </div>
+                                <div class="select-wrapper">
+                                    <select id="country" class="select-trigger">
+                                        <option value="" disabled selected>Select your country</option>
+                                        <option value="us">United States</option>
+                                        <option value="ca">Canada</option>
+                                        <option value="uk">United Kingdom</option>
+                                        <option value="au">Australia</option>
+                                        <option value="fr">France</option>
+                                        <option value="de">Germany</option>
+                                    </select>
+                                </div>
+                                <div class="error-message">Please select your country</div>
+                            </div>
+                            
+                            <!-- Terms acceptance -->
+                            <div class="checkbox-container" id="termsField">
+                                <label class="checkbox">
+                                    <input type="checkbox" id="terms">
+                                    <div class="checkbox-box"></div>
+                                    <div class="checkbox-label">
+                                        <span class="checkbox-label-text">I agree to the <a href="#" class="link-body-medium">Terms of Service</a> and <a href="#" class="link-body-medium">Privacy Policy</a></span>
+                                    </div>
+                                </label>
+                                <div class="error-message">You must accept the terms to continue</div>
+                            </div>
+                            
+                            <!-- Register button -->
+                            <div style="margin-top: var(--space-2);">
+                                <button type="submit" class="btn btn-primary btn-medium" style="width: 100%;">
+                                    <span class="btn-text">Register</span>
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="card__footer">
+                        <p class="small-body-text">Already have an account? <a href="#" class="link-small-body-medium">Log in</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const form = document.getElementById('registrationForm');
+            
+            // Function to show error
+            function showError(fieldElement, show) {
+                if (show) {
+                    fieldElement.classList.add('error');
+                } else {
+                    fieldElement.classList.remove('error');
+                }
+            }
+            
+            form.addEventListener('submit', function(event) {
+                event.preventDefault(); // Prevent default browser validation
+                
+                let isValid = true;
+                
+                // Name validation
+                const nameField = document.getElementById('nameField');
+                const nameInput = document.getElementById('name');
+                if (!nameInput.value.trim()) {
+                    showError(nameField, true);
+                    isValid = false;
+                } else {
+                    showError(nameField, false);
+                }
+                
+                // Email validation
+                const emailField = document.getElementById('emailField');
+                const emailInput = document.getElementById('email');
+                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                if (!emailRegex.test(emailInput.value.trim())) {
+                    showError(emailField, true);
+                    isValid = false;
+                } else {
+                    showError(emailField, false);
+                }
+                
+                // Password validation
+                const passwordField = document.getElementById('passwordField');
+                const passwordInput = document.getElementById('password');
+                if (passwordInput.value.length < 8) {
+                    showError(passwordField, true);
+                    isValid = false;
+                } else {
+                    showError(passwordField, false);
+                }
+                
+                // Confirm password validation
+                const confirmPasswordField = document.getElementById('confirmPasswordField');
+                const confirmPasswordInput = document.getElementById('confirmPassword');
+                if (confirmPasswordInput.value !== passwordInput.value) {
+                    showError(confirmPasswordField, true);
+                    isValid = false;
+                } else {
+                    showError(confirmPasswordField, false);
+                }
+                
+                // Country validation
+                const countryField = document.getElementById('countryField');
+                const countryInput = document.getElementById('country');
+                if (!countryInput.value) {
+                    showError(countryField, true);
+                    isValid = false;
+                } else {
+                    showError(countryField, false);
+                }
+                
+                // Terms validation
+                const termsField = document.getElementById('termsField');
+                const termsInput = document.getElementById('terms');
+                if (!termsInput.checked) {
+                    termsField.classList.add('error');
+                    isValid = false;
+                } else {
+                    termsField.classList.remove('error');
+                }
+                
+                if (isValid) {
+                    // Process form submission
+                    console.log('Form submitted successfully!');
+                    // Here you would normally submit the form to your server
+                }
+            });
+            
+            // Add input event listeners to remove error state when user types
+            const inputs = form.querySelectorAll('input, select');
+            inputs.forEach(input => {
+                input.addEventListener('input', function() {
+                    const fieldContainer = this.closest('.text-input, .select, .checkbox-container');
+                    if (fieldContainer) {
+                        fieldContainer.classList.remove('error');
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html> 

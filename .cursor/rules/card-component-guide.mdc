@@ -1,0 +1,719 @@
+---
+description: 
+globs: 
+alwaysApply: true
+---
+# Card Component Guide
+
+Cards are versatile containers that group related content and actions, providing a flexible way to display information within well-defined boundaries. This guide provides comprehensive instructions for implementing cards in your application.
+
+## Basic Card Structure
+
+The base card component follows a consistent structure with specific class naming conventions:
+
+```html
+<div class="card">
+    <h2 class="card__title">Card Title</h2>
+    <div class="card__content">
+        <!-- Card content goes here -->
+    </div>
+    <div class="card__footer">
+        <!-- Card footer content (e.g., actions) -->
+    </div>
+</div>
+```
+
+By default, cards have the following styling:
+- White background (`var(--neutral-white)`)
+- Medium border radius (`var(--radius-medium)`)
+- Card shadow (`var(--card-shadow)`)
+- Different padding for top (`var(--space-3)`) and other sides (`var(--space-6)`)
+- Flex column layout
+
+## Card Elements
+
+### Card Title
+
+The card title provides context for the content and should be used consistently:
+
+```html
+<h2 class="card__title">Card Title</h2>
+```
+
+For cards with icon + title combinations:
+
+```html
+<div class="card__title--with-icon">
+    <div class="icon-container icon-medium">
+        <i class="fas fa-user"></i>
+    </div>
+    <span class="card__title-text">Card Title with Icon</span>
+</div>
+```
+
+For cards that need additional actions or links in the title area, you can transform the card__title to include a button or link on the right side:
+
+```html
+<h2 class="card__title" style="display: flex; justify-content: space-between; align-items: center;">
+    <span>Card Title</span>
+    <a href="#" class="link-body-medium" style="display: flex; align-items: center; gap: var(--space-1);">
+        <i class="fas fa-download" style="font-size: 14px;"></i>
+        Action Link
+    </a>
+</h2>
+```
+
+This pattern is useful for common actions like "Export", "View All", or other quick actions related to the card's content, while maintaining the visual hierarchy of the card title.
+
+### Card Content
+
+The content area holds the main information of the card:
+
+```html
+<div class="card__content">
+    <p class="body-text">This is the main content of the card.</p>
+    <!-- Additional content elements -->
+</div>
+```
+
+The `card__content` element:
+- Uses flex column layout with `gap: var(--space-4)` (16px)
+- Grows to fill available space with `flex: 1`
+
+### Card Footer
+
+The footer typically contains actions related to the card content:
+
+```html
+<div class="card__footer">
+    <button class="btn btn-primary btn-medium">
+        <span class="btn-text">Primary Action</span>
+    </button>
+    <button class="btn btn-secondary btn-medium">
+        <span class="btn-text">Secondary Action</span>
+    </button>
+</div>
+```
+
+The footer has:
+- Horizontal button layout with `gap: var(--space-4)` (16px)
+- Top margin of `var(--space-4)` (16px)
+
+## Card Variants
+
+### Standard Card
+
+The default card with title, content, and optional footer:
+
+```html
+<div class="card">
+    <h2 class="card__title">Standard Card</h2>
+    <div class="card__content">
+        <p class="body-text">This is a standard card with title and content.</p>
+    </div>
+</div>
+```
+
+### Widget Card
+
+For standalone components like forms or widgets that need consistent padding on all sides:
+
+```html
+<div class="card card--widget">
+    <div class="card__content">
+        <!-- Widget content -->
+    </div>
+</div>
+```
+
+The `card--widget` variant applies equal padding (`var(--space-6)`) on all sides.
+
+### No Padding Card
+
+When you need full control over internal spacing or want edge-to-edge content:
+
+```html
+<div class="card card--no-padding">
+    <div class="card__content">
+        <!-- Full-width content -->
+    </div>
+</div>
+```
+
+### Compact Card
+
+For a more condensed card with smaller, consistent padding:
+
+```html
+<div class="card card--compact">
+    <h2 class="card__title">Compact Card</h2>
+    <div class="card__content">
+        <!-- Compact card content -->
+    </div>
+</div>
+```
+
+The `card--compact` variant uses `padding: var(--space-4)` (16px) on all sides.
+
+### Bordered Card
+
+For cards with a border instead of a shadow:
+
+```html
+<div class="card card--bordered">
+    <h2 class="card__title">Bordered Card</h2>
+    <div class="card__content">
+        <!-- Card content -->
+    </div>
+</div>
+```
+
+### Card with Description
+
+For cards that serve as interactive elements with hover effects:
+
+```html
+<div class="card card--with-description">
+    <h2 class="card__title">Interactive Card</h2>
+    <div class="card__content">
+        <p>This card has hover effects and is clickable.</p>
+    </div>
+</div>
+```
+
+## Implementation Examples
+
+### Dashboard Stats Card
+
+```html
+<div class="card">
+    <h2 class="card__title">Monthly Revenue</h2>
+    <div class="card__content">
+        <span class="heading-1">$24,500</span>
+        <p class="small-body-text text-grey-600">
+            <span style="color: var(--success-green-500-base);">+12% </span>since last month
+        </p>
+    </div>
+</div>
+```
+
+### Form Card
+
+```html
+<div class="card card--widget">
+    <h2 class="card__title">User Registration</h2>
+    <div class="card__content">
+        <form style="display: flex; flex-direction: column; gap: var(--space-4);">
+            <div class="text-input size-medium required">
+                <div class="label">
+                    <span class="label-text">Email</span>
+                </div>
+                <div class="content">
+                    <input type="email" placeholder="Enter your email">
+                </div>
+            </div>
+            <!-- Additional form fields -->
+        </form>
+    </div>
+    <div class="card__footer">
+        <button class="btn btn-primary btn-medium">
+            <span class="btn-text">Submit</span>
+        </button>
+    </div>
+</div>
+```
+
+### Content Card with Actions
+
+```html
+<div class="card">
+    <div class="card__title--with-icon">
+        <div class="icon-container icon-medium">
+            <i class="fas fa-file-alt text-grey-400"></i>
+        </div>
+        <span class="card__title-text">Document Details</span>
+    </div>
+    <div class="card__content">
+        <p class="body-text">This document contains important information about our company policies.</p>
+        <div style="display: flex; align-items: center; gap: var(--space-2);">
+            <span class="badge badge-success">
+                <span class="badge-text">Approved</span>
+            </span>
+            <span class="small-body-text text-grey-400">Last updated: Jan 15, 2023</span>
+        </div>
+    </div>
+    <div class="card__footer">
+        <button class="btn btn-primary btn-medium">
+            <span class="btn-text">Download</span>
+        </button>
+        <button class="btn btn-secondary btn-medium">
+            <span class="btn-text">Share</span>
+        </button>
+    </div>
+</div>
+```
+
+### Dashboard with Four Overview Cards
+
+```html
+<div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: var(--space-4);">
+    <div class="overview-card">
+        <div class="overview-card__header">
+            <span class="overview-card__title">Total Users</span>
+        </div>
+        <div class="overview-card__value">1,245</div>
+        <div class="overview-card__subtitle">
+            <span style="color: var(--success-green-500-base);">+12% </span>since last month
+        </div>
+    </div>
+    
+    <div class="overview-card">
+        <div class="overview-card__header">
+            <span class="overview-card__title">Conversion Rate</span>
+        </div>
+        <div class="overview-card__value">8.4%</div>
+        <div class="overview-card__subtitle">
+            <span style="color: var(--error-red-500-base);">-2.3% </span>since last week
+        </div>
+    </div>
+    
+    <div class="overview-card">
+        <div class="overview-card__header">
+            <span class="overview-card__title">Avg. Session</span>
+        </div>
+        <div class="overview-card__value">4:32</div>
+        <div class="overview-card__subtitle">
+            <span style="color: var(--success-green-500-base);">+0:18 </span>since last month
+        </div>
+    </div>
+    
+    <div class="overview-card">
+        <div class="overview-card__header">
+            <span class="overview-card__title">Total Revenue</span>
+        </div>
+        <div class="overview-card__value">$84,245</div>
+        <div class="overview-card__subtitle">
+            <span style="color: var(--success-green-500-base);">+18% </span>since last month
+        </div>
+    </div>
+</div>
+```
+
+## Overview Cards
+
+Overview cards are specialized cards used for displaying key metrics or statistics in dashboard interfaces. They follow a unique structure and styling:
+
+```html
+<div class="overview-card">
+    <div class="overview-card__header">
+        <span class="overview-card__title">Metric Name</span>
+    </div>
+    <div class="overview-card__value">42</div>
+    <div class="overview-card__subtitle">
+        <span style="color: var(--success-green-500-base);">+12% </span>since last month
+    </div>
+</div>
+```
+
+Overview cards have these distinctive characteristics:
+- Clean, minimal design focused on presenting a single metric
+- No borders, just subtle shadows and rounded corners
+- Fixed, consistent height
+- Clear visual hierarchy with title, large value, and supporting text
+
+### Overview Card Elements
+
+#### Header
+The `overview-card__header` contains the title of the metric:
+```html
+<div class="overview-card__header">
+    <span class="overview-card__title">Total Users</span>
+</div>
+```
+
+#### Value
+The `overview-card__value` displays the primary metric using large, emphasized text:
+```html
+<div class="overview-card__value">1,245</div>
+```
+
+#### Subtitle
+The `overview-card__subtitle` provides context for the value, often showing change or comparison:
+```html
+<div class="overview-card__subtitle">
+    <span style="color: var(--success-green-500-base);">+12% </span>since last month
+</div>
+```
+
+For decrease or negative trends, use the error color:
+```html
+<div class="overview-card__subtitle">
+    <span style="color: var(--error-red-500-base);">-2.3% </span>since last week
+</div>
+```
+
+### Overview Card Grid Layout
+
+When displaying multiple overview cards, use the `grid-responsive-kpi` class for consistent, responsive layout:
+
+```html
+<div class="grid-responsive-kpi">
+    <div class="overview-card">
+        <!-- First overview card -->
+    </div>
+    <div class="overview-card">
+        <!-- Second overview card -->
+    </div>
+    <!-- Additional overview cards -->
+</div>
+```
+
+The `grid-responsive-kpi` class provides:
+- Four columns for overview cards on large screens
+- Two columns on medium screens (tablet)
+- Single column on mobile screens
+- Consistent gap spacing (`var(--space-4)`)
+- Proper breakpoints for various device sizes
+
+**Note:** For cases with exactly 3 or 5 cards, you can use the additional modifier classes:
+```html
+<div class="grid-responsive-kpi grid-3-cards">
+    <!-- Three overview cards -->
+</div>
+```
+
+**Deprecated approach (not recommended):** While you may see examples using inline grid styles, prefer the predefined grid class for consistency:
+
+```html
+<!-- Not recommended - use grid-responsive-kpi instead -->
+<div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: var(--space-4);">
+    <!-- Overview cards -->
+</div>
+```
+
+### Grey Overview Card Variant
+
+Overview cards also come in a grey variant that is useful for secondary metrics or for creating visual contrast when used within another card. The grey overview card maintains the same structure but has a grey background and no shadow.
+
+```html
+<div class="overview-card overview-card--grey">
+    <div class="overview-card__header">
+        <span class="overview-card__title">Page Load Time</span>
+    </div>
+    <div class="overview-card__value">1.8s</div>
+    <div class="overview-card__subtitle">
+        <span style="color: var(--success-green-500-base);">12% </span>faster than last month
+    </div>
+</div>
+```
+
+The `overview-card--grey` variant:
+- Uses a light grey background (`var(--neutral-grey-100)`)
+- Has no box shadow
+- Maintains the same spacing and structure as regular overview cards
+- Works well when placed inside standard cards
+
+#### Grey Overview Cards Within a Card
+
+A common pattern is to place grey overview cards inside a standard card to group related metrics:
+
+```html
+<div class="card">
+    <h2 class="card__title">Performance Metrics</h2>
+    <div class="card__content">
+        <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-4);">
+            <div class="overview-card overview-card--grey">
+                <div class="overview-card__header">
+                    <span class="overview-card__title">Page Load Time</span>
+                </div>
+                <div class="overview-card__value">1.8s</div>
+                <div class="overview-card__subtitle">
+                    <span style="color: var(--success-green-500-base);">12% </span>faster than last month
+                </div>
+            </div>
+            
+            <div class="overview-card overview-card--grey">
+                <div class="overview-card__header">
+                    <span class="overview-card__title">Bounce Rate</span>
+                </div>
+                <div class="overview-card__value">32%</div>
+                <div class="overview-card__subtitle">
+                    <span style="color: var(--error-red-500-base);">3% </span>increase since last month
+                </div>
+            </div>
+            
+            <div class="overview-card overview-card--grey">
+                <div class="overview-card__header">
+                    <span class="overview-card__title">User Satisfaction</span>
+                </div>
+                <div class="overview-card__value">4.7/5</div>
+                <div class="overview-card__subtitle">
+                    <span style="color: var(--success-green-500-base);">0.2 </span>points higher than target
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="card__footer">
+        <button class="btn btn-secondary btn-medium">
+            <i class="fas fa-download btn-icon"></i>
+            <span class="btn-text">Export Report</span>
+        </button>
+    </div>
+</div>
+```
+
+#### When to Use Grey Overview Cards
+
+1. **Hierarchical Metrics Display**: Use grey overview cards inside a regular card to establish a clear hierarchy of information.
+
+2. **Secondary Metrics**: Use grey cards for secondary or supporting metrics that provide additional context.
+
+3. **Visual Distinction**: When you have multiple sets of metrics on a page, use grey cards to distinguish between different categories.
+
+4. **Dense Dashboard Layouts**: Grey cards create visual separation in dense layouts without adding too much visual weight.
+
+5. **Background Contrast**: Use grey cards when you need more contrast between the card and the white background of a containing element.
+
+#### CSS Implementation
+
+To implement the grey overview card variant, add this CSS to your styles:
+
+```css
+.overview-card--grey {
+    background-color: var(--neutral-grey-100);
+    box-shadow: none;
+}
+```
+
+The grey overview card should maintain the same structure and content patterns as regular overview cards, just with the visual styling differences.
+
+#### Grey Overview Cards Grid Layout
+
+When using grey overview cards within a standard card, adjust the grid layout to fit the available space:
+
+```html
+<div class="grid-container grid-three-cols">
+    <div class="overview-card overview-card--grey">
+        <!-- Overview card content -->
+    </div>
+    <!-- Additional grey overview cards -->
+</div>
+```
+
+```css
+.grid-three-cols {
+    grid-template-columns: repeat(3, 1fr);
+}
+
+@media (max-width: 768px) {
+    .grid-three-cols {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (min-width: 769px) and (max-width: 1280px) {
+    .grid-three-cols {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+```
+
+### Best Practices
+
+1. **Consistent Metrics**: Use the same type of metrics together (e.g., all percentages or all absolute values)
+   
+2. **Clear Labels**: Use concise, clear titles that explain what the metric represents
+   
+3. **Color Coding**: Use consistent color coding for trends:
+   - Green (`var(--success-green-500-base)`) for positive/improvements
+   - Red (`var(--error-red-500-base)`) for negative/declines
+   - Yellow/Orange for cautionary values
+   
+4. **Responsive Behavior**: Overview cards should reflow on smaller screens
+   - The minmax(280px, 1fr) ensures cards have adequate width on all screens
+   - Cards will stack vertically on mobile devices
+   
+5. **Visual Hierarchy**: Maintain clear visual hierarchy
+   - Title at the top (smaller text)
+   - Value in the middle (largest text)
+   - Subtitle/context at the bottom (smallest text)
+
+6. **Balanced Layout**: Ensure all overview cards in a set have similar content density
+   - Avoid mixing very long and very short values in the same row
+   - Try to keep all values at similar precision levels (e.g., all with 1 decimal place)
+
+### Implementation Example
+
+Dashboard with four overview cards:
+
+```html
+<div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: var(--space-4);">
+    <div class="overview-card">
+        <div class="overview-card__header">
+            <span class="overview-card__title">Total Users</span>
+        </div>
+        <div class="overview-card__value">1,245</div>
+        <div class="overview-card__subtitle">
+            <span style="color: var(--success-green-500-base);">+12% </span>since last month
+        </div>
+    </div>
+    
+    <div class="overview-card">
+        <div class="overview-card__header">
+            <span class="overview-card__title">Conversion Rate</span>
+        </div>
+        <div class="overview-card__value">8.4%</div>
+        <div class="overview-card__subtitle">
+            <span style="color: var(--error-red-500-base);">-2.3% </span>since last week
+        </div>
+    </div>
+    
+    <div class="overview-card">
+        <div class="overview-card__header">
+            <span class="overview-card__title">Avg. Session</span>
+        </div>
+        <div class="overview-card__value">4:32</div>
+        <div class="overview-card__subtitle">
+            <span style="color: var(--success-green-500-base);">+0:18 </span>since last month
+        </div>
+    </div>
+    
+    <div class="overview-card">
+        <div class="overview-card__header">
+            <span class="overview-card__title">Total Revenue</span>
+        </div>
+        <div class="overview-card__value">$84,245</div>
+        <div class="overview-card__subtitle">
+            <span style="color: var(--success-green-500-base);">+18% </span>since last month
+        </div>
+    </div>
+</div>
+```
+
+## Layout Patterns
+
+### Cards in Grid Layout
+
+Create responsive card grids using CSS Grid:
+
+```html
+<div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: var(--space-6);">
+    <div class="card"><!-- Card content --></div>
+    <div class="card"><!-- Card content --></div>
+    <div class="card"><!-- Card content --></div>
+</div>
+```
+
+### Equal Height Cards
+
+To ensure all cards in a row have the same height, use the helper class:
+
+```html
+<div class="equal-height-cards" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-6);">
+    <div class="card"><!-- Card content --></div>
+    <div class="card"><!-- Card content --></div>
+    <div class="card"><!-- Card content --></div>
+</div>
+```
+
+### Aligned Footer Cards
+
+To ensure all card footers align at the bottom regardless of content height:
+
+```html
+<div class="aligned-footers" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-6);">
+    <div class="card">
+        <div class="card__content"><!-- Variable height content --></div>
+        <div class="card__footer"><!-- Footer actions --></div>
+    </div>
+    <!-- Additional cards -->
+</div>
+```
+
+## Best Practices
+
+1. **Consistent Layout**: Maintain consistent padding and spacing within cards.
+   - Use the card's built-in gap values for content spacing
+   - Avoid adding margins to direct children of `card__content`
+
+2. **Content Hierarchy**: Establish clear visual hierarchy within cards.
+   - Always use the `card__title` class for card headers
+   - Group related information and use typography tokens appropriately
+
+3. **Card Selection**: Choose the appropriate card variant for your use case.
+   - Use `card--widget` for forms and standalone components
+   - Use `card--no-padding` for tables or media content that extends to edges
+   - Use `card--compact` for dense information displays
+
+4. **Footer Alignment**: Ensure footer actions follow a consistent pattern.
+   - Primary actions should be leftmost in the footer
+   - Related actions should be grouped together
+   - Consider using the `aligned-footers` helper for consistent layout
+
+5. **Responsive Behavior**: Design cards to work well at all screen sizes.
+   - Use CSS Grid for responsive card layouts
+   - Consider how content will reflow on smaller screens
+
+6. **Interaction States**: Use interactive card variants appropriately.
+   - Only use `card--with-description` for clickable cards
+   - Ensure sufficient contrast for interactive elements within cards
+
+7. **Card Density**: Balance information density with readability.
+   - Don't overcrowd cards with too much information
+   - Use separate cards for distinct groups of content
+
+By following these guidelines, you'll create consistent, usable card interfaces that align with the design system's principles.
+
+## Overview Card Layout Best Practices
+
+When implementing overview cards and metric displays on dashboards, follow these guidelines:
+
+1. **Use the `grid-responsive-kpi` Class**: Always use the built-in responsive grid class for overview cards:
+   ```html
+   <div class="grid-responsive-kpi">
+       <div class="overview-card">
+           <!-- Card content -->
+       </div>
+       <!-- Additional cards -->
+   </div>
+   ```
+
+2. **Limit to One Row Per Section**: For better readability and visual clarity, limit each card section to a maximum of one row of cards:
+   ```html
+   <!-- Primary metrics - ONE ROW -->
+   <div class="grid-responsive-kpi">
+       <!-- Maximum 4 overview cards -->
+   </div>
+   
+   <!-- Secondary metrics in a card - ONE ROW -->
+   <div class="card">
+       <div class="card__header">
+           <h2 class="card__title">Department Breakdown</h2>
+       </div>
+       <div class="card__content">
+           <div class="grid-responsive-kpi">
+               <!-- Maximum 4 grey overview cards -->
+           </div>
+       </div>
+   </div>
+   ```
+
+3. **Maximum 4 Cards Per Row**: Limit each row to a maximum of 4 cards to ensure proper spacing and readability.
+
+4. **Use Grey Overview Cards for Secondary Metrics**: When displaying secondary metrics inside a card section, use grey overview cards:
+   ```html
+   <div class="overview-card overview-card--grey">
+       <!-- Secondary metric content -->
+   </div>
+   ```
+
+5. **Prioritize Important Metrics**: When you have more than 4 metrics in a category, select the 4 most important ones to display or split them into logically grouped sections.
+
+6. **For Exactly 3 Cards**: When you have exactly 3 cards in a row, add the `grid-3-cards` modifier class for better spacing:
+   ```html
+   <div class="grid-responsive-kpi grid-3-cards">
+       <!-- Exactly 3 overview cards -->
+   </div>
+   ```
+
+These principles ensure dashboards maintain proper spacing, readability, and responsive behavior across all device sizes while preventing information overload.

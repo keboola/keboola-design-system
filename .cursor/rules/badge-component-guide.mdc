@@ -1,0 +1,349 @@
+---
+description: 
+globs: 
+alwaysApply: true
+---
+# Badge Component Guide
+
+Badges are compact, visually distinct labels used to highlight status, categorize content, or display short pieces of information. This guide provides comprehensive instructions for implementing badges in your application.
+
+## Basic Badge Structure
+
+The base badge component follows a consistent structure with specific class naming conventions:
+
+```html
+<span class="badge">
+    <span class="badge-text">Label</span>
+</span>
+```
+
+By default, badges have the following styling:
+- Blue background (`var(--secondary-blue-500-base)`)
+- White text (`var(--neutral-white)`)
+- Large border radius (`var(--radius-large)`)
+- Uppercase text with letter spacing
+- Fixed height of 20px (`var(--space-5)`)
+- Horizontal padding of 8px (`var(--space-2)`)
+
+## Badge Text Element
+
+The badge text element must always be wrapped in a `<span>` with the class `badge-text`:
+
+```html
+<span class="badge-text">Label</span>
+```
+
+This approach ensures:
+- Proper text styling (uppercase, letter spacing)
+- Consistent vertical alignment
+- Text remains contained within the badge boundaries
+
+## Badge Color Variants
+
+Badges come in several color variants to indicate different states or categories:
+
+```html
+<!-- Default Badge (Blue) -->
+<span class="badge">
+    <span class="badge-text">Default</span>
+</span>
+
+<!-- Success Badge (Green) -->
+<span class="badge badge-success">
+    <span class="badge-text">Success</span>
+</span>
+
+<!-- Warning Badge (Orange) -->
+<span class="badge badge-warning">
+    <span class="badge-text">Warning</span>
+</span>
+
+<!-- Error Badge (Red) -->
+<span class="badge badge-error">
+    <span class="badge-text">Error</span>
+</span>
+```
+
+## Custom Color Variants
+
+Additional pre-defined color variants for specific use cases:
+
+```html
+<!-- Purple Badge -->
+<span class="badge badge-purple">
+    <span class="badge-text">Purple</span>
+</span>
+
+<!-- Grey Badge -->
+<span class="badge badge-grey">
+    <span class="badge-text">Grey</span>
+</span>
+```
+
+## Badges with Icons
+
+To include an icon within a badge, use the `badge-with-icon` class and icon container:
+
+```html
+<span class="badge badge-with-icon">
+    <div class="icon-container">
+        <i class="fa-solid fa-info-circle"></i>
+    </div>
+    <span class="badge-text">Info</span>
+</span>
+```
+
+For success badges with icons:
+
+```html
+<span class="badge badge-success badge-with-icon">
+    <div class="icon-container">
+        <i class="fa-solid fa-check-circle"></i>
+    </div>
+    <span class="badge-text">Success</span>
+</span>
+```
+
+The `badge-with-icon` class:
+- Adds proper spacing (`gap: var(--space-1)`) between icon and text
+- Ensures proper alignment of icon and text
+- Maintains consistent sizing
+
+## Inline Badge Usage
+
+When using badges within text content, add the `badge-inline` class for proper spacing:
+
+```html
+<p class="body-text">
+    This feature is currently in development 
+    <span class="badge badge-inline">
+        <span class="badge-text">Beta</span>
+    </span>
+</p>
+```
+
+The `badge-inline` class adds a left margin (`var(--space-2)`) to create proper spacing from the preceding text.
+
+## Usage in Overview Cards
+
+Badges can be used in overview cards to indicate metrics trends:
+
+```html
+<div class="overview-card__subtitle">
+    <span class="badge badge-success">
+        <span class="badge-text">+12%</span>
+    </span>
+    <span style="margin-left: var(--space-1);">since last month</span>
+</div>
+```
+
+For negative trends, use the error badge:
+
+```html
+<div class="overview-card__subtitle">
+    <span class="badge badge-error">
+        <span class="badge-text">-2.3%</span>
+    </span>
+    <span style="margin-left: var(--space-1);">since last week</span>
+</div>
+```
+
+## Implementation Examples
+
+### Status Badges in Lists
+
+```html
+<div style="display: flex; align-items: center;">
+    <div>
+        <p class="body-text-medium">Jessica Parker</p>
+        <p class="small-body-text">Senior Product Designer</p>
+    </div>
+    <div>
+        <span class="badge badge-success">
+            <span class="badge-text">NEW HIRE</span>
+        </span>
+    </div>
+</div>
+```
+
+### Badge with Alert Icon
+
+```html
+<span class="badge badge-warning badge-with-icon">
+    <div class="icon-container">
+        <i class="fa-solid fa-exclamation-triangle"></i>
+    </div>
+    <span class="badge-text">DUE SOON</span>
+</span>
+```
+
+### Metric Change Indicators
+
+```html
+<div class="overview-card__subtitle">
+    <span class="badge badge-success">
+        <span class="badge-text">+18%</span>
+    </span>
+    <span style="margin-left: var(--space-1);">since last month</span>
+</div>
+```
+
+## Best Practices
+
+1. **Concise Labels**: Keep badge text short and focused (1-3 words max)
+   - Use abbreviations when appropriate
+   - Focus on key information only
+   - All caps for consistent appearance
+
+2. **Consistent Color Usage**: Use badge colors consistently for specific meanings
+   - `badge-success` (green): Positive outcomes, improvements, completed states
+   - `badge-warning` (orange): Attention required, pending actions, moderate alerts
+   - `badge-error` (red): Errors, critical issues, negative trends
+   - Default (blue): Neutral information, standard states
+   - `badge-grey`: Secondary or less important information
+
+3. **Appropriate Placement**: Position badges consistently in the interface
+   - Right-aligned in list items
+   - Vertically center-aligned with related text
+   - Consistent placement within similar components
+
+4. **Text Formatting**: Badge text is automatically uppercase
+   - Enter text in normal case (`<span class="badge-text">New</span>`)
+   - The CSS will transform it to uppercase
+   - This maintains accessibility and allows for proper screen reader pronunciation
+
+5. **Icon Usage**: When using icons in badges
+   - Choose simple, recognizable icons
+   - Use icons consistently across similar badge types
+   - Ensure icon meaning is clear from context
+
+6. **Inline Spacing**: When using badges inline with text
+   - Always use the `badge-inline` class
+   - Maintain consistent text flow
+   - Consider line wrapping with longer text
+
+## Common Anti-Patterns to Avoid
+
+1. **Missing Badge-Text Wrapper**: Always wrap text inside a `badge-text` span
+   ```html
+   <!-- INCORRECT -->
+   <span class="badge">Label</span>
+   
+   <!-- CORRECT -->
+   <span class="badge">
+       <span class="badge-text">Label</span>
+   </span>
+   ```
+
+2. **Inconsistent Semantic Usage**: Don't mix badge meanings across the application
+   ```html
+   <!-- INCORRECT: Using success badge for warnings -->
+   <span class="badge badge-success">
+       <span class="badge-text">Warning</span>
+   </span>
+   ```
+
+3. **Too Much Text**: Badges should be concise and not contain long text
+   ```html
+   <!-- INCORRECT: Too much text -->
+   <span class="badge">
+       <span class="badge-text">This badge contains way too much text for a badge component</span>
+   </span>
+   ```
+
+4. **Custom Styling**: Avoid inline styling that overrides badge appearance
+   ```html
+   <!-- INCORRECT: Custom styling -->
+   <span class="badge" style="background-color: pink; color: black;">
+       <span class="badge-text">Custom Badge</span>
+   </span>
+   ```
+
+5. **Inconsistent Element Usage**: Always use `<span>` elements for badges, not divs or other elements
+   ```html
+   <!-- INCORRECT: Using div instead of span -->
+   <div class="badge">
+       <span class="badge-text">Label</span>
+   </div>
+   ```
+
+6. **Missing Icon Container**: When using icons, always wrap them in an icon container
+   ```html
+   <!-- INCORRECT: Direct icon without container -->
+   <span class="badge badge-with-icon">
+       <i class="fa-solid fa-info-circle"></i>
+       <span class="badge-text">Info</span>
+   </span>
+   
+   <!-- CORRECT -->
+   <span class="badge badge-with-icon">
+       <div class="icon-container">
+           <i class="fa-solid fa-info-circle"></i>
+       </div>
+       <span class="badge-text">Info</span>
+   </span>
+   ```
+
+7. **Mixed Badge Types**: Don't mix semantically opposite badge types together
+   ```html
+   <!-- INCORRECT: Mixing success and error -->
+   <div style="display: flex; gap: var(--space-2);">
+       <span class="badge badge-success">
+           <span class="badge-text">Complete</span>
+       </span>
+       <span class="badge badge-error">
+           <span class="badge-text">Failed</span>
+       </span>
+   </div>
+   ```
+
+## Implementation in Different Contexts
+
+### In Tables or Lists
+
+For badges in tables or list items, maintain consistent alignment:
+
+```html
+<tr>
+    <td>Project Name</td>
+    <td>Owner</td>
+    <td>
+        <span class="badge badge-success">
+            <span class="badge-text">Active</span>
+        </span>
+    </td>
+</tr>
+```
+
+### As Status Indicators
+
+Use appropriate badge colors to indicate status:
+
+```html
+<div style="display: flex; align-items: center; gap: var(--space-2);">
+    <span class="body-text">Order Status:</span>
+    <span class="badge badge-success">
+        <span class="badge-text">Shipped</span>
+    </span>
+</div>
+```
+
+### In Form Labels
+
+Badges can be used with form labels to indicate required fields or field status:
+
+```html
+<div class="text-input size-medium">
+    <div class="label">
+        <span class="label-text">Username</span>
+        <span class="badge badge-inline">
+            <span class="badge-text">Required</span>
+        </span>
+    </div>
+    <div class="content">
+        <input type="text" placeholder="Enter username">
+    </div>
+</div>
+```
+
+By following these guidelines, you'll create consistent, effective badges that align with the design system's principles and enhance the user experience.

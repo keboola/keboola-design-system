@@ -1,0 +1,23 @@
+---
+description: 
+globs: 
+alwaysApply: true
+---
+# Design System Overview
+
+This design system organizes components by complexity into a single components directory:
+
+- **Basic Components**: UI elements like buttons, inputs, selects
+- **Complex Components**: More advanced UI patterns like cards, tabs, banners
+
+## Key Directories
+- `components/`: All UI components like [buttons.css](mdc:components/buttons.css), [text-input.css](mdc:components/text-input.css), [select.css](mdc:components/select.css), and [card.css](mdc:components/card.css)
+- `styles/`: Core styling utilities including [tokens.css](mdc:styles/tokens.css) for design tokens
+- `examples/`: Implementation examples of components
+
+## Implementation Guidelines
+1. Use existing components when possible
+2. Follow the established naming conventions
+3. Maintain consistent spacing using CSS variables (`var(--space-*)`)
+4. Use the defined color tokens (`var(--neutral-*)`, `var(--success-*)`, etc.)
+5. Structure components based on complexity and purpose

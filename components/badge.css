@@ -1,0 +1,95 @@
+/**
+ * Keboola Design System - Badge Component
+ *
+ * Badges should be implemented using <span> elements as they are inline-level components.
+ * Width is dynamic based on content.
+ * 
+ * Basic usage:
+ * <span class="badge">
+ *   <span class="badge-text">Label</span>
+ * </span>
+ * 
+ * With color variants:
+ * <span class="badge badge-success">
+ *   <span class="badge-text">Success</span>
+ * </span>
+ * 
+ * With custom colors:
+ * <span class="badge badge-purple">
+ *   <span class="badge-text">Purple</span>
+ * </span>
+ */
+
+.badge,
+.badge * {
+  box-sizing: border-box;
+}
+
+.badge {
+  background: var(--secondary-blue-500-base);
+  color: var(--neutral-white);
+  border-radius: var(--radius-large);
+  padding: 2px var(--space-2);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  width: fit-content;
+  min-width: min-content;
+  height: var(--space-5);
+  vertical-align: middle;
+}
+
+.badge-text {
+  color: inherit;
+  text-align: center;
+  font-family: var(--additional-badge-family);
+  font-size: var(--additional-badge-size);
+  line-height: var(--additional-badge-line-height);
+  letter-spacing: var(--additional-badge-letter-spacing);
+  font-weight: var(--additional-badge-weight);
+  text-transform: uppercase;
+  white-space: nowrap;
+  display: flex;
+  align-items: center;
+  height: 100%;
+}
+
+/* Badge Variants */
+.badge-success {
+  background: var(--success-green-500-base);
+}
+
+.badge-warning {
+  background: var(--warning-orange-500-base);
+}
+
+.badge-error {
+  background: var(--error-red-500-base);
+}
+
+/* Badge with icon */
+.badge-with-icon {
+  gap: var(--space-1);
+}
+
+.badge-with-icon .icon-container {
+  font-size: 10px;
+  display: flex;
+  align-items: center;
+  color: inherit;
+}
+
+/* Custom color badges */
+.badge-purple {
+  background: var(--accent-purple-500-base);
+}
+
+.badge-grey {
+  background: var(--neutral-grey-500-base);
+}
+
+/* Badge with left margin - for inline use with text */
+.badge-inline {
+  margin-left: var(--space-2);
+} 

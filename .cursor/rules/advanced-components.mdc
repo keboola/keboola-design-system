@@ -1,0 +1,51 @@
+---
+description: 
+globs: 
+alwaysApply: true
+---
+# Advanced Components
+
+Advanced components are more complex UI patterns that form distinct sections of an interface. They are typically built using combinations of basic components.
+
+## Card
+Found in [card.css](mdc:components/card.css)
+
+Cards are containers that group related content and actions. They provide a flexible container for displaying information.
+
+```html
+<div class="card">
+    <div class="card__header">
+        <h2 class="card__title">Card Title</h2>
+    </div>
+    <div class="card__content">
+        <!-- Card content goes here -->
+    </div>
+</div>
+```
+
+## Form Implementation
+
+When creating forms, follow these guidelines:
+
+1. Wrap form elements in a `<form>` tag with appropriate attributes:
+   ```html
+   <form style="display: flex; flex-direction: column; gap: var(--space-4);">
+   ```
+
+2. Use components for inputs:
+   - Text inputs for text fields
+   - Select component for dropdowns
+   - Checkbox component for checkboxes
+
+3. Group related form elements with consistent spacing
+   ```html
+   <div style="margin-top: var(--space-2);">
+       <button type="submit" class="btn btn-primary btn-medium">
+           <span class="btn-text">Submit</span>
+       </button>
+   </div>
+   ```
+
+4. Use validation attributes on input elements (required, pattern, etc.)
+
+5. Place forms inside card components for consistent visual presentation
